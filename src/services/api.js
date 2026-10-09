@@ -1,0 +1,10 @@
+const API_URL = import.meta.env.VITE_API_URL ?? ''
+
+export async function apiFetch(endpoint, options = {}) {
+  const res = await fetch(`${API_URL}${endpoint}`, {
+    ...options,
+    headers: { 'Content-Type': 'application/json', ...options.headers },
+  })
+  if (!res.ok) throw new Error(`Error ${res.status}: ${res.statusText}`)
+  return res.json()
+}

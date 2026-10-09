@@ -1,0 +1,82 @@
+@import './variables.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-base);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.5;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* Layout */
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.layout__main {
+  flex: 1;
+  padding: 48px 0;
+}
+
+.header {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+}
+
+.header__logo {
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.header__nav {
+  display: flex;
+  gap: 24px;
+}
+
+.footer {
+  padding: 24px 0;
+  color: var(--color-muted);
+  border-top: 1px solid var(--color-border);
+}
+
+/* UI */
+.btn {
+  border: none;
+  border-radius: var(--radius);
+  padding: 10px 20px;
+  margin-top: 16px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.btn--primary {
+  background: var(--color-primary);
+  color: #fff;
+}
