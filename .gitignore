@@ -11,5 +11,5 @@ dist
 /Whatsapp/
 /logos/
 
-# Documentación interna
-/docs/
+# Guía de diseño interna (solo local)
+/docs/DISENO.md

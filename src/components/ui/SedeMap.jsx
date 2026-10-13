@@ -1,17 +1,26 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
+import SedeMapStatic from './SedeMapStatic'
 import './SedeMap.css'
 
 const ZOOM = 13
 // OpenStreetMap (sin API key); SedeMap.css lo convierte en un mapa plano azul noche
 const TILES = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+// Atribución exigida por la política de uso de OpenStreetMap
+const ATTRIBUTION = '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors'
+
+// Plan B: si el proveedor de mapas no responde, se muestra la captura de la sede
+const FIRST_TILE_TIMEOUT = 10000 // ms sin ninguna imagen del mapa al cargar
+const MAX_CONSECUTIVE_ERRORS = 6 // errores seguidos sin ninguna carga exitosa
 
 // Mapa plano bicolor que muestra solo la sede seleccionada.
-export default function SedeMap({ coords, label }) {
+// Si el servicio de mapas falla (temporal o permanentemente) se reemplaza por `snapshot`.
+export default function SedeMap({ coords, label, snapshot }) {
   const containerRef = useRef(null)
   const mapRef = useRef(null)
   const markerRef = useRef(null)
+  const [failed, setFailed] = useState(false)
 
   useEffect(() => {
     const map = L.map(containerRef.current, {
@@ -20,11 +29,23 @@ export default function SedeMap({ coords, label }) {
       attributionControl: true,
     }).setView(coords, ZOOM)
 
-    L.tileLayer(TILES, {
-      maxZoom: 18,
-      attribution: '© OpenStreetMap',
-    }).addTo(map)
+    const tiles = L.tileLayer(TILES, { maxZoom: 18, attribution: ATTRIBUTION }).addTo(map)
     L.control.zoom({ position: 'bottomright' }).addTo(map)
+
+    // Detección de fallas del proveedor
+    let loaded = 0
+    let consecutiveErrors = 0
+    tiles.on('tileload', () => {
+      loaded += 1
+      consecutiveErrors = 0
+    })
+    tiles.on('tileerror', () => {
+      consecutiveErrors += 1
+      if (consecutiveErrors >= MAX_CONSECUTIVE_ERRORS) setFailed(true)
+    })
+    const timeout = setTimeout(() => {
+      if (loaded === 0) setFailed(true)
+    }, FIRST_TILE_TIMEOUT)
 
     markerRef.current = L.marker(coords, {
       icon: L.divIcon({ className: 'sede-pin', iconSize: [18, 18] }),
@@ -32,14 +53,27 @@ export default function SedeMap({ coords, label }) {
     }).addTo(map)
 
     mapRef.current = map
-    return () => map.remove()
+    return () => {
+      clearTimeout(timeout)
+      mapRef.current?.remove()
+      mapRef.current = null
+    }
     // El mapa se crea una sola vez; los cambios de sede los maneja el efecto de abajo
   }, [])
+
+  // Si el proveedor falló, se libera el mapa (deja de pedir imágenes) y queda la captura
+  useEffect(() => {
+    if (!failed) return
+    mapRef.current?.remove()
+    mapRef.current = null
+  }, [failed])
 
   useEffect(() => {
     mapRef.current?.flyTo(coords, ZOOM, { duration: 1.1 })
     markerRef.current?.setLatLng(coords)
   }, [coords])
+
+  if (failed) return <SedeMapStatic snapshot={snapshot} label={label} />
 
   return (
     <>

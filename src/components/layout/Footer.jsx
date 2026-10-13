@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import Logo from './Logo'
 import { LINKS } from '@/constants/links'
 import { useLanguage } from '@/context/LanguageContext'
@@ -29,6 +30,7 @@ export default function Footer() {
           <FooterColumn title={t.footer.legalTitle}>
             <a href={LINKS.legal.privacy} {...external}>{t.footer.privacy}</a>
             <a href={LINKS.legal.terms} {...external}>{t.footer.terms}</a>
+            <Link to="/creditos">{t.footer.credits}</Link>
           </FooterColumn>
 
           <FooterColumn title={t.footer.socialTitle}>

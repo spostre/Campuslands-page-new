@@ -6,6 +6,31 @@
   z-index: 40;
 }
 
+/*
+ * Borde reflectivo: capa con la silueta blanca de la mascota, un poco más grande, en modo
+ * "diferencia". Sobre fondo negro se ve clara, sobre fondo claro oscura y sobre colores, su
+ * inverso. Queda debajo de la mascota, así que solo asoma el contorno.
+ */
+.mascot--outline {
+  z-index: 39;
+  mix-blend-mode: difference;
+  pointer-events: none;
+}
+
+.mascot__img--outline {
+  filter:
+    brightness(0) invert(1)
+    drop-shadow(2.5px 0 0 #fff)
+    drop-shadow(-2.5px 0 0 #fff)
+    drop-shadow(0 2.5px 0 #fff)
+    drop-shadow(0 -2.5px 0 #fff);
+}
+
+/* La capa del borde imita la inclinación de la mascota al pasar el cursor */
+.mascot-root:has(.mascot__btn:hover) .mascot--outline .mascot__hover {
+  transform: scale(1.08) rotate(-8deg);
+}
+
 .mascot__btn {
   display: block;
   width: 76px;
@@ -45,16 +70,11 @@
   50% { transform: translateY(-7px); }
 }
 
-/* Borde blanco recortado, como un sticker (sin sombra) */
+/* Imagen de la mascota (el contorno lo da la capa reflectiva, sin sombra) */
 .mascot__img {
   width: 100%;
   height: auto;
   user-select: none;
-  filter:
-    drop-shadow(2px 0 0 #fff)
-    drop-shadow(-2px 0 0 #fff)
-    drop-shadow(0 2px 0 #fff)
-    drop-shadow(0 -2px 0 #fff);
 }
 
 /* Se inclina un poco al pasar el cursor */

@@ -1,0 +1,53 @@
+/* Página de lectura en banda clara; el encabezado fijo flota encima */
+.credits {
+  padding-top: calc(var(--header-height) + var(--section-space));
+}
+
+.credits__inner {
+  max-width: 880px;
+}
+
+.credits__block {
+  padding: 32px 0;
+  border-top: 1px solid var(--border);
+}
+
+.credits__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: 600;
+}
+
+.credits__text {
+  margin-top: 10px;
+  color: var(--muted);
+}
+
+.credits__list {
+  list-style: none;
+  margin-top: 18px;
+}
+
+.credits__list li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 6px 24px;
+  padding: 12px 0;
+  border-top: 1px dashed var(--border);
+  font-size: 0.9375rem;
+}
+
+.credits__list a {
+  font-family: var(--font-nav);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.credits__list a:hover {
+  color: var(--accent-hover);
+}

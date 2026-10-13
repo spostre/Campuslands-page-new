@@ -30,10 +30,7 @@ export default function Hero() {
 
         <div className="hero-metrics">
           <h2 className="visually-hidden">{metrics.title}</h2>
-          <p className="hero-metrics__statement">
-            <span className="hero-metrics__dot" aria-hidden="true" />
-            {metrics.statement}
-          </p>
+          <p className="hero-metrics__statement">{metrics.statement}</p>
           <ul className="hero-metrics__list">
             {metrics.stats.map((stat, i) => (
               <Stat key={stat.label} {...stat} delay={i * 150} />

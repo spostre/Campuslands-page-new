@@ -6,10 +6,14 @@ import { LINKS } from '@/constants/links'
 import { SEDES } from '@/data/sedes'
 import { useLanguage } from '@/context/LanguageContext'
 import { useNearViewport } from '@/hooks/useNearViewport'
+import SedeMapStatic from '@/components/ui/SedeMapStatic'
 import './Locations.css'
 
 // Leaflet pesa ~150KB: el mapa se descarga solo cuando la sección se acerca a la pantalla
-const SedeMap = lazy(() => import('@/components/ui/SedeMap'))
+// Si no se pudiera descargar el código del mapa, se usa la captura de la sede (plan B)
+const SedeMap = lazy(() =>
+  import('@/components/ui/SedeMap').catch(() => ({ default: SedeMapStatic })),
+)
 
 export default function Locations() {
   const { t, lang } = useLanguage()
@@ -42,7 +46,7 @@ export default function Locations() {
         <figure className="locations__map" ref={mapRef}>
           {mapVisible ? (
             <Suspense fallback={<div className="sede-map sede-map--loading" />}>
-              <SedeMap coords={sede.coords} label={sede.name} />
+              <SedeMap coords={sede.coords} label={sede.name} snapshot={sede.snapshot} />
             </Suspense>
           ) : (
             <div className="sede-map sede-map--loading" />

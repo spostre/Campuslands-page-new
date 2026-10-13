@@ -1,0 +1,35 @@
+/*
+ * Banda clara de Órbit + Sedes con una cuadrícula muy sutil de fondo (como un plano de
+ * coordenadas). Va en un contenedor común para que sea continua entre las dos secciones;
+ * las secciones se vuelven transparentes para dejarla ver y el contenido queda encima.
+ */
+.band-grid {
+  position: relative;
+  isolation: isolate;
+  background: var(--paper);
+}
+
+.band-grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgb(31 85 214 / 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(31 85 214 / 0.06) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-position: center top;
+  /* Se desvanece hacia los lados y hacia los extremos de la banda */
+  -webkit-mask:
+    linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent),
+    linear-gradient(transparent, #000 12%, #000 88%, transparent);
+  -webkit-mask-composite: source-in;
+  mask:
+    linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent) intersect,
+    linear-gradient(transparent, #000 12%, #000 88%, transparent);
+  pointer-events: none;
+}
+
+.band-grid > .surface-light {
+  background: transparent;
+}

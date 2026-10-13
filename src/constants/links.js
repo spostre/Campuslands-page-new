@@ -23,6 +23,17 @@ export const LINKS = {
   partnersContact: 'https://campuslands.com/servicios/emplea#partners-contact',
   orbitChat:
     'https://api.whatsapp.com/send/?phone=573009711559&text&type=phone_number&app_absent=0',
+  // Sé un camper
+  camper: {
+    start: WA_MAIN,
+    programs: {
+      codeUp: `${WA_MAIN}?text=Hola,%20quisiera%20informaci%C3%B3n%20sobre%20el%20programa%20Code%20Up`,
+      afterWork: `${WA_MAIN}?text=Hola,%20quisiera%20informaci%C3%B3n%20sobre%20el%20programa%20After%20Work`,
+      speakUp: `${WA_MAIN}?text=Hola,%20quisiera%20informaci%C3%B3n%20sobre%20el%20programa%20Speak%20Up`,
+      marketing: `${WA_MAIN}?text=Hola,%20quisiera%20informaci%C3%B3n%20sobre%20el%20programa%20Marketing`,
+    },
+  },
+
   scheduleVisit:
     'https://api.whatsapp.com/send/?phone=3182018997&text=Hola%21+Quiero+agendar+una+visita&type=phone_number&app_absent=0',
 

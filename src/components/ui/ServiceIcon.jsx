@@ -1,6 +1,6 @@
 import { useId } from 'react'
 
-// Íconos de línea para las tarjetas de servicios, con el degradado azul del casco del logo
+// Íconos de línea (servicios y pilares de formación), con el degradado azul del casco del logo
 // (azul → cian → azul; el azul inicial es algo más claro que el del logo para que se vea
 // sobre negro). Se usan como marca de agua tenue.
 const PATHS = {
@@ -34,6 +34,30 @@ const PATHS = {
       <rect x="24" y="51" width="30" height="28" rx="4" />
       <path d="M64 54h32M64 65h22M64 76h28" />
       <path d="M44 104h32" />
+    </>
+  ),
+  // Pilar Desarrollo de software: capas que se apilan (construir producto)
+  software: (
+    <>
+      <path d="M60 18 104 40 60 62 16 40Z" />
+      <path d="M16 60l44 22 44-22" />
+      <path d="M16 80l44 22 44-22" />
+    </>
+  ),
+  // Pilar Inteligencia artificial: destellos
+  ai: (
+    <>
+      <path d="M52 16c3 22 12 31 34 34-22 3-31 12-34 34-3-22-12-31-34-34 22-3 31-12 34-34Z" />
+      <path d="M92 70c1.6 10 6 14.4 16 16-10 1.6-14.4 6-16 16-1.6-10-6-14.4-16-16 10-1.6 14.4-6 16-16Z" />
+      <circle cx="92" cy="24" r="4" />
+    </>
+  ),
+  // Pilar Inglés: globo de diálogo con texto
+  english: (
+    <>
+      <path d="M20 22h80a8 8 0 0 1 8 8v44a8 8 0 0 1-8 8H58l-20 18V82H20a8 8 0 0 1-8-8V30a8 8 0 0 1 8-8Z" />
+      <path d="M34 66l10-28 10 28M37.5 57h13" />
+      <path d="M66 46h26M66 58h20" />
     </>
   ),
   // Internacional: globo terráqueo con una órbita y un satélite

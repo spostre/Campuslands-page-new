@@ -1,53 +1,186 @@
-/* Sección negra: título y lista de redes a la izquierda, video a la derecha */
+/*
+ * Redes (sección negra): título + tarjetas por red a la izquierda, video horizontal a la
+ * derecha y una cinta gigante en contorno ("#GoForIt · Campuslands") pasando por detrás.
+ */
+.social {
+  padding-bottom: calc(var(--section-space) * 1.4);
+}
+
+/* ---- Cinta de fondo: texto enorme solo en contorno, casi transparente ---- */
+.social.has-stars > .social__ribbon {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: clamp(16px, 4vw, 56px);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.social__ribbon-track {
+  display: flex;
+  gap: 0.5em;
+  width: max-content;
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 13vw, 12rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1px rgb(147 182 255 / 0.13);
+  animation: social-ribbon 60s linear infinite;
+}
+
+.social__ribbon-track span::after {
+  content: '·';
+  margin-left: 0.5em;
+}
+
+.social__ribbon-track .is-accent {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-weight: 400;
+}
+
+@keyframes social-ribbon {
+  to { transform: translateX(-50%); }
+}
+
+/* ---- Contenido ---- */
 .social__grid {
   display: grid;
-  grid-template-columns: 1fr 1.3fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
   align-items: center;
-  gap: clamp(48px, 7vw, 112px);
+  gap: clamp(48px, 6vw, 96px);
 }
 
 .social__title {
   max-width: 16ch;
 }
 
-/* Enlaces libres: sin marco, filas con flecha del color de detalle */
-.social__links {
+/* Tarjetas por red: 2 × 2 */
+.social__networks {
   list-style: none;
-  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: clamp(32px, 4vw, 48px);
 }
 
-.social__links a {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 0;
-  border-bottom: 1px solid var(--border);
-  font-size: var(--fs-body);
-  transition: color 0.2s var(--ease);
+.network {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 16px;
+  align-items: center;
+  padding: 22px 24px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  overflow: hidden;
+  transition: background-color 0.3s var(--ease), border-color 0.3s var(--ease), transform 0.3s var(--ease);
 }
 
-.social__links li:first-child a {
-  border-top: 1px solid var(--border);
+.network__icon {
+  grid-row: span 2;
+  width: 30px;
+  height: 30px;
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 0.3s var(--ease), transform 0.4s var(--ease);
 }
 
-.social__links a span {
-  color: var(--detail);
-  transition: transform 0.3s var(--ease);
+.network__icon-dot {
+  fill: var(--accent);
+  stroke: none;
+  transition: fill 0.3s var(--ease);
 }
 
-.social__links a:hover {
-  color: var(--accent);
+.network__name {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
 }
 
-.social__links a:hover span {
+.network__handle {
+  font-size: 0.8125rem;
+  color: var(--muted);
+  transition: color 0.3s var(--ease);
+}
+
+.network__arrow {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  color: var(--muted);
+  transition: transform 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+.network:hover,
+.network:focus-visible {
+  background: var(--blue-600);
+  border-color: var(--blue-600);
+  color: var(--white);
+  transform: translateY(-3px);
+}
+
+.network:hover .network__icon,
+.network:focus-visible .network__icon {
+  stroke: var(--white);
+  transform: rotate(-8deg) scale(1.08);
+}
+
+.network:hover .network__icon-dot {
+  fill: var(--white);
+}
+
+.network:hover .network__handle,
+.network:hover .network__arrow {
+  color: rgb(255 255 255 / 0.8);
+}
+
+.network:hover .network__arrow {
   transform: translate(3px, -3px);
 }
 
-.social__video {
-  border-radius: var(--radius-card);
+/* Variante sin video (otras páginas): redes en una fila */
+.social--compact .social__grid {
+  grid-template-columns: 1fr;
+}
+
+.social--compact .social__networks {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 1100px) {
+  .social--compact .social__networks {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .social__ribbon-track {
+    animation: none;
+  }
 }
 
 @media (max-width: 900px) {
   .social__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .social__grid > .video-frame {
+    margin-top: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .social__networks {
     grid-template-columns: 1fr;
   }
 }

@@ -1,38 +1,107 @@
-.pillars__grid {
+/*
+ * Cada pilar: cuadro oscuro (sin redondeo, sin número) + barras de habilidades al lado.
+ * Las barras empiezan apagadas (una franja fina de color) y al pasar el cursor por el pilar
+ * crecen hasta su parte sobre una pista que marca el 100% (los tres porcentajes suman 100),
+ * con el nombre encima y el porcentaje fuera.
+ * Colores: escala uniforme de azules de la marca (de más intenso a más claro).
+ */
+
+/* Trama de puntos muy sutil de fondo */
+.pillars {
+  background-image: radial-gradient(rgb(15 18 24 / 0.07) 1.2px, transparent 1.6px);
+  background-size: 22px 22px;
+  background-position: center top;
+}
+
+.pillars__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px 48px;
+  flex-wrap: wrap;
+  margin-bottom: clamp(48px, 6vw, 72px);
+}
+
+/* Indicación para pasar el cursor (en táctil no hace falta: las barras ya se ven llenas) */
+.pillars__hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+/* Ícono de cursor de línea, en gris */
+.pillars__hint-icon {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+}
+
+.pillars__list {
+  --card: clamp(210px, 16vw, 250px);
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(32px, 4vw, 56px) clamp(32px, 5vw, 80px);
 }
 
-/* Tarjeta blanca con una línea superior del color de detalle */
+/* Cuadro y barras comparten altura; todos los pilares de una fila miden lo mismo */
 .pillar {
+  display: grid;
+  grid-template-columns: var(--card) 1fr;
+  gap: 24px;
+  outline-offset: 6px;
+}
+
+.pillar__card {
+  position: relative;
   display: flex;
   flex-direction: column;
-  padding: 32px 28px 36px;
-  border: 1px solid var(--border);
-  border-top: 2px solid var(--detail);
-  border-radius: 4px 4px var(--radius-card) var(--radius-card);
-  background: var(--surface);
-  box-shadow: var(--shadow-soft);
-  transition: transform 0.35s var(--ease);
+  justify-content: space-between;
+  gap: 20px;
+  min-height: var(--card); /* cuadrado como mínimo; crece si el texto lo necesita */
+  padding: 24px;
+  background: var(--ink-900);
+  color: #eef0f4;
+  transition: background-color 0.3s var(--ease);
 }
 
-.pillar:hover {
-  transform: translateY(-6px);
+/* Esquina de acento: un pequeño corte en diagonal arriba a la derecha */
+.pillar__card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(225deg, var(--bg) 50%, transparent 50%);
 }
 
-.pillar__num {
-  font-family: var(--font-nav);
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--detail);
+.pillar:hover .pillar__card,
+.pillar:focus-visible .pillar__card {
+  background: var(--ink-950);
+}
+
+.pillar__icon {
+  width: 52px;
+  height: 52px;
+  opacity: 0.85;
+  transition: transform 0.4s var(--ease), opacity 0.3s var(--ease);
+}
+
+.pillar:hover .pillar__icon,
+.pillar:focus-visible .pillar__icon {
+  opacity: 1;
+  transform: translateY(-3px) rotate(-6deg);
 }
 
 .pillar__title {
-  margin-top: 48px;
   font-family: var(--font-display);
-  font-size: var(--fs-card-title);
+  font-size: 1.25rem;
   font-weight: var(--display-weight);
   letter-spacing: -0.015em;
   line-height: 1.15;
@@ -40,24 +109,153 @@
 
 /* Descripción "transparente" */
 .pillar__text {
-  margin-top: 12px;
-  font-size: 0.9375rem;
-  line-height: 1.6;
+  margin-top: 10px;
+  font-size: 0.875rem;
+  line-height: 1.55;
   opacity: 0.62;
 }
 
-@media (max-width: 1000px) {
-  .pillars__grid {
-    grid-template-columns: 1fr 1fr;
+/* ---- Barras ---- */
+.pillar__bars {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skill {
+  --bar: #6f9dff; /* azul */
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+  min-height: 0;
+}
+
+.skill:nth-child(2) {
+  --bar: #9dbcff; /* azul medio */
+}
+
+.skill:nth-child(3) {
+  --bar: #c7d8ff; /* azul claro */
+}
+
+/* Pista = 100%. Apagada no se ve; al encender aparece tenue con una marca al final */
+.skill__track {
+  position: relative;
+  flex: 1;
+  display: flex;
+  background: transparent;
+  transition: background-color 0.4s var(--ease);
+}
+
+.skill__track::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--bar);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+}
+
+/* Apagada: franja fina. Encendida: crece hasta su porcentaje de la pista */
+.skill__fill {
+  width: 4px;
+  background: var(--bar);
+  transition: width 0.8s var(--ease) calc(var(--i) * 90ms);
+}
+
+/* Nombre encima de la barra: texto oscuro, legible sobre el relleno y sobre la pista */
+.skill__name {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  transform: translateY(-50%);
+  font-family: var(--font-nav);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: #0f1218;
+  opacity: 0;
+  transition: opacity 0.3s var(--ease);
+}
+
+.skill__value {
+  align-self: center;
+  width: 40px;
+  font-family: var(--font-nav);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text);
+  opacity: 0;
+  transition: opacity 0.3s var(--ease);
+}
+
+.pillar:hover .skill__track,
+.pillar:focus-within .skill__track {
+  background: color-mix(in srgb, var(--bar) 22%, transparent);
+}
+
+.pillar:hover .skill__track::after,
+.pillar:focus-within .skill__track::after {
+  opacity: 0.6;
+}
+
+.pillar:hover .skill__fill,
+.pillar:focus-within .skill__fill {
+  width: calc(var(--p) * 1%);
+}
+
+.pillar:hover .skill__name,
+.pillar:hover .skill__value,
+.pillar:focus-within .skill__name,
+.pillar:focus-within .skill__value {
+  opacity: 1;
+  transition-delay: calc(0.45s + var(--i) * 90ms);
+}
+
+/* En pantallas táctiles (sin cursor) las barras se muestran ya llenas */
+@media (hover: none) {
+  .pillars__hint {
+    display: none;
+  }
+
+  .skill__track {
+    background: color-mix(in srgb, var(--bar) 22%, transparent);
+  }
+
+  .skill__fill {
+    width: calc(var(--p) * 1%);
+  }
+
+  .skill__name,
+  .skill__value {
+    opacity: 1;
   }
 }
 
-@media (max-width: 560px) {
-  .pillars__grid {
+@media (max-width: 1100px) {
+  .pillars__list {
     grid-template-columns: 1fr;
   }
+}
 
-  .pillar__title {
-    margin-top: 28px;
+@media (max-width: 520px) {
+  .pillar {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .pillar__card {
+    min-height: 220px;
+  }
+
+  .pillar__bars {
+    height: 150px;
   }
 }

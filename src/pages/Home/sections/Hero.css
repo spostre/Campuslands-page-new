@@ -68,61 +68,45 @@
   margin: clamp(56px, 7vw, 80px) auto 0;
 }
 
+/* Frase entre dos líneas finas que se desvanecen hacia afuera */
 .hero-metrics__statement {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 18px;
   font-size: 0.875rem;
   color: var(--muted);
 }
 
-/* Punto "en vivo" con pulso suave */
-.hero-metrics__dot {
-  position: relative;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--detail);
-}
-
-.hero-metrics__dot::after {
+.hero-metrics__statement::before,
+.hero-metrics__statement::after {
   content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: inherit;
-  animation: pulse-ring 2.4s var(--ease) infinite;
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-strong));
 }
 
-@keyframes pulse-ring {
-  0% { transform: scale(1); opacity: 0.6; }
-  70%, 100% { transform: scale(2.8); opacity: 0; }
+.hero-metrics__statement::after {
+  background: linear-gradient(90deg, var(--border-strong), transparent);
 }
 
 .hero-metrics__list {
   list-style: none;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-top: 24px;
+  margin-top: 28px;
 }
 
-/* Cifra con una línea corta del color de detalle encima */
+/* Cifras separadas por líneas verticales finas */
 .hero-stat {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2px;
-  padding-top: 8px;
+  padding: 4px 12px;
 }
 
-.hero-stat::before {
-  content: '';
-  width: 28px;
-  height: 2px;
-  margin-bottom: 14px;
-  border-radius: 2px;
-  background: var(--detail);
+.hero-stat + .hero-stat {
+  border-left: 1px solid var(--border);
 }
 
 .hero-stat__value {
@@ -142,6 +126,12 @@
 @media (max-width: 560px) {
   .hero-metrics__list {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 20px;
+  }
+
+  .hero-stat + .hero-stat {
+    border-left: 0;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
   }
 }

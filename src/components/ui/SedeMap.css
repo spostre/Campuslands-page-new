@@ -10,6 +10,17 @@
   z-index: 0;
 }
 
+/* Plan B: captura estática del mapa (mismo aspecto, sin servicio externo) */
+.sede-map--static {
+  background: #0e1a33;
+}
+
+.sede-map--static img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .sede-map.leaflet-container {
   background: #0e1a33;
 }

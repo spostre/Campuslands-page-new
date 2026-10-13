@@ -99,7 +99,17 @@ export default function Mascot() {
   const removeBurst = (id) => setBursts((list) => list.filter((b) => b.id !== id))
 
   return (
-    <div className="mascot">
+    <div className="mascot-root">
+      {/* Borde reflectivo: silueta algo más grande en modo "diferencia", invierte el color de lo que
+          tenga detrás. Va en su propia capa (hermana de la mascota) para poder mezclarse con la
+          página, y repite la misma flotación, inclinación y reacción para ir siempre alineada. */}
+      <div className="mascot mascot--outline" aria-hidden="true">
+        <div className="mascot__btn">
+          <MascotFigure reaction={reaction} className="mascot__img mascot__img--outline" />
+        </div>
+      </div>
+
+      <div className="mascot">
       {bursts.map((b) => (
         <span
           key={b.id}
@@ -113,21 +123,28 @@ export default function Mascot() {
       ))}
 
       <button type="button" className="mascot__btn" onClick={poke} aria-label={t.mascot.label} title={t.mascot.label}>
-        {/* Capas: flotación horizontal, vertical, inclinación al pasar el cursor y reacción */}
-        <span className="mascot__drift-x">
-          <span className="mascot__drift-y">
-            <span className="mascot__hover">
-              <span
-                key={reaction.id}
-                className={reaction.name ? `mascot__react mascot__react--${reaction.name}` : 'mascot__react'}
-              >
-                <img src={mascotImage} alt="" className="mascot__img" draggable="false" />
-              </span>
-            </span>
+        <MascotFigure reaction={reaction} className="mascot__img" />
+      </button>
+      </div>
+    </div>
+  )
+}
+
+// Capas: flotación horizontal, vertical, inclinación al pasar el cursor y reacción
+function MascotFigure({ reaction, className }) {
+  return (
+    <span className="mascot__drift-x">
+      <span className="mascot__drift-y">
+        <span className="mascot__hover">
+          <span
+            key={reaction.id}
+            className={reaction.name ? `mascot__react mascot__react--${reaction.name}` : 'mascot__react'}
+          >
+            <img src={mascotImage} alt="" className={className} draggable="false" />
           </span>
         </span>
-      </button>
-    </div>
+      </span>
+    </span>
   )
 }
 

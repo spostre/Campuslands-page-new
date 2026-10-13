@@ -33,6 +33,10 @@
   --radius-window: 14px;
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 
+  /* Cortes diagonales entre secciones (Servicios → Aliados → Órbit) */
+  --diag-cut: clamp(48px, 7vw, 110px); /* altura de cada corte */
+  --diag-gap: clamp(12px, 1.4vw, 20px); /* grosor de la franja clara entre Servicios y Aliados */
+
   /* Paleta base: azules */
   --blue-700: #1847b8;
   --blue-600: #1f55d6;

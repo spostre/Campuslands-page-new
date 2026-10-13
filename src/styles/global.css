@@ -1,10 +1,12 @@
+/* Tipografías alojadas en el proyecto (antes se cargaban desde Google Fonts) */
+@import '../assets/fonts/fonts.css';
 @import './variables.css';
 
 /*
  * Superficies: cada sección es clara u oscura y define aquí sus colores.
  * Un color por tipo de detalle:
  *   --accent  → botones principales, enlaces, elemento activo
- *   --detail  → detalles finos (pastillas de etiqueta, líneas, números, flechas)
+ *   --detail  → detalles finos (números, flechas, etiqueta #GoForIt)
  *   --deco-*  → solo los iconos decorativos entre secciones (multicolor)
  */
 .surface-light {
@@ -123,6 +125,8 @@ select {
 
 .layout__main {
   flex: 1;
+  /* Fondo claro detrás de las secciones: es lo que asoma en los cortes diagonales */
+  background: var(--paper);
 }
 
 /* Tipografía compartida */
@@ -130,7 +134,7 @@ select {
   padding: var(--section-space) 0;
 }
 
-/* Etiqueta de sección con una pastilla del color de detalle */
+/* Etiqueta de sección: texto en mayúsculas del color de acento */
 .eyebrow {
   display: flex;
   align-items: center;
@@ -142,15 +146,6 @@ select {
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 18px;
-}
-
-.eyebrow::before {
-  content: '';
-  flex: none;
-  width: 18px;
-  height: 8px;
-  border-radius: 999px;
-  background: var(--detail);
 }
 
 .section-head {

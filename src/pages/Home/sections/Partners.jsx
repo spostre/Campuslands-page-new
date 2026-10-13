@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react'
 import Button from '@/components/ui/Button'
-import Divider from '@/components/ui/Divider'
 import Emph from '@/components/ui/Emph'
 import { LINKS } from '@/constants/links'
 import { PARTNERS } from '@/data/partners'
@@ -11,7 +10,8 @@ import './Partners.css'
 
 const SPEED = 32 // px por segundo de la cinta
 
-// Aliados (sección negra): cinta en bucle de columnas inclinadas, una alianza por columna.
+// Aliados (sección negra con corte diagonal): cinta en bucle de columnas inclinadas que ocupa
+// toda la sección, una alianza por columna, y a la izquierda una banda fija (borde recto) con el texto.
 // Se desplaza sola de borde a borde sin quedar nunca vacía; las flechas la adelantan o retroceden
 // una columna, y se detiene al pasar el cursor para poder leer.
 export default function Partners() {
@@ -65,12 +65,14 @@ export default function Partners() {
       target -= direction * step
     }
 
-    const onEnter = () => (paused = true)
+    // Solo se pausa con el cursor encima de una columna (su forma inclinada), no en los huecos
+    // ni en el resto de la sección
+    const onOver = (e) => {
+      paused = Boolean(e.target.closest('.partner-col__shape'))
+    }
     const onLeave = () => (paused = false)
-    rail.addEventListener('pointerenter', onEnter)
-    rail.addEventListener('pointerleave', onLeave)
-    rail.addEventListener('focusin', onEnter)
-    rail.addEventListener('focusout', onLeave)
+    track.addEventListener('pointerover', onOver)
+    track.addEventListener('pointerleave', onLeave)
 
     const resizeObserver = new ResizeObserver(measure)
     resizeObserver.observe(track)
@@ -86,10 +88,8 @@ export default function Partners() {
       cancelAnimationFrame(frame)
       resizeObserver.disconnect()
       visibilityObserver.disconnect()
-      rail.removeEventListener('pointerenter', onEnter)
-      rail.removeEventListener('pointerleave', onLeave)
-      rail.removeEventListener('focusin', onEnter)
-      rail.removeEventListener('focusout', onLeave)
+      track.removeEventListener('pointerover', onOver)
+      track.removeEventListener('pointerleave', onLeave)
     }
   }, [])
 
@@ -98,24 +98,9 @@ export default function Partners() {
 
   return (
     <section id="aliados" className="section partners surface-dark has-stars">
-      <Starfield origin="left" />
-      <Divider variant="dots" align="start" />
-      <div className="container">
-        <div className="partners__head">
-          <div>
-            <span className="eyebrow">{partners.eyebrow}</span>
-            <h2 className="display h2"><Emph text={partners.title} /></h2>
-          </div>
-          <div className="partners__intro">
-            <p className="lead">{partners.text}</p>
-            <div className="btn-row">
-              <Button href={LINKS.partnersContact}>{partners.ctaHire}</Button>
-              <Button href={LINKS.partnersContact} variant="ghost" arrow>{partners.ctaSponsor}</Button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Starfield origin="right" />
 
+      {/* Cinta en bucle que ocupa toda la sección (detrás del panel) */}
       <div ref={railRef} className={`partners__rail ${inView ? 'is-visible' : ''}`}>
         <ul ref={trackRef} className="partners__track">
           {columns.map(({ name, logo }, i) => {
@@ -129,7 +114,7 @@ export default function Partners() {
               >
                 <div className="partner-col__shape">
                   {logo ? (
-                    <img src={logo} alt={copy ? '' : name} className="partner-col__logo" />
+                    <img src={logo} alt={copy ? '' : name} className="partner-col__logo" loading="lazy" />
                   ) : (
                     <span className="partner-col__name">{name}</span>
                   )}
@@ -138,23 +123,38 @@ export default function Partners() {
             )
           })}
         </ul>
+      </div>
 
-        <button
-          type="button"
-          className="partners__arrow partners__arrow--prev"
-          onClick={() => nudge.current(-1)}
-          aria-label={partners.prev}
-        >
-          <ArrowIcon />
-        </button>
-        <button
-          type="button"
-          className="partners__arrow partners__arrow--next"
-          onClick={() => nudge.current(1)}
-          aria-label={partners.next}
-        >
-          <ArrowIcon />
-        </button>
+      {/* Banda fija con borde derecho recto que sostiene el texto; las columnas pasan por detrás */}
+      <div className="partners__panel" aria-hidden="true" />
+
+      <div className="container partners__content">
+        <span className="eyebrow">{partners.eyebrow}</span>
+        <h2 className="display h2"><Emph text={partners.title} /></h2>
+        <p className="lead partners__text">{partners.text}</p>
+        <div className="btn-row">
+          <Button href={LINKS.partnersContact}>{partners.ctaHire}</Button>
+          <Button href={LINKS.partnersContact} variant="ghost" arrow>{partners.ctaSponsor}</Button>
+        </div>
+
+        <div className="partners__arrows">
+          <button
+            type="button"
+            className="partners__arrow partners__arrow--prev"
+            onClick={() => nudge.current(-1)}
+            aria-label={partners.prev}
+          >
+            <ArrowIcon />
+          </button>
+          <button
+            type="button"
+            className="partners__arrow partners__arrow--next"
+            onClick={() => nudge.current(1)}
+            aria-label={partners.next}
+          >
+            <ArrowIcon />
+          </button>
+        </div>
       </div>
     </section>
   )

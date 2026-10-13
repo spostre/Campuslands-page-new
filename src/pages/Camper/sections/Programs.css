@@ -1,0 +1,206 @@
+.programs {
+  padding-top: var(--section-space);
+}
+
+.programs__head {
+  max-width: 720px;
+  margin-bottom: clamp(32px, 4vw, 56px);
+}
+
+.programs__eyebrow {
+  display: block;
+  margin-bottom: 18px;
+  color: var(--muted);
+}
+
+.programs__text {
+  margin-top: 18px;
+  color: var(--muted);
+}
+
+/* ---- Vitrina de programa ---- */
+.showcase {
+  padding: clamp(72px, 8vw, 112px) 0;
+}
+
+.showcase__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
+  grid-template-areas:
+    'title .'
+    'panel side';
+  gap: 40px clamp(40px, 5vw, 88px);
+  align-items: center;
+}
+
+.showcase--flip .showcase__grid {
+  grid-template-columns: minmax(0, 0.65fr) minmax(0, 1.35fr);
+  grid-template-areas:
+    '. title'
+    'side panel';
+}
+
+.showcase__title {
+  grid-area: title;
+  max-width: 16ch;
+  font-size: clamp(2rem, 3.6vw, 3.1rem);
+}
+
+/* Panel tipo ventana */
+.panel {
+  grid-area: panel;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: 0 40px 80px -50px rgb(255 255 255 / 0.08);
+  overflow: hidden;
+}
+
+.panel__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.panel__dots {
+  display: flex;
+  gap: 6px;
+}
+
+.panel__dots i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1px solid var(--border-strong);
+}
+
+.panel__body {
+  padding: clamp(24px, 3vw, 36px);
+}
+
+.panel__badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.6875rem;
+  color: var(--muted);
+}
+
+.panel__duration {
+  margin-top: 22px;
+  font-size: 1.125rem;
+  color: var(--muted);
+}
+
+.panel__number {
+  font-family: var(--font-display);
+  font-size: clamp(3.4rem, 6vw, 5rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--text);
+}
+
+.panel__label {
+  margin: 26px 0 10px;
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+.panel__options {
+  list-style: none;
+  display: grid;
+  gap: 4px;
+}
+
+.panel__options li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  font-size: 0.9375rem;
+}
+
+.panel__options svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Caja inferior, como el campo de un chat, con el botón de inscripción */
+.panel__action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 24px;
+  padding: 10px 10px 10px 18px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface-2);
+}
+
+.panel__hint {
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+/* Lado: frase destacada + lista en mayúsculas */
+.showcase__side {
+  grid-area: side;
+}
+
+.showcase__statement {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.showcase__muted {
+  color: var(--muted);
+}
+
+.showcase__list-title {
+  margin: 28px 0 12px;
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+.showcase__list {
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+@media (max-width: 960px) {
+  .showcase__grid,
+  .showcase--flip .showcase__grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'title'
+      'panel'
+      'side';
+  }
+}
+
+@media (max-width: 480px) {
+  .panel__action {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .panel__action .btn {
+    justify-content: center;
+  }
+}

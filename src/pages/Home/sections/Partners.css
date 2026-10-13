@@ -1,33 +1,30 @@
-.partners {
-  padding-top: 0; /* continúa la banda negra de servicios */
-}
-
-.partners__head {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px 80px;
-  align-items: end;
-}
-
-.partners__intro {
-  max-width: 560px;
-}
-
-.partners__intro .btn-row {
-  margin-top: 28px;
-}
-
 /*
- * Cinta en bucle de borde a borde: columnas inclinadas de una sola forma
- * (gris azulado claro), una alianza por columna. La mueve Partners.jsx con transform.
+ * Aliados: sección con cortes diagonales arriba (franja clara que la separa de Servicios) y abajo
+ * (entrada a Órbit), con un negro algo más claro.
+ * Capas, de atrás hacia adelante: estrellas → cinta de columnas (toda la sección)
+ * → banda fija con el texto (izquierda, borde derecho recto) → contenido.
  */
-.partners__rail {
-  --col-w: 176px;
-  --col-h: 400px;
-  --col-gap: 56px;
+.partners {
+  --cut: var(--diag-cut);
   --skew: -20deg;
-  position: relative;
-  margin-top: clamp(48px, 6vw, 80px);
+  --bg: #11141a;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  min-height: clamp(640px, 54vw, 820px);
+  /* Se monta sobre el corte de Servicios: entre los dos solo queda la franja clara (--diag-gap) */
+  margin-top: calc(var(--diag-gap) - var(--cut));
+  padding: calc(var(--cut) + var(--section-space) * 0.6) 0 calc(var(--cut) + var(--section-space) * 0.6);
+  /* Corte diagonal arriba y abajo (mismo ángulo): abajo da entrada a la sección clara de Órbit */
+  clip-path: polygon(0 var(--cut), 100% 0, 100% calc(100% - var(--cut)), 0 100%);
+}
+
+/* ---- Cinta en bucle: ocupa toda la sección ---- */
+.partners.has-stars > .partners__rail {
+  --col-w: 190px;
+  --col-gap: 60px;
+  position: absolute;
+  inset: 0;
   overflow: hidden;
 }
 
@@ -36,24 +33,27 @@
   display: flex;
   gap: var(--col-gap);
   width: max-content;
-  padding: 8px 0;
+  height: 100%;
   will-change: transform;
 }
 
 .partner-col {
   flex: none;
   width: var(--col-w);
+  height: 100%;
 }
 
+/* Una sola forma por columna, más alta que la sección para que se salga por arriba y abajo */
 .partner-col__shape {
   display: grid;
   place-items: center;
-  height: var(--col-h);
-  padding: 0 18px;
-  /* Oscura y translúcida (se ven las estrellas detrás), con borde azul claro para destacar */
-  border: 1px solid rgb(147 182 255 / 0.48);
+  height: calc(100% + 80px);
+  margin-top: -40px;
+  padding: 0 22px;
+  /* Oscura y translúcida (se ven las estrellas), con borde azul claro para destacar */
+  border: 1px solid rgb(147 182 255 / 0.4);
   border-radius: 3px;
-  background: linear-gradient(180deg, rgb(111 157 255 / 0.2), rgb(111 157 255 / 0.08));
+  background: linear-gradient(180deg, rgb(111 157 255 / 0.16), rgb(111 157 255 / 0.05));
   transform: skewX(var(--skew));
   transition: background-color 0.3s var(--ease), border-color 0.3s var(--ease);
 }
@@ -73,29 +73,23 @@
   text-align: center;
   text-transform: uppercase;
   color: var(--text);
-  transition: color 0.3s var(--ease);
 }
 
 /* Los logos ya vienen en blanco: se ven directo sobre la columna oscura */
 .partner-col__logo {
   width: 100%;
-  max-height: 72px;
+  max-height: 80px;
   object-fit: contain;
   opacity: 0.92;
   transition: opacity 0.3s;
 }
 
-/* Hover: la columna se pinta de azul y el texto pasa a blanco */
-.partner-col:hover .partner-col__shape {
+.partner-col__shape:hover {
   background: var(--blue-600);
   border-color: var(--blue-400);
 }
 
-.partner-col:hover .partner-col__name {
-  color: var(--white);
-}
-
-.partner-col:hover .partner-col__logo {
+.partner-col__shape:hover .partner-col__logo {
   opacity: 1;
 }
 
@@ -113,15 +107,55 @@
     transform 0.9s var(--ease) calc(var(--i) * 70ms);
 }
 
-/* Flechas simétricas a cada lado de la cinta */
-.partners__arrow {
+/* ---- Banda fija con el texto: borde derecho recto donde aparecen las columnas ---- */
+.partners.has-stars > .partners__panel {
   position: absolute;
-  top: 50%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 46%;
+  background: var(--ink-950);
+  pointer-events: auto; /* las columnas que pasan por detrás no reciben el cursor */
+}
+
+/* Desvanecido suave en el borde por donde entran las columnas */
+.partners__panel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 100%;
+  width: clamp(80px, 9vw, 160px);
+  background: linear-gradient(90deg, var(--ink-950), rgb(11 12 15 / 0));
+  pointer-events: none;
+}
+
+.partners__content {
+  width: 100%;
+  pointer-events: none; /* deja pasar el cursor a la cinta… */
+}
+
+.partners__content > * {
+  max-width: 480px;
+  pointer-events: auto; /* …salvo sobre el texto y los botones */
+}
+
+.partners__text {
+  margin: 20px 0 32px;
+}
+
+/* Flechas simétricas en la parte baja del panel */
+.partners__arrows {
+  display: flex;
+  gap: 12px;
+  margin-top: clamp(32px, 4vw, 48px);
+}
+
+.partners__arrow {
   display: grid;
   place-items: center;
   width: 52px;
   height: 52px;
-  margin-top: -26px;
   border: 1px solid var(--border-strong);
   border-radius: 50%;
   background: var(--ink-900);
@@ -130,16 +164,8 @@
   transition: background-color 0.25s var(--ease), color 0.25s var(--ease), border-color 0.25s var(--ease);
 }
 
-.partners__arrow--prev {
-  left: max(12px, calc(var(--gutter) - 26px));
-}
-
 .partners__arrow--prev svg {
   transform: rotate(180deg);
-}
-
-.partners__arrow--next {
-  right: max(12px, calc(var(--gutter) - 26px));
 }
 
 .partners__arrow:hover {
@@ -155,28 +181,54 @@
   }
 }
 
-@media (max-width: 960px) {
-  .partners__head {
-    grid-template-columns: 1fr;
+/* Pantallas medianas: banda un poco más ancha para que el texto quepa */
+@media (max-width: 1200px) {
+  .partners.has-stars > .partners__panel {
+    width: 54%;
+  }
+}
+
+/* Móvil / tablet: texto arriba sin inclinación y la cinta debajo */
+@media (max-width: 900px) {
+  .partners {
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 0;
+    padding-bottom: 0; /* la cinta llega al borde y el corte diagonal la recorta */
   }
 
-  .partners__rail {
-    --col-w: 148px;
-    --col-h: 340px;
+  .partners.has-stars > .partners__panel {
+    display: none;
+  }
+
+  .partners.has-stars > .partners__rail {
+    --col-w: 140px;
     --col-gap: 44px;
+    position: relative;
+    inset: auto;
+    height: calc(340px + var(--cut));
+    margin-top: 48px;
+  }
+
+  .partners__content {
+    pointer-events: auto;
+  }
+
+  /* El contenido va antes que la cinta */
+  .partners.has-stars > .partners__rail {
+    order: 2;
   }
 }
 
 @media (max-width: 600px) {
-  .partners__rail {
-    --col-w: 128px;
-    --col-h: 280px;
+  .partners.has-stars > .partners__rail {
+    --col-w: 120px;
     --col-gap: 34px;
+    height: calc(280px + var(--cut));
   }
 
   .partners__arrow {
     width: 44px;
     height: 44px;
-    margin-top: -22px;
   }
 }
