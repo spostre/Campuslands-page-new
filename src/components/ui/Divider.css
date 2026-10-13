@@ -1,0 +1,80 @@
+/* Va al inicio de una sección, antes de su contenido */
+.divider {
+  margin-bottom: clamp(40px, 5vw, 64px);
+}
+
+.divider .container {
+  display: flex;
+  justify-content: center;
+}
+
+.divider--start .container {
+  justify-content: flex-start;
+}
+
+.divider--end .container {
+  justify-content: flex-end;
+}
+
+.divider__art {
+  width: 180px;
+  height: auto;
+  overflow: visible;
+}
+
+/* Únicos elementos multicolor de la página: pastel sobre claro, neón sobre negro */
+.d-c1 { --c: var(--deco-1); }
+.d-c2 { --c: var(--deco-2); }
+.d-c3 { --c: var(--deco-3); }
+.d-c4 { --c: var(--deco-4); }
+
+.d-fill {
+  fill: var(--c);
+}
+
+.d-stroke {
+  fill: none;
+  stroke: var(--c);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.d-thin {
+  stroke-width: 1.5;
+  stroke-dasharray: 2 5;
+}
+
+/* Destellos que titilan suavemente */
+.d-twinkle {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: d-twinkle 3.2s ease-in-out infinite;
+}
+
+.d-twinkle--late {
+  animation-delay: 1.6s;
+}
+
+@keyframes d-twinkle {
+  0%, 100% { transform: scale(1) rotate(0); opacity: 1; }
+  50% { transform: scale(0.6) rotate(45deg); opacity: 0.6; }
+}
+
+/* Planeta que se balancea despacio */
+.d-spin {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: d-sway 7s ease-in-out infinite;
+}
+
+@keyframes d-sway {
+  0%, 100% { transform: rotate(-8deg); }
+  50% { transform: rotate(8deg); }
+}
+
+@media (max-width: 600px) {
+  .divider__art {
+    width: 140px;
+  }
+}

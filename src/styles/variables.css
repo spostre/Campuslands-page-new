@@ -1,10 +1,71 @@
+/*
+ * Tokens de diseño. Ver docs/DISENO.md.
+ * Un solo tema: secciones claras y negras. Paleta: azules + grises.
+ * Cada sección declara su superficie con .surface-light o .surface-dark (global.css),
+ * que redefine los tokens de color de abajo para su contenido.
+ */
+
 :root {
-  --color-primary: #2b2bd9;
-  --color-text: #1a1a1a;
-  --color-bg: #ffffff;
-  --color-muted: #6b6b6b;
-  --color-border: #eeeeee;
-  --font-base: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --container-width: 1200px;
-  --radius: 8px;
+  /* Tipografía */
+  --font-display: 'Hanken Grotesk', system-ui, sans-serif;
+  --font-body: 'Hanken Grotesk', system-ui, sans-serif;
+  --font-accent: 'Newsreader', Georgia, serif; /* palabra destacada en cursiva */
+  --font-nav: 'Poppins', system-ui, sans-serif;
+  --display-weight: 500;
+  --display-tracking: -0.03em;
+  --display-leading: 1.06;
+
+  --fs-body: 1rem;
+  --fs-lead: 1.1875rem;
+  --fs-h1: clamp(2.6rem, 5.6vw, 4.4rem);
+  --fs-h2: clamp(1.9rem, 3.2vw, 2.6rem);
+  --fs-h3: 1.1875rem;
+  --fs-card-title: 1.375rem;
+  --fs-stat: clamp(1.9rem, 3vw, 2.4rem);
+
+  /* Espaciado y formas */
+  --container-width: 1720px;
+  --gutter: clamp(20px, 7.5vw, 124px);
+  --header-height: 72px;
+  --section-space: clamp(72px, 8vw, 120px);
+  --radius-btn: 10px;
+  --radius-card: 18px;
+  --radius-window: 14px;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  /* Paleta base: azules */
+  --blue-700: #1847b8;
+  --blue-600: #1f55d6;
+  --blue-400: #6f9dff;
+  --blue-300: #93b6ff;
+  --blue-100: #e6eeff;
+
+  /* Paleta base: grises */
+  --ink-950: #0b0c0f;
+  --ink-900: #13151a;
+  --ink-850: #1a1d23;
+  --ink-800: #22262e;
+  --gray-500: #8e94a0;
+  --gray-600: #5d6470;
+  --paper: #f5f6f8;
+  --white: #ffffff;
+
+  /* Encabezado transparente: velo oscuro con texto claro, legible sobre cualquier sección */
+  --header-veil: rgb(11 12 15 / 0.66);
+  --header-text: #eef0f4;
+  --header-muted: #a3a9b4;
+  --header-accent: var(--blue-300);
+  --header-border: rgb(255 255 255 / 0.08);
+
+  /* Ventana Mac */
+  --win-chrome: #1d1f24;
+  --win-chrome-text: #cfd3da;
+  --win-url: #2a2d34;
+  --win-border: rgb(0 0 0 / 0.14);
+
+  /* Colores de los iconos decorativos (únicos multicolor de la página) */
+  --deco-1: #9ad7ae;
+  --deco-2: #b9acef;
+  --deco-3: #f2bc93;
+  --deco-4: #9cc2f2;
 }

@@ -1,0 +1,82 @@
+.locations {
+  padding-top: 0; /* continúa la banda clara de Órbit */
+}
+
+/* Texto a la izquierda, mapa a la derecha */
+.locations__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(32px, 4vw, 64px);
+  align-items: center;
+}
+
+.locations__text {
+  max-width: 460px;
+  margin: 24px 0 40px;
+}
+
+.locations__field {
+  display: grid;
+  gap: 10px;
+  max-width: 340px;
+  margin-bottom: 24px;
+}
+
+.locations__field span {
+  font-family: var(--font-nav);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.locations__field select {
+  appearance: none;
+  padding: 14px 44px 14px 16px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-btn);
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3Cpath d='M2 3.5 5 6.5 8 3.5' fill='none' stroke='%23888' stroke-width='1.5'/%3E%3C/svg%3E")
+      no-repeat right 16px center,
+    var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.locations__field select:hover {
+  border-color: var(--text);
+}
+
+.locations__map {
+  margin: 0;
+}
+
+/* Espacio reservado mientras se descarga el mapa (mismo tamaño, sin saltos) */
+.sede-map--loading {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-card);
+  background: var(--surface-2);
+}
+
+.locations__info {
+  display: grid;
+  gap: 2px;
+  margin-top: 16px;
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+.locations__info strong {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+@media (max-width: 900px) {
+  .locations__grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -4,3 +4,12 @@ dist
 .env.local
 *.log
 .DS_Store
+
+# Material de referencia (solo local)
+/Content MD/
+/Idea/
+/Whatsapp/
+/logos/
+
+# Documentación interna
+/docs/

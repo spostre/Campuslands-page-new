@@ -1,0 +1,73 @@
+/*
+ * Mapa plano bicolor en azul noche (contrasta con la sección clara de sedes).
+ * El filtro está definido en SedeMap.jsx.
+ */
+.sede-map {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  z-index: 0;
+}
+
+.sede-map.leaflet-container {
+  background: #0e1a33;
+}
+
+.sede-map .leaflet-tile-pane {
+  filter: brightness(1.06) contrast(1.15) url(#sede-map-night);
+}
+
+.sede-pin {
+  border: 3px solid #0e1a33;
+  border-radius: 50%;
+  background: #cfe0ff;
+}
+
+/* Halo que late alrededor de la sede */
+.sede-pin::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: rgb(143 178 255 / 0.3);
+  animation: pin-pulse 2.2s var(--ease) infinite;
+}
+
+@keyframes pin-pulse {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(2.8); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sede-pin::after {
+    animation: none;
+    transform: scale(1.8);
+  }
+}
+
+.sede-map .leaflet-control-zoom {
+  border: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: none;
+}
+
+.sede-map .leaflet-control-zoom a {
+  width: 30px;
+  height: 30px;
+  line-height: 28px;
+  border: 0;
+  background: #13223f;
+  color: #8fb2ff;
+}
+
+.sede-map .leaflet-control-attribution {
+  font-size: 10px;
+  background: rgb(19 34 63 / 0.8);
+  color: #8fb2ff;
+}
+
+.sede-map .leaflet-control-attribution a {
+  color: inherit;
+}

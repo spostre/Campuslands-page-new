@@ -1,5 +1,69 @@
 @import './variables.css';
 
+/*
+ * Superficies: cada sección es clara u oscura y define aquí sus colores.
+ * Un color por tipo de detalle:
+ *   --accent  → botones principales, enlaces, elemento activo
+ *   --detail  → detalles finos (pastillas de etiqueta, líneas, números, flechas)
+ *   --deco-*  → solo los iconos decorativos entre secciones (multicolor)
+ */
+.surface-light {
+  --bg: var(--paper);
+  --surface: var(--white);
+  --surface-2: #eceff3;
+  --border: rgb(15 18 24 / 0.09);
+  --border-strong: rgb(15 18 24 / 0.2);
+  --text: #0f1218;
+  --muted: var(--gray-600);
+  --accent: var(--blue-600);
+  --accent-hover: var(--blue-700);
+  --accent-ink: var(--white);
+  --detail: var(--blue-600);
+  --invert-bg: #0f1218;
+  --invert-text: var(--white);
+  --invert-muted: #a3a9b4;
+  --shadow-soft: 0 1px 2px rgb(15 18 24 / 0.04), 0 14px 34px -20px rgb(15 18 24 / 0.22);
+
+  background: var(--bg);
+  color: var(--text);
+}
+
+.surface-dark {
+  --bg: var(--ink-950);
+  --surface: var(--ink-900);
+  --surface-2: var(--ink-850);
+  --border: rgb(255 255 255 / 0.08);
+  --border-strong: rgb(255 255 255 / 0.2);
+  --text: #eef0f4;
+  --muted: var(--gray-500);
+  --accent: var(--blue-400);
+  --accent-hover: var(--blue-300);
+  --accent-ink: var(--ink-950);
+  --detail: var(--blue-400);
+  --invert-bg: #eef0f4;
+  --invert-text: var(--ink-950);
+  --invert-muted: var(--gray-600);
+  --shadow-soft: 0 24px 60px -32px rgb(0 0 0 / 0.7);
+  /* Los iconos decorativos se ven más vivos sobre negro */
+  --deco-1: #b8f23a;
+  --deco-2: #4fe3ef;
+  --deco-3: #ff70d2;
+  --deco-4: #ffc94a;
+
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Sección con estrellas de fondo (Starfield): el contenido queda por encima */
+.has-stars {
+  position: relative;
+  overflow: hidden;
+}
+
+.has-stars > :not(.starfield) {
+  position: relative;
+}
+
 *,
 *::before,
 *::after {
@@ -8,26 +72,49 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+}
+
 body {
-  font-family: var(--font-base);
-  color: var(--color-text);
-  background: var(--color-bg);
-  line-height: 1.5;
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.65;
+  color: #eef0f4;
+  background: var(--ink-950);
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
-  color: var(--color-primary);
+  color: inherit;
   text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent, var(--blue-400));
+  outline-offset: 3px;
 }
 
 .container {
   width: 100%;
   max-width: var(--container-width);
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 0 var(--gutter);
 }
 
-/* Layout */
+/* Layout: el encabezado es fijo y transparente, flota sobre el contenido */
 .layout {
   min-height: 100vh;
   display: flex;
@@ -36,47 +123,114 @@ a {
 
 .layout__main {
   flex: 1;
-  padding: 48px 0;
 }
 
-.header {
-  border-bottom: 1px solid var(--color-border);
+/* Tipografía compartida */
+.section {
+  padding: var(--section-space) 0;
 }
 
-.header__inner {
+/* Etiqueta de sección con una pastilla del color de detalle */
+.eyebrow {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  height: 64px;
+  gap: 10px;
+  font-family: var(--font-nav);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 18px;
 }
 
-.header__logo {
-  font-weight: 700;
-  font-size: 1.25rem;
+.eyebrow::before {
+  content: '';
+  flex: none;
+  width: 18px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--detail);
 }
 
-.header__nav {
+.section-head {
+  max-width: 680px;
+  margin-bottom: clamp(48px, 6vw, 72px);
+}
+
+.section-head .lead {
+  margin-top: 20px;
+}
+
+.display {
+  font-family: var(--font-display);
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-tracking);
+  line-height: var(--display-leading);
+}
+
+/* Palabra destacada en serif cursiva (firma tipográfica de la página) */
+.display em {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  font-size: 1.06em;
+}
+
+.h1 {
+  font-size: var(--fs-h1);
+}
+
+.h2 {
+  font-size: var(--fs-h2);
+}
+
+.lead {
+  font-size: var(--fs-lead);
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.text-muted {
+  color: var(--muted);
+}
+
+.btn-row {
   display: flex;
-  gap: 24px;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 28px;
 }
 
-.footer {
-  padding: 24px 0;
-  color: var(--color-muted);
-  border-top: 1px solid var(--color-border);
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
 
-/* UI */
-.btn {
-  border: none;
-  border-radius: var(--radius);
-  padding: 10px 20px;
-  margin-top: 16px;
-  font: inherit;
-  cursor: pointer;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+
+  .d-twinkle,
+  .d-spin {
+    animation: none;
+  }
 }
 
-.btn--primary {
-  background: var(--color-primary);
-  color: #fff;
+@media (max-width: 640px) {
+  :root {
+    --gutter: 18px;
+  }
 }

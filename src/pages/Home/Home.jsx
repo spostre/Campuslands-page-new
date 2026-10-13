@@ -1,11 +1,23 @@
-import Button from '@/components/ui/Button'
+import Hero from './sections/Hero'
+import Pillars from './sections/Pillars'
+import Services from './sections/Services'
+import Partners from './sections/Partners'
+import Orbit from './sections/Orbit'
+import Locations from './sections/Locations'
+import Social from './sections/Social'
 
+// Bandas: negra (hero) · clara (pilares) · negra (servicios + aliados)
+//         · clara (Órbit + sedes) · negra (redes + pie)
 export default function Home() {
   return (
-    <section className="container">
-      <h1>Bienvenido a Campuslands</h1>
-      <p>Página base lista para construir.</p>
-      <Button>Comenzar</Button>
-    </section>
+    <>
+      <Hero />
+      <Pillars />
+      <Services />
+      <Partners />
+      <Orbit />
+      <Locations />
+      <Social />
+    </>
   )
 }

@@ -1,0 +1,63 @@
+.pillars__grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+/* Tarjeta blanca con una línea superior del color de detalle */
+.pillar {
+  display: flex;
+  flex-direction: column;
+  padding: 32px 28px 36px;
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--detail);
+  border-radius: 4px 4px var(--radius-card) var(--radius-card);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.35s var(--ease);
+}
+
+.pillar:hover {
+  transform: translateY(-6px);
+}
+
+.pillar__num {
+  font-family: var(--font-nav);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--detail);
+}
+
+.pillar__title {
+  margin-top: 48px;
+  font-family: var(--font-display);
+  font-size: var(--fs-card-title);
+  font-weight: var(--display-weight);
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+}
+
+/* Descripción "transparente" */
+.pillar__text {
+  margin-top: 12px;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  opacity: 0.62;
+}
+
+@media (max-width: 1000px) {
+  .pillars__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .pillars__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pillar__title {
+    margin-top: 28px;
+  }
+}

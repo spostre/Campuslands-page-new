@@ -1,7 +1,18 @@
-export default function Button({ children, variant = 'primary', ...props }) {
+import './Button.css'
+
+// Botón-enlace rectangular. Los enlaces externos abren en otra pestaña.
+export default function Button({ href, children, variant = 'primary', arrow = false, className = '', ...props }) {
+  const external = /^https?:\/\//.test(href)
+
   return (
-    <button className={`btn btn--${variant}`} {...props}>
-      {children}
-    </button>
+    <a
+      href={href}
+      className={`btn btn--${variant} ${className}`}
+      {...(external && { target: '_blank', rel: 'noopener noreferrer' })}
+      {...props}
+    >
+      <span>{children}</span>
+      {arrow && <span className="btn__arrow" aria-hidden="true">→</span>}
+    </a>
   )
 }

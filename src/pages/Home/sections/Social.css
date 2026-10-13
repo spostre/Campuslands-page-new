@@ -1,0 +1,53 @@
+/* Sección negra: título y lista de redes a la izquierda, video a la derecha */
+.social__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  align-items: center;
+  gap: clamp(48px, 7vw, 112px);
+}
+
+.social__title {
+  max-width: 16ch;
+}
+
+/* Enlaces libres: sin marco, filas con flecha del color de detalle */
+.social__links {
+  list-style: none;
+  margin-top: 40px;
+}
+
+.social__links a {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: var(--fs-body);
+  transition: color 0.2s var(--ease);
+}
+
+.social__links li:first-child a {
+  border-top: 1px solid var(--border);
+}
+
+.social__links a span {
+  color: var(--detail);
+  transition: transform 0.3s var(--ease);
+}
+
+.social__links a:hover {
+  color: var(--accent);
+}
+
+.social__links a:hover span {
+  transform: translate(3px, -3px);
+}
+
+.social__video {
+  border-radius: var(--radius-card);
+}
+
+@media (max-width: 900px) {
+  .social__grid {
+    grid-template-columns: 1fr;
+  }
+}
