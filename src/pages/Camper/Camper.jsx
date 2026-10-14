@@ -1,18 +1,17 @@
 import CamperHero from './sections/CamperHero'
 import Programs from './sections/Programs'
 import Stories from './sections/Stories'
-import FinalCta from './sections/FinalCta'
-import './Camper.css'
+import FallingStars from '@/components/ui/FallingStars'
 
 // Sé un camper — variante "monocromo" (inspirada en Idea/3.jpg): negro puro, bordes finos,
-// luces suaves en lugar de estrellas y el casco del logo iluminado desde atrás.
+// overlay continuo (grano + líneas guía) y el casco del logo iluminado desde atrás.
 export default function Camper() {
   return (
-    <div className="camper-page surface-dark">
+    <div className="page-mono surface-dark">
+      <FallingStars />
       <CamperHero />
       <Programs />
       <Stories />
-      <FinalCta />
     </div>
   )
 }

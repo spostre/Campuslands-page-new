@@ -2,15 +2,28 @@
   padding: var(--section-space) 0;
 }
 
+/* Una fila: texto (1 columna) + tres videos verticales (1 columna cada uno) */
+.stories__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) repeat(3, minmax(0, 1fr));
+  align-items: end;
+  gap: 16px;
+}
+
+/* En escritorio los videos son celdas de la misma rejilla que el texto */
+.stories__videos {
+  display: contents;
+}
+
 .stories__head {
-  max-width: 680px;
-  margin-bottom: clamp(40px, 5vw, 64px);
+  align-self: start;
+  padding-right: clamp(8px, 2vw, 32px);
 }
 
 .stories__eyebrow {
   display: block;
   margin-bottom: 18px;
-  color: var(--muted);
+  color: var(--blue-400);
 }
 
 .stories__text {
@@ -18,78 +31,75 @@
   color: var(--muted);
 }
 
-/* Mosaico: grande a la izquierda (2 filas) + dos a la derecha */
-.stories__grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, auto);
-  gap: 16px;
-}
-
+/* Tarjeta ajustada al video: sin relleno de sobra */
 .story {
-  position: relative;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  background: var(--surface);
-  padding: clamp(20px, 2.4vw, 32px);
-}
-
-.story--main {
-  grid-row: span 2;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 32px;
-}
-
-.story--side {
-  display: grid;
-  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-  align-items: end;
-  gap: 24px;
+  gap: 14px;
+  padding: 10px 10px 16px;
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  background: var(--surface);
 }
 
 /* El video no lleva su propio fondo azulado en esta página */
 .story .video-frame {
-  position: relative;
   background: var(--surface-2);
   border-color: var(--border);
 }
 
+.story__caption {
+  padding: 0 6px;
+}
+
 .story__name {
   font-family: var(--font-display);
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   font-weight: 500;
   letter-spacing: -0.02em;
 }
 
 .story__role {
-  margin-top: 4px;
-  font-size: 0.875rem;
+  margin-top: 2px;
+  font-size: 0.8125rem;
   color: var(--muted);
 }
 
-/* Trazos finos de fondo en la tarjeta grande */
-.story__lines {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(115deg, transparent 62%, rgb(255 255 255 / 0.06) 62.2%, transparent 62.6%),
-    linear-gradient(115deg, transparent 70%, rgb(255 255 255 / 0.05) 70.2%, transparent 70.6%);
-  pointer-events: none;
+/* Pantallas medianas: el texto arriba y los tres videos en fila debajo */
+@media (max-width: 1100px) {
+  .stories__layout {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .stories__head {
+    grid-column: 1 / -1;
+    max-width: 680px;
+    margin-bottom: clamp(24px, 4vw, 40px);
+    padding-right: 0;
+  }
 }
 
-@media (max-width: 960px) {
-  .stories__grid {
-    grid-template-columns: 1fr;
+/* Móvil: el texto arriba y los videos se recorren deslizando, asomando el siguiente */
+@media (max-width: 700px) {
+  .stories__layout {
+    display: block;
   }
 
-  .story--main {
-    grid-row: auto;
+  .stories__videos {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 72%;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
   }
 
-  .story--side {
-    grid-template-columns: 1fr;
+  .stories__videos::-webkit-scrollbar {
+    display: none;
+  }
+
+  .story {
+    scroll-snap-align: start;
   }
 }

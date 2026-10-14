@@ -1,0 +1,26 @@
+.player {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  background: #000000;
+}
+
+.player--vertical {
+  aspect-ratio: 9 / 16;
+}
+
+.player__video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #000000;
+}
+
+/* Recuadro reservado en formato vertical (plan B de los videos verticales) */
+.video-frame--vertical {
+  aspect-ratio: 9 / 16;
+}

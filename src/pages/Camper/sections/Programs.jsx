@@ -2,6 +2,7 @@ import Button from '@/components/ui/Button'
 import Emph from '@/components/ui/Emph'
 import { LINKS } from '@/constants/links'
 import { useLanguage } from '@/context/LanguageContext'
+import ScrollMoon from '@/components/ui/ScrollMoon'
 import './Programs.css'
 
 // Rutas de entrenamiento: cada programa es una "vitrina" (patrón de Idea 3): título grande,
@@ -13,6 +14,7 @@ export default function Programs() {
 
   return (
     <section id="rutas" className="programs">
+      <ScrollMoon />
       <div className="container">
         <header className="programs__head">
           <span className="mono-label programs__eyebrow">{routes.eyebrow}</span>
@@ -30,7 +32,7 @@ export default function Programs() {
 
 function Showcase({ program, labels, flip }) {
   return (
-    <article className={`showcase camper-glow ${flip ? 'showcase--flip' : ''}`}>
+    <article className={`showcase section-rule ${flip ? 'showcase--flip' : ''}`}>
       <div className="container showcase__grid">
         <h3 className="display showcase__title">{program.tagline}</h3>
 

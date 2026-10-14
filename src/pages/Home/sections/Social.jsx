@@ -3,10 +3,13 @@ import Emph from '@/components/ui/Emph'
 import { LINKS } from '@/constants/links'
 import { useLanguage } from '@/context/LanguageContext'
 import Starfield from '@/components/ui/Starfield'
-import VideoFrame from '@/components/ui/VideoFrame'
+import VideoPlayer from '@/components/ui/VideoPlayer'
+import { VIDEOS } from '@/constants/videos'
+import SocialIcon from '@/components/ui/SocialIcon'
 import './Social.css'
 
-const NETWORKS = [
+// Se exporta para reutilizar las redes en otras páginas (p. ej. Historias de Nosotros)
+export const NETWORKS = [
   { key: 'instagram', name: 'Instagram', handle: '@campuslands', href: LINKS.social.instagram },
   { key: 'tiktok', name: 'TikTok', handle: '@campuslands', href: LINKS.social.tiktok },
   { key: 'linkedin', name: 'LinkedIn', handle: 'in/campuslands', href: LINKS.social.linkedin },
@@ -18,15 +21,20 @@ const RIBBON = ['#GoForIt', 'Campuslands', '#GoForIt', 'Campuslands']
 
 // Redes (sección negra): tarjetas por red, el video de Juliana en un recuadro horizontal
 // y una cinta gigante en contorno con la marca pasando por detrás.
-// Se reutiliza en otras páginas; con showVideo={false} queda solo con las redes.
-export default function Social({ showVideo = true }) {
+// Se reutiliza en otras páginas; con showVideo={false} queda solo con las redes y con
+// plain va sin estrellas, sin icono decorativo ni cinta de letras de fondo.
+export default function Social({ showVideo = true, plain = false }) {
   const { t } = useLanguage()
   const { social } = t.home
 
   return (
-    <section id="redes" className={`section social surface-dark has-stars ${showVideo ? '' : 'social--compact'}`}>
-      <Starfield origin="top-left" />
+    <section
+      id="redes"
+      className={`section social surface-dark ${plain ? '' : 'has-stars'} ${showVideo ? '' : 'social--compact'}`}
+    >
+      {!plain && <Starfield origin="top-left" />}
 
+      {!plain && (
       <div className="social__ribbon" aria-hidden="true">
         <div className="social__ribbon-track">
           {[...RIBBON, ...RIBBON].map((word, i) => (
@@ -34,8 +42,9 @@ export default function Social({ showVideo = true }) {
           ))}
         </div>
       </div>
+      )}
 
-      <Divider variant="dots" />
+      {!plain && <Divider variant="dots" />}
       <div className="container social__grid">
         <div className="social__copy">
           <span className="eyebrow">{social.eyebrow}</span>
@@ -55,37 +64,16 @@ export default function Social({ showVideo = true }) {
           </ul>
         </div>
 
-        {/* Video de Juliana (horizontal), en un recuadro con borde fino */}
-        {showVideo && <VideoFrame label={social.videoLabel} kind={t.placeholder.video} />}
+        {/* Video de Juliana (horizontal) */}
+        {showVideo && (
+          <VideoPlayer
+            src={VIDEOS.juliana.src}
+            poster={VIDEOS.juliana.poster}
+            label={social.videoLabel}
+            kind={t.placeholder.video}
+          />
+        )}
       </div>
     </section>
-  )
-}
-
-// Íconos de línea de cada red (monocromos, toman el color del texto)
-function SocialIcon({ name }) {
-  return (
-    <svg className="network__icon" viewBox="0 0 24 24" aria-hidden="true">
-      {name === 'instagram' && (
-        <>
-          <rect x="3" y="3" width="18" height="18" rx="5" />
-          <circle cx="12" cy="12" r="4" />
-          <circle cx="17.3" cy="6.7" r="0.6" className="network__icon-dot" />
-        </>
-      )}
-      {name === 'tiktok' && <path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5M14 3c.4 2.6 2.2 4.4 5 4.6" />}
-      {name === 'linkedin' && (
-        <>
-          <rect x="3" y="3" width="18" height="18" rx="3" />
-          <path d="M8 10.5V17M8 7.2v.1M11.5 17v-6.5M11.5 13c0-1.6 1.1-2.6 2.5-2.6s2.5 1 2.5 2.6V17" />
-        </>
-      )}
-      {name === 'facebook' && (
-        <>
-          <circle cx="12" cy="12" r="9" />
-          <path d="M13 21v-7.5h2.5M13 21v-9.5c0-1.6 1-2.5 2.5-2.5H16M10.5 13.5H13" />
-        </>
-      )}
-    </svg>
   )
 }

@@ -1,8 +1,17 @@
 /* Portada negra; el encabezado fijo flota encima, por eso el margen superior lo incluye */
+/* Ocupa toda la pantalla al abrir la página (contenido centrado verticalmente) */
 .hero {
   position: relative;
   overflow: hidden;
-  padding: calc(var(--header-height) + clamp(88px, 11vw, 152px)) 0 var(--section-space);
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: calc(var(--header-height) + 48px) 0 64px;
+}
+
+.hero > .container {
+  width: 100%;
 }
 
 .hero__inner {

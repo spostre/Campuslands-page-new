@@ -41,6 +41,7 @@ const es = {
       secondary: 'Ver rutas',
       orbit: ['Desarrollo de software', 'Inteligencia artificial', 'Inglés', 'Habilidades adaptativas'],
       side: ['Desarrollo de software', 'Inteligencia artificial', 'Inglés', 'Habilidades adaptativas'],
+      sideTitle: 'Qué aprendes',
       age: 'Desde los 17 años · Sin límite de edad',
     },
     routes: {
@@ -108,12 +109,6 @@ const es = {
         },
       ],
     },
-    final: {
-      title: 'Tu carrera del *futuro* empieza hoy',
-      text: 'Escríbenos y te ayudamos a elegir la ruta ideal para ti.',
-      cta: 'Quiero iniciar',
-      secondary: 'Ver rutas',
-    },
     stories: {
       eyebrow: 'En Campuslands cambiamos vidas',
       title: 'Historias de *éxito*',
@@ -127,10 +122,95 @@ const es = {
     },
   },
 
+  // Nosotros. Fuente: Content MD/About us.md
+  // Las definiciones de las tecnologías son nuestras (el contenido trae placeholders).
+  about: {
+    hero: {
+      eyebrow: 'Campuslands',
+      title: 'La historia de cómo una idea puede *cambiar vidas*',
+      text: 'Conectamos a tu empresa con desarrolladores preevaluados que se integran rápidamente a tus procesos internos.',
+      videoLabel: 'Video de Diego Tarazona',
+      person: 'Diego Tarazona',
+      role: 'C.E.O Campuslands',
+    },
+    impact: {
+      eyebrow: 'Nuestras sedes',
+      title: 'Lugares donde *impactamos*',
+      stats: [
+        { label: 'Impacto total', value: '+6,480', note: '' },
+        { label: 'Impacto 2026', value: '1650', note: '4+ miembros de familia por joven impactado' },
+        { label: 'Año 2026', value: 'Campus Guatemala', note: 'Nueva sede internacional' },
+      ],
+      mapTitle: 'Sedes y capacidad',
+      capacity: 'campers',
+      noData: 'Capacidad por confirmar',
+      countries: [
+        { name: 'Colombia', sedes: [
+          { name: 'Bucaramanga', capacity: 670 },
+          { name: 'Bogotá', capacity: 280 },
+          { name: 'Norte de Santander', capacity: 70 },
+          { name: 'Barranquilla', capacity: null },
+          { name: 'Cali', capacity: null },
+        ] },
+        { name: 'Guatemala', sedes: [
+          { name: 'Ciudad de Guatemala', capacity: null, isNew: true },
+        ] },
+      ],
+      newLabel: 'Nueva sede',
+      capacityLabel: 'Capacidad',
+      mapLabel: 'Mapa de las sedes de Campuslands en Colombia y Guatemala',
+    },
+    purpose: {
+      mission: { eyebrow: 'Nuestra misión', title: 'Transformando el *talento*', quote: 'Empoderar a jóvenes de diversos orígenes a través de educación tecnológica accesible, desarrollando sus habilidades en programación, inglés y competencias sociales para abrir puertas a oportunidades profesionales de alto impacto.' },
+      vision: { eyebrow: 'La visión que nos guía', title: 'Un nuevo estrato *digital*', quote: 'Crear una comunidad global de talento digital, donde los jóvenes de cualquier lugar tengan acceso a las herramientas necesarias para un futuro próspero y significativo, contribuyendo a un nuevo estrato social digital.' },
+    },
+    knowledge: {
+      eyebrow: 'Campuslands',
+      title: 'Hoy nace campuslands, la tercera generación del *conocimiento*',
+      todayTitle: 'Cuarta revolución industrial – hoy',
+      futureTitle: 'Tecnologías del futuro',
+      today: [
+        { name: 'IA', text: 'Sistemas que aprenden y ayudan a tomar decisiones.' },
+        { name: 'Programación', text: 'El lenguaje para crear software y soluciones.' },
+        { name: 'Robótica', text: 'Máquinas que ejecutan tareas de forma autónoma.' },
+        { name: 'Big Data', text: 'Grandes volúmenes de datos convertidos en decisiones.' },
+        { name: 'Cloud (Nube)', text: 'Servicios y datos disponibles desde cualquier lugar.' },
+        { name: 'Inglés', text: 'El idioma común de la industria tecnológica.' },
+        { name: 'Ciberseguridad', text: 'Proteger sistemas, datos y personas.' },
+        { name: 'Metaverso', text: 'Espacios digitales inmersivos y compartidos.' },
+        { name: 'Low Code', text: 'Crear aplicaciones con poco código.' },
+        { name: 'Blockchain', text: 'Registros digitales seguros y verificables.' },
+        { name: 'Edge Computing', text: 'Procesar datos cerca de donde se generan.' },
+        { name: 'Realidad Virtual', text: 'Experiencias digitales en tres dimensiones.' },
+        { name: 'Automatización', text: 'Procesos que funcionan solos y sin errores.' },
+        { name: '5G', text: 'Conexiones móviles ultrarrápidas.' },
+      ],
+      future: [
+        { name: 'Robots Autónomos', text: 'Máquinas que perciben, deciden y actúan solas.' },
+        { name: 'Computación Cuántica', text: 'Cálculos imposibles para los computadores actuales.' },
+        { name: 'Redes Neuronales', text: 'Modelos inspirados en el cerebro humano.' },
+        { name: 'Hologramas', text: 'Imágenes en tres dimensiones proyectadas en el espacio.' },
+        { name: 'Web 3.0', text: 'Una internet descentralizada y de los usuarios.' },
+        { name: 'Energía de Fusión', text: 'Energía limpia y casi ilimitada.' },
+      ],
+    },
+    stories: {
+      eyebrow: 'Testimonios',
+      title: 'Historias de *éxito*',
+      text: 'Conoce cómo nuestros campers transformaron su talento en oportunidades reales dentro de la industria tecnológica.',
+      cta: 'Quiero iniciar',
+      secondary: 'Solicitar asesoría',
+      video: 'Testimonio camper',
+      featured: 'Programando el Futuro – Desde Tibú, Norte de Santander, hasta Campuslands',
+      prev: 'Video anterior',
+      next: 'Video siguiente',
+    },
+  },
+
   credits: {
     eyebrow: 'Legal',
     title: 'Créditos y *licencias*',
-    intro: 'Este sitio usa tipografías, datos de mapas y software de terceros. Aquí están sus créditos y licencias.',
+    intro: 'Este sitio usa tipografías, datos de mapas, una imagen satelital y software de terceros. Aquí están sus créditos y licencias.',
     license: 'Ver licencia',
     sections: [
       {
@@ -148,6 +228,14 @@ const es = {
         items: [
           { name: '© OpenStreetMap contributors — Copyright y licencia', href: 'https://www.openstreetmap.org/copyright' },
           { name: 'Leaflet — © Volodymyr Agafonkin (BSD-2-Clause)', href: '/licenses/LICENSE-leaflet.txt' },
+        ],
+      },
+      {
+        title: 'Imagen satelital (Nosotros)',
+        text: 'La vista satelital de Centroamérica y Sudamérica es un recorte de "Blue Marble: Next Generation" (diciembre de 2004, con relieve y batimetría), de NASA Earth Observatory. Las imágenes de NASA son de dominio público; se cita la fuente como pide NASA. La imagen está alojada en este mismo sitio.',
+        items: [
+          { name: 'Imagen: NASA Earth Observatory (Reto Stöckli) — Blue Marble: Next Generation', href: 'https://visibleearth.nasa.gov/images/73909/december-blue-marble-next-generation-w-topography-and-bathymetry' },
+          { name: 'Pautas de uso de imágenes de NASA', href: 'https://www.nasa.gov/nasa-brand-center/images-and-media/' },
         ],
       },
       {

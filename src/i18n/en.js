@@ -39,6 +39,7 @@ const en = {
       secondary: 'See paths',
       orbit: ['Software development', 'Artificial intelligence', 'English', 'Adaptive skills'],
       side: ['Software development', 'Artificial intelligence', 'English', 'Adaptive skills'],
+      sideTitle: 'What you learn',
       age: 'From 17 years old · No age limit',
     },
     routes: {
@@ -106,12 +107,6 @@ const en = {
         },
       ],
     },
-    final: {
-      title: 'Your career of the *future* starts today',
-      text: 'Message us and we will help you choose the right path for you.',
-      cta: 'I want to start',
-      secondary: 'See paths',
-    },
     stories: {
       eyebrow: 'At Campuslands we change lives',
       title: 'Success *stories*',
@@ -125,10 +120,93 @@ const en = {
     },
   },
 
+  about: {
+    hero: {
+      eyebrow: 'Campuslands',
+      title: 'The story of how an idea can *change lives*',
+      text: 'We connect your company with pre-vetted developers who quickly integrate into your internal processes.',
+      videoLabel: 'Video by Diego Tarazona',
+      person: 'Diego Tarazona',
+      role: 'C.E.O Campuslands',
+    },
+    impact: {
+      eyebrow: 'Our campuses',
+      title: 'Places where we make an *impact*',
+      stats: [
+        { label: 'Total impact', value: '+6,480', note: '' },
+        { label: '2026 impact', value: '1650', note: '4+ family members per young person impacted' },
+        { label: 'Year 2026', value: 'Campus Guatemala', note: 'New international campus' },
+      ],
+      mapTitle: 'Campuses and capacity',
+      capacity: 'campers',
+      noData: 'Capacity to be confirmed',
+      countries: [
+        { name: 'Colombia', sedes: [
+          { name: 'Bucaramanga', capacity: 670 },
+          { name: 'Bogotá', capacity: 280 },
+          { name: 'Norte de Santander', capacity: 70 },
+          { name: 'Barranquilla', capacity: null },
+          { name: 'Cali', capacity: null },
+        ] },
+        { name: 'Guatemala', sedes: [
+          { name: 'Guatemala City', capacity: null, isNew: true },
+        ] },
+      ],
+      newLabel: 'New campus',
+      capacityLabel: 'Capacity',
+      mapLabel: 'Map of Campuslands campuses in Colombia and Guatemala',
+    },
+    purpose: {
+      mission: { eyebrow: 'Our mission', title: 'Transforming *talent*', quote: 'To empower young people from diverse backgrounds through accessible technology education, developing their skills in programming, English and social competencies to open doors to high-impact professional opportunities.' },
+      vision: { eyebrow: 'The vision that guides us', title: 'A new *digital* class', quote: 'To build a global community of digital talent, where young people anywhere have access to the tools they need for a prosperous and meaningful future, contributing to a new digital social class.' },
+    },
+    knowledge: {
+      eyebrow: 'Campuslands',
+      title: 'Today campuslands is born, the third generation of *knowledge*',
+      todayTitle: 'Fourth industrial revolution – today',
+      futureTitle: 'Technologies of the future',
+      today: [
+        { name: 'AI', text: 'Systems that learn and help make decisions.' },
+        { name: 'Programming', text: 'The language for building software and solutions.' },
+        { name: 'Robotics', text: 'Machines that perform tasks autonomously.' },
+        { name: 'Big Data', text: 'Large volumes of data turned into decisions.' },
+        { name: 'Cloud', text: 'Services and data available from anywhere.' },
+        { name: 'English', text: 'The common language of the tech industry.' },
+        { name: 'Cybersecurity', text: 'Protecting systems, data and people.' },
+        { name: 'Metaverse', text: 'Immersive, shared digital spaces.' },
+        { name: 'Low Code', text: 'Building apps with little code.' },
+        { name: 'Blockchain', text: 'Secure, verifiable digital records.' },
+        { name: 'Edge Computing', text: 'Processing data close to where it is created.' },
+        { name: 'Virtual Reality', text: 'Three-dimensional digital experiences.' },
+        { name: 'Automation', text: 'Processes that run by themselves, error-free.' },
+        { name: '5G', text: 'Ultra-fast mobile connections.' },
+      ],
+      future: [
+        { name: 'Autonomous Robots', text: 'Machines that perceive, decide and act on their own.' },
+        { name: 'Quantum Computing', text: 'Calculations impossible for today’s computers.' },
+        { name: 'Neural Networks', text: 'Models inspired by the human brain.' },
+        { name: 'Holograms', text: 'Three-dimensional images projected in space.' },
+        { name: 'Web 3.0', text: 'A decentralized internet owned by its users.' },
+        { name: 'Fusion Energy', text: 'Clean, almost limitless energy.' },
+      ],
+    },
+    stories: {
+      eyebrow: 'Testimonials',
+      title: 'Success *stories*',
+      text: 'See how our campers turned their talent into real opportunities in the tech industry.',
+      cta: 'I want to start',
+      secondary: 'Request advice',
+      video: 'Camper testimonial',
+      featured: 'Programming the Future – From Tibú, Norte de Santander, to Campuslands',
+      prev: 'Previous video',
+      next: 'Next video',
+    },
+  },
+
   credits: {
     eyebrow: 'Legal',
     title: 'Credits and *licenses*',
-    intro: 'This site uses third-party typefaces, map data and software. Here are their credits and licenses.',
+    intro: 'This site uses third-party typefaces, map data, a satellite image and software. Here are their credits and licenses.',
     license: 'View license',
     sections: [
       {
@@ -146,6 +224,14 @@ const en = {
         items: [
           { name: '© OpenStreetMap contributors — Copyright and license', href: 'https://www.openstreetmap.org/copyright' },
           { name: 'Leaflet — © Volodymyr Agafonkin (BSD-2-Clause)', href: '/licenses/LICENSE-leaflet.txt' },
+        ],
+      },
+      {
+        title: 'Satellite image (About us)',
+        text: 'The satellite view of Central and South America is a crop of "Blue Marble: Next Generation" (December 2004, with topography and bathymetry) by NASA Earth Observatory. NASA images are in the public domain; the source is credited as NASA requests. The image is hosted on this site.',
+        items: [
+          { name: 'Image: NASA Earth Observatory (Reto Stöckli) — Blue Marble: Next Generation', href: 'https://visibleearth.nasa.gov/images/73909/december-blue-marble-next-generation-w-topography-and-bathymetry' },
+          { name: 'NASA image use guidelines', href: 'https://www.nasa.gov/nasa-brand-center/images-and-media/' },
         ],
       },
       {

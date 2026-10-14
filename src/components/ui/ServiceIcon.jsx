@@ -70,6 +70,7 @@ const PATHS = {
       <circle cx="106" cy="38" r="5" />
     </>
   ),
+
 }
 
 export default function ServiceIcon({ name, className = '' }) {

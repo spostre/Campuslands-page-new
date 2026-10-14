@@ -19,8 +19,9 @@ npm run preview  # sirve la versión final para revisarla
 |---|---|---|
 | `/` | Inicio | Hecha |
 | `/se-un-camper` | Sé un camper | Hecha |
+| `/nosotros` | Nosotros | Hecha |
 | `/creditos` | Créditos y licencias de terceros | Hecha |
-| `/nosotros`, `/servicios/*` | Nosotros, Servicios | "En construcción" |
+| `/servicios/*` | Servicios | "En construcción" |
 | cualquier otra | 404 | Hecha |
 
 ## Estructura

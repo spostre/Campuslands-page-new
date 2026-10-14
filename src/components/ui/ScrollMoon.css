@@ -1,0 +1,61 @@
+/* Ocupa toda la sección contenedora (que debe tener position: relative e isolation) */
+.scroll-moon {
+  --phase: 0;
+  --moon: min(560px, 70vw);
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Se queda a la vista mientras se recorre la sección */
+.scroll-moon__sticky {
+  position: sticky;
+  top: 10vh;
+  height: 80vh;
+  overflow: hidden;
+}
+
+.scroll-moon__body {
+  position: absolute;
+  top: 50%;
+  right: -14%;
+  width: var(--moon);
+  height: var(--moon);
+  transform: translateY(-50%);
+}
+
+.scroll-moon__body > span {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
+
+/* Halo amplio alrededor */
+.scroll-moon__halo {
+  inset: -40% !important;
+  background: radial-gradient(closest-side, rgb(255 255 255 / 0.1), transparent);
+  opacity: calc(1 - var(--phase));
+}
+
+/* Disco de luz, tan borroso como el brillo del logo */
+.scroll-moon__light {
+  background: radial-gradient(circle at 42% 40%, #ffffff, #d9dde6 60%, #9aa1ad);
+  filter: blur(26px);
+  /* En el último tercio de la sección se apaga del todo (sin restos de brillo en los bordes) */
+  opacity: calc(0.26 * clamp(0, (1 - var(--phase)) * 3, 1));
+}
+
+/* Sombra que se desliza sobre la luna: de fuera (luna llena) al centro (luna nueva) */
+.scroll-moon__shade {
+  background: #000000;
+  filter: blur(26px);
+  transform: translateX(calc((1 - var(--phase)) * 115%)) scale(1.12);
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-moon {
+    --phase: 0.35 !important;
+  }
+}

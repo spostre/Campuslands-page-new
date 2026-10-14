@@ -1,0 +1,17 @@
+/* Fija a la ventana, detrás del contenido de la página que la contiene */
+.falling-stars {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+}
+
+/* Dentro de una sección (que debe tener isolation: isolate) */
+.falling-stars--contained {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}

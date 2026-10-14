@@ -5,6 +5,7 @@ import ComingSoon from '@/pages/ComingSoon/ComingSoon'
 import NotFound from '@/pages/NotFound/NotFound'
 import Credits from '@/pages/Credits/Credits'
 import Camper from '@/pages/Camper/Camper'
+import About from '@/pages/About/About'
 import { SERVICE_ROUTES } from '@/constants/navigation'
 
 export default function AppRoutes() {
@@ -13,9 +14,9 @@ export default function AppRoutes() {
       <Route element={<MainLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/se-un-camper" element={<Camper />} />
+        <Route path="/nosotros" element={<About />} />
         <Route path="/creditos" element={<Credits />} />
         {/* Páginas pendientes de diseño */}
-        <Route path="/nosotros" element={<ComingSoon />} />
         {SERVICE_ROUTES.map(({ key, to }) => (
           <Route key={key} path={to} element={<ComingSoon />} />
         ))}

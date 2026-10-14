@@ -43,19 +43,49 @@
   gap: 10px;
 }
 
+/* Áreas: sin caja; una línea vertical fina en degradado azul las agrupa */
 .camper-hero__side {
+  position: relative;
   justify-self: end;
+  padding-left: 24px;
+}
+
+.camper-hero__side::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  background: linear-gradient(var(--blue-400), rgb(111 157 255 / 0.15));
+}
+
+.camper-hero__side-title {
+  margin-bottom: 18px;
+  font-size: 0.6875rem;
+  color: var(--blue-400);
 }
 
 .camper-hero__side ul {
   list-style: none;
   display: grid;
+  gap: 16px;
+}
+
+.camper-hero__side li {
+  display: flex;
+  align-items: baseline;
   gap: 14px;
 }
 
+.camper-hero__side-num {
+  font-size: 0.6875rem;
+  color: var(--blue-400);
+}
+
 .camper-hero__age {
-  margin-top: 28px;
-  font-size: 0.875rem;
+  margin-top: 26px;
+  font-size: 0.8125rem;
   color: var(--muted);
 }
 
@@ -83,7 +113,8 @@
 .lit-logo__glow {
   position: absolute;
   inset: 0;
-  filter: brightness(0) invert(1) blur(18px);
+  /* Luz blanca con un leve tinte azul (como el casco del Home) */
+  filter: brightness(0) invert(1) sepia(1) hue-rotate(180deg) saturate(0.6) blur(18px);
   opacity: 0.85;
   transform: translateY(6px) scale(1.04);
   animation: lit-breathe 6s ease-in-out infinite;

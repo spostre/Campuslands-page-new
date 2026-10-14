@@ -29,14 +29,19 @@ export default function CamperHero() {
           <img src={helmetImage} alt="" className="lit-logo__shape" />
         </div>
 
-        <div className="camper-hero__side">
+        {/* Áreas de formación: lista con línea vertical en degradado azul y números en azul */}
+        <aside className="camper-hero__side">
+          <p className="mono-label camper-hero__side-title">{hero.sideTitle}</p>
           <ul>
-            {hero.side.map((item) => (
-              <li key={item} className="mono-label">{item}</li>
+            {hero.side.map((item, i) => (
+              <li key={item} className="mono-label">
+                <span className="camper-hero__side-num">{String(i + 1).padStart(2, '0')}</span>
+                {item}
+              </li>
             ))}
           </ul>
           <p className="camper-hero__age">{hero.age}</p>
-        </div>
+        </aside>
       </div>
     </section>
   )

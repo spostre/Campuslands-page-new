@@ -34,6 +34,12 @@ export const LINKS = {
     },
   },
 
+  // Nosotros. En Links.md estos botones llevan a "#": se usan los canales de WhatsApp oficiales
+  about: {
+    start: WA_MAIN,
+    advice: WA_MAIN + '?text=Hola,%20quisiera%20solicitar%20una%20asesor%C3%ADa',
+  },
+
   scheduleVisit:
     'https://api.whatsapp.com/send/?phone=3182018997&text=Hola%21+Quiero+agendar+una+visita&type=phone_number&app_absent=0',
 

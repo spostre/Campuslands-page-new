@@ -1,0 +1,48 @@
+.tech-icon {
+  display: block;
+  overflow: visible;
+}
+
+/* Relleno suave detrás de los trazos (segundo tono) */
+.tech-icon .ti-fill {
+  stroke: none;
+  opacity: 0.2;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.tech-icon .ti-line {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  /* Con pathLength="1" cada trazo mide 1: así se puede "dibujar" con dashoffset */
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+/* Al abrir la tarjeta: los trazos se dibujan y el relleno aparece desde el centro */
+.is-open .tech-icon .ti-line {
+  animation: ti-draw 0.9s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+
+.is-open .tech-icon .ti-fill {
+  animation: ti-fill 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
+}
+
+@keyframes ti-draw {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes ti-fill {
+  from { opacity: 0; transform: scale(0.6); }
+  to { opacity: 0.2; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .is-open .tech-icon .ti-line,
+  .is-open .tech-icon .ti-fill {
+    animation: none;
+  }
+}

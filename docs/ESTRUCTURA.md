@@ -33,7 +33,7 @@ Campuslands-new-page/
 ├── vite.config.js          Configuración de Vite: alias "@" → src/ y carpetas que no vigila
 ├── jsconfig.json           Hace que el editor entienda el alias "@"
 ├── .env.example            Plantilla de variables de entorno (copiar a .env)
-├── public/
+├── public/               (incluye videos/: videos comprimidos + pósteres)
 │   ├── favicon.png         Ícono de la pestaña (el casco del logo)
 │   └── licenses/           Textos de licencia de fuentes y librerías (enlazados desde /creditos)
 ├── docs/                   Documentación: ESTRUCTURA.md (este), POLITICAS.md y DISENO.md (interna)
@@ -57,7 +57,8 @@ src/
 │   │   ├── Home.jsx        Ordena las secciones del inicio
 │   │   ├── Home.css        Estilos que afectan a varias secciones (p. ej. la cuadrícula de fondo)
 │   │   └── sections/       Una sección = un .jsx + su .css
-│   ├── Camper/             Página /se-un-camper, variante monocromo (CamperHero, Programs, Stories, FinalCta)
+│   ├── Camper/             Página /se-un-camper, monocromo (.page-mono) (CamperHero, Programs, Stories)
+│   ├── About/              Página /nosotros en bandas (AboutHero, Impact + sedesGeo.js, Purpose, Knowledge, AboutStories)
 │   ├── Credits/            Página /creditos: créditos y licencias de terceros
 │   ├── ComingSoon/         Página "en construcción" (rutas aún sin diseñar)
 │   └── NotFound/           Página 404
@@ -74,6 +75,7 @@ src/
 │   └── LanguageContext.jsx Idioma actual (ES/EN), recordado en el navegador
 ├── constants/
 │   ├── links.js            Todas las URLs externas (WhatsApp, redes, servicios…)
+│   ├── videos.js           Videos confirmados por sección (archivo y póster en public/videos/)
 │   └── navigation.js       Rutas internas del menú y del desplegable de Servicios
 ├── data/
 │   ├── partners.js         Lista de aliados con su logo
@@ -115,8 +117,14 @@ src/
 | `SedeMap.jsx` / `.css` | Mapa de sedes (Leaflet + OpenStreetMap, teñido en azul). Se carga solo al acercarse. Si el servicio de mapas falla, cambia solo a la captura. |
 | `SedeMapStatic.jsx` | Plan B del mapa: muestra la captura de la sede (sin servicios externos). |
 | `Mascot.jsx` / `.css` | Mascota flotante: reacciones, sonidos, gestos y borde reflectivo. |
+| `FallingStars.jsx` / `.css` | Estrellas cayendo fijas a la ventana (página Sé un camper). |
+| `ScrollMoon.jsx` / `.css` | Luna de fondo que se cierra con el scroll (Rutas de Sé un camper). |
+| `SocialIcon.jsx` | Íconos de línea de las redes sociales (reutilizable). |
 | `VideoFrame.jsx` / `.css` | Recuadro de video 16:9 reutilizable. |
 | `Placeholder.jsx` / `.css` | Espacio reservado para imágenes o videos que aún no existen. |
+| `VideoPlayer.jsx` / `.css` | Video real con póster (no se descarga hasta reproducir). Plan B: si falta el archivo, muestra `VideoFrame`. |
+| `Snowfall.jsx` / `.css` | Nieve ligera de fondo para secciones claras (canvas, se pausa fuera de pantalla). |
+| `TechIcon.jsx` / `.css` | Íconos de tecnologías (Nosotros) a dos tonos, con animación de dibujo al abrir la tarjeta. |
 
 ### 3.3 `pages/Home/sections/` — secciones del inicio
 

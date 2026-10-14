@@ -54,6 +54,11 @@
   gap: clamp(48px, 6vw, 96px);
 }
 
+/* El video del Inicio mantiene el redondeo de las tarjetas del Home */
+.social__grid > .player {
+  border-radius: var(--radius-card);
+}
+
 .social__title {
   max-width: 16ch;
 }
@@ -174,7 +179,8 @@
     grid-template-columns: 1fr;
   }
 
-  .social__grid > .video-frame {
+  .social__grid > .video-frame,
+  .social__grid > .player {
     margin-top: 16px;
   }
 }

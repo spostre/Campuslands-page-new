@@ -15,11 +15,17 @@ Qué recursos de terceros usa el sitio, qué obligaciones legales tiene cada uno
 | Encabezado, pie, hero, pilares, servicios, redes | Nada externo (todo está en el proyecto) | **Nulo** | — | — |
 | Tipografías | Archivos propios en `src/assets/fonts/` | **Nulo** | — | Si un archivo faltara, el navegador usa la fuente de respaldo del sistema. |
 | Logos de aliados, mascota, logo, captura del chat | Archivos propios en `src/assets/` | **Nulo** | — | — |
-| Estrellas, animaciones, sonido de la mascota | Funciones del navegador (canvas, Web Audio) | **Nulo** | En navegadores muy antiguos simplemente no se ven / no suenan. | La página funciona igual. |
+| Estrellas (fijas y cayendo), luna de fondo, nieve, persiana (animación por scroll), desvanecidos, luz naranja de Historias, animaciones de tarjetas e íconos, sonido de la mascota | Funciones del navegador (canvas, Web Audio, scroll) — **ningún servicio externo** | **Nulo** | En navegadores muy antiguos simplemente no se ven / no suenan. | La página funciona igual. Con "reducir movimiento" quedan quietas. |
 | **Mapa de sedes** | Servidores de mapas de OpenStreetMap | **Medio** | Sin plan B, el recuadro quedaría vacío. | **Automático:** se muestra una captura del mismo mapa para la sede elegida (sección 4). |
 | Botones a WhatsApp y redes | WhatsApp, Instagram, TikTok, LinkedIn, Facebook | **Bajo** | El botón abre una página caída o con error. | Depende del tercero; actualizar la URL en `links.js` si cambia. |
 | **Botones marcados `[ANTIGUA]`** (servicios, políticas, "contratar talento") | La web anterior `campuslands.com` | **Medio–alto a futuro** | Cuando se retire la web antigua, esos botones darán error 404. | Cambiarlos por rutas internas a medida que se construyan las páginas nuevas (`src/constants/links.js`). |
+| **Imagen satelital** (sedes de Nosotros) | Archivo propio en `src/assets/images/maps/latam-satellite*.webp` (recorte de NASA Blue Marble, dominio público) | **Nulo** | — | Si se quisiera otra imagen: usar solo fuentes de dominio público o con licencia comercial (NASA, USGS/Landsat). **No** usar capturas de Google Maps/Earth ni de Esri/Mapbox sin licencia. Si se cambia el recorte, actualizar los límites en `sedesGeo.js`. |
+| **Videos** (Inicio, Sé un camper) | Archivos propios en `public/videos/` (material de Campuslands) | **Bajo** | Si un archivo falta o no carga, el recuadro queda vacío. | **Automático:** `VideoPlayer` muestra el recuadro reservado con el nombre del video. A futuro, si pesan demasiado para el servidor, alojarlos en YouTube/Vimeo o un CDN y cambiar la ruta en `src/constants/videos.js`. |
 | Preferencia de idioma | `localStorage` del navegador | **Nulo** | Si está bloqueado, el sitio abre en español. | — |
+
+---
+
+> **Regla:** todo recurso o servicio externo nuevo (tipografía, imagen, datos, mapa, API, analítica, etc.) se registra en este archivo con su licencia, su riesgo y un **plan B** de funcionamiento, y se acredita en la página **/creditos**.
 
 ---
 
@@ -98,6 +104,8 @@ Si se agrega una librería, revisar su licencia (`node_modules/<paquete>/package
 | Captura de WhatsApp (Órbit) | Muestra la interfaz de WhatsApp (marca de Meta) con el chat oficial de Campuslands | Uso ilustrativo del canal oficial; no alterar la marca. |
 | Íconos de redes sociales | Dibujados en el proyecto, inspirados en cada marca | Riesgo bajo; si se prefiere, reemplazar por los íconos oficiales que cada red ofrece en su guía de marca. |
 | Nombres de redes y de WhatsApp | Marcas de sus titulares | Indicado en /creditos. |
+| Videos de testimonios y de Campuslands | Propios (entregados por Campuslands) | **⚖️** Confirmar que las personas que aparecen autorizaron el uso de su imagen en la web. |
+| Imagen satelital | NASA Blue Marble: Next Generation — dominio público | Mantener el crédito en /creditos ("NASA Earth Observatory"); no sugerir respaldo de NASA. |
 | Fotos o videos de terceros | **No se usan** | Si se agregan, usar solo material propio o con licencia que permita uso comercial, y registrar la fuente. |
 
 ---
@@ -121,6 +129,8 @@ Si se agrega una librería, revisar su licencia (`node_modules/<paquete>/package
 - [ ] Revisados los enlaces `[ANTIGUA]` en `src/constants/links.js`.
 - [ ] **⚖️** Autorización de uso de logos de aliados.
 - [ ] **⚖️** Política de tratamiento de datos actualizada (servicio de mapas).
+- [ ] **⚖️** Autorización de imagen de las personas en los videos.
+- [ ] Videos pesados: `public/videos/` suma ~31 MB; antes de subir al repositorio/servidor decidir si se alojan fuera (YouTube/Vimeo/CDN).
 - [ ] `npm run build` sin errores.
 
 ---
