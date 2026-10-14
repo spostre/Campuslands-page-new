@@ -1,0 +1,266 @@
+/*
+ * Sección a todo el ancho con la imagen de fondo (inicio de Idea 2). Corte recto arriba;
+ * abajo la imagen se funde con el negro de la sección de empresas que sigue.
+ */
+.why {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  min-height: clamp(600px, 94vh, 880px);
+  background: #0b0c0f;
+  color: #ffffff;
+}
+
+/* ---- Fondos ---- */
+.why__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.why__layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.08);
+  transition: opacity 1.2s var(--ease), transform 8s linear;
+}
+
+.why__layer.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.why__layer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Mientras no hay imagen: fondo oscuro con un leve brillo y la marca de "pendiente" */
+.why__layer:not(:has(img)) {
+  background:
+    radial-gradient(70% 60% at 50% 35%, rgb(111 157 255 / 0.14), transparent 70%),
+    linear-gradient(180deg, #1a1d24, #0b0c0f);
+}
+
+.why__pending {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  padding: 6px 12px;
+  border: 1px dashed rgb(255 255 255 / 0.3);
+  border-radius: 6px;
+  font-family: var(--font-nav);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 0.55);
+}
+
+/* Velo para leer el texto + fundido al negro de la sección siguiente, abajo */
+.why::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(
+      180deg,
+      rgb(11 12 15 / 0.55),
+      rgb(11 12 15 / 0.12) 26%,
+      rgb(11 12 15 / 0.1) 42%,
+      rgb(11 12 15 / 0.6) 64%,
+      rgb(11 12 15 / 0.9) 84%,
+      var(--ink-950)
+    );
+  pointer-events: none;
+}
+
+/* ---- Contenido suelto, centrado ---- */
+.why__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 36px;
+  padding-top: clamp(56px, 7vw, 88px);
+  padding-bottom: clamp(40px, 5vw, 64px);
+  text-align: center;
+}
+
+.why__head .eyebrow {
+  justify-content: center;
+  color: rgb(255 255 255 / 0.75);
+}
+
+.why__heading {
+  margin-top: 10px;
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: rgb(255 255 255 / 0.9);
+}
+
+/* El texto va en el tercio inferior (como en Idea 2), sin tapar a las figuras del centro */
+.why__slide {
+  margin-top: auto;
+  max-width: 780px;
+  text-shadow: 0 2px 24px rgb(0 0 0 / 0.45);
+  animation: why-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes why-in {
+  from { opacity: 0; transform: translateY(18px); filter: blur(6px); }
+  to { opacity: 1; transform: none; filter: none; }
+}
+
+.why__tag {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+  color: var(--blue-300);
+}
+
+.why__title {
+  margin-top: 10px;
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 6.4vw, 5.6rem);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+}
+
+.why__text {
+  max-width: 54ch;
+  margin: 22px auto 0;
+  font-size: clamp(1rem, 1.2vw, 1.125rem);
+  line-height: 1.65;
+  color: rgb(255 255 255 / 0.85);
+}
+
+/* ---- Controles: flechas + nombres de los modelos con su barra de avance ---- */
+.why__controls {
+  display: flex;
+  align-items: flex-end;
+  gap: 18px;
+  width: 100%;
+  max-width: 980px;
+}
+
+.why__arrow {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgb(255 255 255 / 0.3);
+  border-radius: 50%;
+  background: rgb(11 12 15 / 0.35);
+  color: #ffffff;
+  cursor: pointer;
+  transition: border-color 0.25s var(--ease), background-color 0.25s var(--ease);
+}
+
+.why__arrow:hover {
+  border-color: rgb(255 255 255 / 0.7);
+  background: rgb(255 255 255 / 0.14);
+}
+
+.why__arrow svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.why__bars {
+  list-style: none;
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.why__bar {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 10px;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: rgb(255 255 255 / 0.5);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.why__bar em {
+  font-style: normal;
+  font-size: 0.8125rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.3s var(--ease);
+}
+
+.why__bar:hover em,
+.why__bar.is-active em {
+  color: #ffffff;
+}
+
+.why__bar span {
+  display: block;
+  height: 2px;
+  background: rgb(255 255 255 / 0.25);
+  background-image: linear-gradient(#ffffff, #ffffff);
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+}
+
+.why__bar.is-done span {
+  background-size: 100% 100%;
+}
+
+.why__bar.is-active span {
+  animation: why-fill var(--ms) linear both;
+}
+
+/* Pausa con el cursor encima o fuera de pantalla */
+.why:hover .why__bar.is-active span,
+.why.is-paused .why__bar.is-active span {
+  animation-play-state: paused;
+}
+
+@keyframes why-fill {
+  from { background-size: 0% 100%; }
+  to { background-size: 100% 100%; }
+}
+
+@media (max-width: 640px) {
+  .why__bar em {
+    display: none;
+  }
+
+  .why__controls {
+    align-items: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .why__layer {
+    transition: opacity 0.6s;
+    transform: none;
+  }
+
+  .why__slide {
+    animation: none;
+  }
+}

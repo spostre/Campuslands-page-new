@@ -103,3 +103,70 @@
     scroll-snap-align: start;
   }
 }
+
+/* ---- Entrada "amanecer": la sección pasa de negro a blanco y se queda así ---- */
+.stories {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  color: var(--text);
+  transition: color 0.9s var(--ease) 0.35s;
+}
+
+/* Capa clara que se abre en círculo desde arriba */
+.stories__day {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(60% 50% at 50% 0%, rgb(111 157 255 / 0.16), transparent 70%),
+    radial-gradient(rgb(15 18 24 / 0.08) 1.2px, transparent 1.6px) 0 0 / 22px 22px,
+    var(--paper);
+  clip-path: circle(0% at 50% 0%);
+  transition: clip-path 1.6s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.stories.is-day .stories__day {
+  clip-path: circle(150% at 50% 0%);
+}
+
+/* Colores de superficie clara (los mismos de .surface-light) */
+.stories.is-day {
+  --bg: var(--paper);
+  --surface: #ffffff;
+  --surface-2: #eceff3;
+  --border: rgb(15 18 24 / 0.09);
+  --border-strong: rgb(15 18 24 / 0.16);
+  --text: #0f1218;
+  --muted: var(--gray-600);
+}
+
+.stories__eyebrow,
+.stories__text,
+.story__role {
+  transition: color 0.9s var(--ease) 0.35s;
+}
+
+.stories.is-day .stories__eyebrow {
+  color: var(--blue-600);
+}
+
+/* La tarjeta conserva su entrada (reveal) y además cambia de fondo y borde */
+.story {
+  transition:
+    opacity 0.7s var(--ease),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.9s var(--ease),
+    border-color 0.9s var(--ease);
+  transition-delay: var(--d, 0s), var(--d, 0s), 0.35s, 0.35s;
+}
+
+.stories.is-day .story {
+  box-shadow: 0 20px 40px -28px rgb(15 18 24 / 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stories__day {
+    transition: none;
+  }
+}

@@ -59,6 +59,8 @@ src/
 │   │   └── sections/       Una sección = un .jsx + su .css
 │   ├── Camper/             Página /se-un-camper, monocromo (.page-mono) (CamperHero, Programs, Stories)
 │   ├── About/              Página /nosotros en bandas (AboutHero, Impact + sedesGeo.js, Purpose, Knowledge, AboutStories)
+│   ├── Emplea/             Página /servicios/emplea (EmpleaHero + CodeTranslator, TechLeap, Stack, WhyUs + whyImages.js, Companies, EmpleaContact)
+│   ├── Legal/              Páginas /politicas-de-privacidad y /terminos-y-condiciones (lector de markdown mínimo)
 │   ├── Credits/            Página /creditos: créditos y licencias de terceros
 │   ├── ComingSoon/         Página "en construcción" (rutas aún sin diseñar)
 │   └── NotFound/           Página 404
@@ -71,18 +73,23 @@ src/
 ├── i18n/
 │   ├── es.js               Todos los textos en español
 │   └── en.js               Los mismos textos en inglés (misma estructura)
+├── content/
+│   └── legal/              Texto de las políticas (copiado de Content MD/Politicas, sin el menú ni el pie de la web anterior)
 ├── context/
 │   └── LanguageContext.jsx Idioma actual (ES/EN), recordado en el navegador
 ├── constants/
-│   ├── links.js            Todas las URLs externas (WhatsApp, redes, servicios…)
+│   ├── links.js            Todos los destinos de botones: externos (WhatsApp, redes) e internos (servicios, políticas)
 │   ├── videos.js           Videos confirmados por sección (archivo y póster en public/videos/)
 │   └── navigation.js       Rutas internas del menú y del desplegable de Servicios
 ├── data/
+│   ├── hiringCompanies.js  Empresas que contratan (Emplea): 20 logos, 9 de ellos solo aquí
+│   ├── techLogos.js        Trazos de logos de tecnologías (Simple Icons, CC0)
 │   ├── partners.js         Lista de aliados con su logo
 │   └── sedes.js            Sedes del mapa: nombre, ubicación, coordenadas y captura de respaldo
 ├── hooks/
 │   ├── useCountUp.js       Anima una cifra desde 0 (métricas del inicio)
 │   ├── useNearViewport.js  Avisa cuando un elemento se acerca a la pantalla (carga tardía)
+│   ├── useReveal.js        Animaciones de entrada (una vez, al llegar a la sección); estilos .reveal en global.css
 │   └── useFetch.js         Utilidad para pedir datos a una API (aún sin uso)
 ├── services/
 │   └── api.js              Cliente de API basado en VITE_API_URL (aún sin uso)
@@ -146,7 +153,7 @@ src/
 Editar `src/i18n/es.js` y su equivalente en `src/i18n/en.js`. Las palabras entre asteriscos (`*así*`) se muestran en cursiva destacada.
 
 ### Cambiar a dónde lleva un botón
-Editar la URL en `src/constants/links.js`. Nunca escribir URLs directamente en los componentes. Las marcadas `[ANTIGUA]` apuntan a la web anterior y deben cambiarse cuando existan las páginas nuevas.
+Editar la URL en `src/constants/links.js`. Nunca escribir URLs directamente en los componentes. Los enlaces internos empiezan por "/" (el botón navega sin recargar; un ancla como `/servicios/emplea#contacto` baja hasta esa sección). Ya no quedan enlaces a la web anterior.
 
 ### Agregar o cambiar un aliado
 1. Guardar su logo (SVG o PNG, idealmente en blanco) en `src/assets/logos/`.

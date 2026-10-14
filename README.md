@@ -20,8 +20,10 @@ npm run preview  # sirve la versión final para revisarla
 | `/` | Inicio | Hecha |
 | `/se-un-camper` | Sé un camper | Hecha |
 | `/nosotros` | Nosotros | Hecha |
+| `/servicios/emplea` | Campuslands Emplea | Hecha |
+| `/politicas-de-privacidad`, `/terminos-y-condiciones` | Políticas | Hechas |
 | `/creditos` | Créditos y licencias de terceros | Hecha |
-| `/servicios/*` | Servicios | "En construcción" |
+| `/servicios/*` (otros 5) | Servicios | "En construcción" |
 | cualquier otra | 404 | Hecha |
 
 ## Estructura
@@ -65,6 +67,8 @@ Alias `@` → `src/` (ej.: `import Button from '@/components/ui/Button'`).
 - **Tipografías** (Hanken Grotesk, Newsreader, Poppins): alojadas en el proyecto, licencia SIL Open Font License 1.1.
 - **Mapa de sedes**: Leaflet (BSD-2-Clause) + datos © colaboradores de OpenStreetMap (ODbL). El servicio de mapas de OpenStreetMap no tiene garantía; si falla, el sitio muestra automáticamente una captura del mismo mapa para cada sede.
 - **Librerías**: React, React DOM y React Router (MIT).
+- **Imagen satelital** (Nosotros): NASA Blue Marble, dominio público.
+- **Logos de tecnologías** (Emplea): Simple Icons, CC0.
 
 Créditos y licencias completas: página `/creditos` y carpeta `public/licenses/`.
 

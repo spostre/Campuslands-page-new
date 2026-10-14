@@ -1,0 +1,229 @@
+.emplea-contact {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  min-height: clamp(520px, 72vh, 680px);
+  display: flex;
+  align-items: center;
+}
+
+/* ---- Casco: pegado al borde izquierdo, se ve solo su mitad derecha ---- */
+.emplea-contact__visual {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: -1;
+  width: clamp(420px, 44vw, 680px);
+  aspect-ratio: 1;
+  translate: -50% -50%;
+}
+
+/* La entrada (reveal--left) además gira un poco el casco */
+.emplea-contact__visual.reveal {
+  --reveal-from: translateX(-60px) rotate(-12deg);
+}
+
+.emplea-contact__helmet {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Sombra suave bajo el casco (degradado, más liviano que un filtro sobre la imagen) */
+.emplea-contact__visual::after {
+  content: '';
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  bottom: 2%;
+  z-index: -1;
+  height: 14%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(15 18 24 / 0.35), transparent);
+}
+
+/* Brillo azul detrás y anillos finos de órbita */
+.emplea-contact__visual::before {
+  content: '';
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(111 157 255 / 0.45), transparent 65%);
+  filter: blur(30px);
+}
+
+.emplea-contact__rings {
+  position: absolute;
+  inset: -14%;
+  border-radius: 50%;
+  border: 1px solid rgb(15 18 24 / 0.12);
+}
+
+/* Segundo anillo, más amplio y punteado */
+.emplea-contact__rings::before {
+  content: '';
+  position: absolute;
+  inset: -16%;
+  border-radius: 50%;
+  border: 1px dashed rgb(15 18 24 / 0.12);
+}
+
+.emplea-contact__rings::after {
+  content: '';
+  position: absolute;
+  top: 8%;
+  right: 12%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 5px rgb(31 85 214 / 0.15);
+}
+
+/* ---- Datos ---- */
+.emplea-contact__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.42fr) minmax(0, 0.58fr);
+}
+
+.emplea-contact__copy {
+  grid-column: 2;
+  padding: 24px 0;
+}
+
+.emplea-contact__team {
+  margin-top: 18px;
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.emplea-contact__list {
+  list-style: none;
+  display: grid;
+  margin: 28px 0 32px;
+  border-top: 1px solid var(--border-strong);
+}
+
+.emplea-contact__list li {
+  display: grid;
+  grid-template-columns: 22px 110px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-strong);
+}
+
+.emplea-contact__icon {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.emplea-contact__label {
+  font-family: var(--font-nav);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.emplea-contact__list a {
+  overflow-wrap: anywhere;
+  transition: color 0.2s var(--ease);
+}
+
+.emplea-contact__list a:hover {
+  color: var(--accent);
+}
+
+.emplea-contact__actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px 36px;
+}
+
+/* Redes: solo los íconos, sin marco */
+.emplea-contact__follow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.emplea-contact__follow > span {
+  font-family: var(--font-nav);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.emplea-contact__follow ul {
+  list-style: none;
+  display: flex;
+  gap: 4px;
+}
+
+.emplea-contact__follow a {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  color: var(--text);
+  transition: color 0.2s var(--ease);
+}
+
+.emplea-contact__follow a:hover {
+  color: var(--accent);
+}
+
+.emplea-contact__social {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.emplea-contact__social .network__icon-dot {
+  fill: currentColor;
+  stroke: none;
+}
+
+@media (max-width: 900px) {
+  .emplea-contact {
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 0;
+  }
+
+  .emplea-contact__visual {
+    position: relative;
+    top: auto;
+    width: min(70vw, 360px);
+    margin-bottom: -40px;
+    translate: -30% 0;
+  }
+
+  .emplea-contact__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .emplea-contact__copy {
+    grid-column: 1;
+  }
+
+  .emplea-contact__list li {
+    grid-template-columns: 22px 90px minmax(0, 1fr);
+  }
+}

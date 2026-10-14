@@ -24,3 +24,45 @@
 .video-frame--vertical {
   aspect-ratio: 9 / 16;
 }
+
+/* Antes de reproducir: todo el recuadro es el botón, con un "Play" grande al centro */
+.player__start {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: linear-gradient(180deg, rgb(0 0 0 / 0.05), rgb(0 0 0 / 0.35));
+  cursor: pointer;
+}
+
+.player__play {
+  display: grid;
+  place-items: center;
+  width: clamp(64px, 22%, 84px);
+  aspect-ratio: 1;
+  border: 1px solid rgb(255 255 255 / 0.5);
+  border-radius: 50%;
+  background: rgb(255 255 255 / 0.16);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 12px 30px -10px rgb(0 0 0 / 0.6);
+  transition: transform 0.3s var(--ease), background-color 0.3s var(--ease);
+}
+
+.player__play svg {
+  width: 38%;
+  height: 38%;
+  margin-left: 6%;
+  fill: #ffffff;
+}
+
+.player__start:hover .player__play,
+.player__start:focus-visible .player__play {
+  transform: scale(1.08);
+  background: rgb(255 255 255 / 0.28);
+}
+
+.player__start:focus-visible {
+  outline: 2px solid var(--blue-400);
+  outline-offset: -4px;
+}

@@ -4,15 +4,19 @@
   isolation: isolate;
 }
 
-/* Transición corta y simple desde el color de la banda clara anterior */
+/*
+ * Transición tipo semitono (como el borde de un vidrio polarizado): puntos pequeños del color de
+ * la banda clara anterior que se achican hacia abajo hasta desaparecer. Es una imagen SVG
+ * de 12 × 66 px que se repite a lo ancho: estática y sin costo.
+ */
 .about-stories::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 48px;
-  background: linear-gradient(180deg, var(--paper), transparent);
+  height: 66px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='66'%3E%3Cg fill='%23f5f6f8'%3E%3Crect width='12' height='2'/%3E%3Ccircle cx='3' cy='3' r='4.10'/%3E%3Ccircle cx='9' cy='6' r='3.81'/%3E%3Ccircle cx='3' cy='9' r='3.53'/%3E%3Ccircle cx='9' cy='12' r='3.26'/%3E%3Ccircle cx='3' cy='15' r='2.99'/%3E%3Ccircle cx='9' cy='18' r='2.73'/%3E%3Ccircle cx='3' cy='21' r='2.48'/%3E%3Ccircle cx='9' cy='24' r='2.23'/%3E%3Ccircle cx='3' cy='27' r='2.00'/%3E%3Ccircle cx='9' cy='30' r='1.77'/%3E%3Ccircle cx='3' cy='33' r='1.56'/%3E%3Ccircle cx='9' cy='36' r='1.35'/%3E%3Ccircle cx='3' cy='39' r='1.15'/%3E%3Ccircle cx='9' cy='42' r='0.96'/%3E%3Ccircle cx='3' cy='45' r='0.79'/%3E%3Ccircle cx='9' cy='48' r='0.63'/%3E%3Ccircle cx='3' cy='51' r='0.48'/%3E%3Ccircle cx='9' cy='54' r='0.34'/%3E%3Ccircle cx='3' cy='57' r='0.22'/%3E%3Ccircle cx='9' cy='60' r='0.12'/%3E%3Ccircle cx='3' cy='63' r='0.04'/%3E%3C/g%3E%3C/svg%3E") repeat-x top left;
   pointer-events: none;
 }
 
@@ -204,21 +208,22 @@
   gap: 8px;
 }
 
+/* Redes sin marco: solo ícono, nombre y cuenta */
 .follow__link {
   display: flex;
   align-items: center;
   gap: 10px;
   height: 48px;
-  padding: 0 16px 0 14px;
-  border: 1px solid var(--border-strong);
-  border-radius: 6px;
-  background: rgb(0 0 0 / 0.3);
-  transition: border-color 0.25s var(--ease), background-color 0.25s var(--ease);
+  padding: 0 10px;
+  transition: color 0.25s var(--ease);
 }
 
 .follow__link:hover {
-  border-color: rgb(255 255 255 / 0.5);
-  background: rgb(255 255 255 / 0.06);
+  color: var(--accent);
+}
+
+.follow__link:hover .follow__icon {
+  stroke: var(--accent);
 }
 
 .follow__icon {

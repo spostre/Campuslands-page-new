@@ -239,6 +239,13 @@ const es = {
         ],
       },
       {
+        title: 'Logos de tecnologías (Emplea)',
+        text: 'Los logos de Python, HTML5, CSS3, JavaScript, MySQL, PostgreSQL, Node.js, Java (OpenJDK), PHP, .NET y Git provienen de Simple Icons, publicados bajo CC0 1.0 (dominio público). Son marcas de sus respectivos titulares y se muestran solo para nombrar las tecnologías que se enseñan.',
+        items: [
+          { name: 'Simple Icons — CC0 1.0', href: 'https://github.com/simple-icons/simple-icons/blob/develop/LICENSE.md' },
+        ],
+      },
+      {
         title: 'Software de código abierto',
         text: 'El sitio está construido con las siguientes librerías, distribuidas bajo la licencia MIT.',
         items: [
@@ -253,6 +260,121 @@ const es = {
         items: [],
       },
     ],
+  },
+
+  // Campuslands Emplea. Fuente: Content MD/Servicios/Servicios Emplea.md
+  // PROVISIONAL (textos nuestros): el programa de ejemplo del hero y su traducción, y las
+  // descripciones de cada tecnología en "Especialistas".
+  emplea: {
+    hero: {
+      eyebrow: 'Campuslands Emplea',
+      title: 'Impulsa tu crecimiento con *el talento que tu empresa necesita.*',
+      text: 'Simplificamos tu contratación de perfiles TI con formación práctica, habilidades técnicas y habilidades adaptativas. Listas para generar impacto desde el primer día.',
+      cta: 'Encuentra tu talento TI',
+      statValue: '+800',
+      statLabel: 'Talentos Campus trabajando en empresas tech',
+      file: 'mi_primer_programa.py',
+      codeLabel: 'Python',
+      plainLabel: 'En palabras',
+      replay: 'Ver de nuevo',
+      blocks: [
+        {
+          code: ['nombre = "Ana"', 'edad = 19'],
+          plain: 'Guarda dos datos: el nombre de una persona, Ana, y su edad, 19 años.',
+        },
+        {
+          code: ['if edad >= 17:', '    print("Hola, " + nombre + ". Ya puedes ser camper")'],
+          plain: 'Si tiene 17 años o más, la saluda por su nombre y le dice que ya puede ser camper.',
+        },
+        {
+          code: ['temas = ["Python", "IA", "Inglés"]', 'for tema in temas:', '    print("Hoy aprendo", tema)'],
+          plain: 'Hace una lista de tres temas y, uno por uno, muestra en pantalla qué aprende hoy.',
+        },
+      ],
+    },
+    leap: {
+      eyebrow: 'Tech Leap',
+      title: 'Tu camino para incorporar *talento TI*',
+      text: 'Seis etapas diseñadas para garantizar el match perfecto entre tus necesidades y nuestro talento TI.',
+      prev: 'Etapa anterior',
+      next: 'Etapa siguiente',
+      steps: [
+        { title: 'Descubrimiento', text: 'Entendemos tus necesidades, tecnologías y objetivos para identificar el perfil ideal.' },
+        { title: 'Búsqueda de talento', text: 'Seleccionamos y validamos candidatos que cumplen con los requisitos técnicos y humanos.' },
+        { title: 'Presentación de perfiles', text: 'Recibe una selección de talento y agenda entrevistas con los candidatos que mejor se adapten a tu equipo.' },
+        { title: 'Selección', text: 'Elige al profesional que mejor se alinee con tu cultura, stack tecnológico y objetivos.' },
+        { title: 'Vinculación', text: 'Formalizamos el modelo de contratación y acompañamos la incorporación del talento.' },
+        { title: 'Garantía', text: 'Realizamos seguimiento continuo para asegurar una integración exitosa y ofrecer respaldo durante el proceso.' },
+      ],
+      testimonialsTitle: 'Testimonios de empresas aliadas',
+      testimonials: [
+        {
+          name: 'Cristian Velez',
+          role: 'Director @Mantis App',
+          quote: 'Colaborar con un Camper fue una decisión clave para el crecimiento de nuestra empresa. Su preparación, junto con su disposición para aprender, adaptarse y contribuir de manera significativa, marcaron una gran diferencia en nuestro equipo. Estamos ansiosos de seguir contratando talento de alto calibre confiados plenamente en Campuslands.',
+        },
+        {
+          name: 'Clément Memain',
+          role: 'CEO Consulting @Data/AI',
+          quote: 'Nos ha encantado el talento TI proveniente de Campuslands, con quienes hemos desarrollado el proyecto Coding Queendom. Actualmente, 17 mujeres forman parte de esta iniciativa, y estamos comprometidos a incrementar este número en los próximos años.',
+        },
+      ],
+    },
+    stack: {
+      eyebrow: 'Especialistas',
+      title: 'Especialistas en las tecnologías que *mueven tu negocio*',
+      text: 'Entrenamos talento en las herramientas más demandadas para asegurar una integración inmediata a tus proyectos.',
+      areas: ['Inteligencia artificial', 'Programación', 'Liderazgo y trabajo en equipo'],
+      hint: 'Elige una tecnología',
+      items: [
+        { key: 'python', name: 'Python', area: 'Programación e IA', text: 'El lenguaje más usado para datos, automatización e inteligencia artificial. Sus campers escriben scripts, analizan información y construyen servicios con él.' },
+        { key: 'web', name: 'HTML5 / CSS3 / JavaScript', area: 'Desarrollo web', text: 'La base de toda página y aplicación web: estructura, diseño y comportamiento. Construyen interfaces claras que funcionan en cualquier pantalla.' },
+        { key: 'mysql', name: 'MySQL', area: 'Bases de datos', text: 'Diseñan tablas, consultan y relacionan información en una de las bases de datos más usadas por las empresas.' },
+        { key: 'postgresql', name: 'PostgreSQL', area: 'Bases de datos', text: 'Base de datos robusta para proyectos que crecen: consultas avanzadas, integridad de los datos y buen rendimiento.' },
+        { key: 'node', name: 'Node.js', area: 'Backend', text: 'JavaScript del lado del servidor para crear APIs y servicios rápidos que conectan las aplicaciones con sus datos.' },
+        { key: 'java', name: 'Java', area: 'Backend empresarial', text: 'Lenguaje estable y muy presente en grandes empresas. Programación orientada a objetos y aplicaciones de larga vida.' },
+        { key: 'php', name: 'PHP', area: 'Desarrollo web', text: 'Impulsa gran parte de la web. Desarrollan sitios y sistemas a la medida conectados a bases de datos.' },
+        { key: 'dotnet', name: 'C# (.NET)', area: 'Backend empresarial', text: 'Ecosistema de Microsoft para aplicaciones de negocio, APIs y servicios en la nube.' },
+        { key: 'git', name: 'Git / Control de versiones', area: 'Trabajo en equipo', text: 'Guardan el historial de cada cambio y colaboran en el mismo código sin pisarse, como lo hacen los equipos profesionales.' },
+      ],
+    },
+    why: {
+      eyebrow: 'Modelos de contratación',
+      title: 'Por qué las empresas líderes *nos eligen*',
+      prev: 'Anterior',
+      next: 'Siguiente',
+      goTo: 'Ir a',
+      pending: 'pendiente',
+      slides: [
+        { title: 'Cuota Sena', tag: 'Practica con nosotros', text: 'Talento en formación que trabaja en tu empresa. Formamos a tu futuro colaborador durante 10 meses en habilidades TI. En los siguientes 6 meses llega a tu empresa en etapa productiva, ya entrenado y listo para aportar valor.' },
+        { title: 'Talent Pool', tag: 'Contrata ya', text: 'Te brindamos candidatos junior y semi senior ya formados y con experiencia. Nosotros hacemos el match, tú contratas directamente.' },
+        { title: 'Staffing', tag: 'Amplía tu equipo', text: 'Te asignamos desarrolladores que trabajan como parte de tu equipo, pero bajo nuestra administración. Tú diriges, nosotros gestionamos.' },
+        { title: 'Cero riesgo de selección', tag: 'Garantía', text: 'Hacemos seguimiento constante: si el talento no cumple tus expectativas, lo reemplazamos sin costos adicionales.' },
+      ],
+    },
+    companies: {
+      eyebrow: 'Reclutadores de talento',
+      title: 'Empresas que contratan *talento Campuslands*',
+      text: 'Estas empresas ya contratan y patrocinan talento Campuslands.',
+    },
+    contact: {
+      eyebrow: 'Equipo comercial',
+      title: '¿Listo para escalar *tu equipo*?',
+      team: 'Relaciones Comerciales de Campuslands',
+      phone: '+57 318 945 6901',
+      email: 'karolain.huerfano@campuslands.com',
+      location: 'Floridablanca, Colombia',
+      phoneLabel: 'Teléfono',
+      emailLabel: 'Correo',
+      locationLabel: 'Ubicación',
+      cta: 'Contactar ahora',
+      follow: 'Síguenos',
+    },
+  },
+
+  legal: {
+    index: 'Contenido',
+    onlySpanish: '',
   },
 
   comingSoon: {
@@ -300,27 +422,22 @@ const es = {
     // Los tres porcentajes de cada pilar suman 100.
     pillars: {
       title: '¿Qué aprenden nuestros *campers*?',
-      hint: 'Pasa el cursor sobre cada pilar para ver en qué se forman',
       items: [
         {
           title: 'Desarrollo de software',
           text: 'Construyen aplicaciones reales, desde la lógica hasta las bases de datos, con las prácticas que usa la industria.',
-          bars: [{ label: 'Frontend', value: 40 }, { label: 'Backend', value: 35 }, { label: 'Bases de datos', value: 25 }],
         },
         {
           title: 'Inteligencia artificial',
           text: 'Usan la IA para programar, automatizar tareas y resolver problemas de forma más rápida.',
-          bars: [{ label: 'IA generativa', value: 45 }, { label: 'Prompting', value: 30 }, { label: 'Automatización', value: 25 }],
         },
         {
           title: 'Inglés',
           text: 'Fortalecen el inglés técnico y conversacional que piden las empresas tech de todo el mundo.',
-          bars: [{ label: 'Conversación', value: 45 }, { label: 'Inglés técnico', value: 35 }, { label: 'Escritura', value: 20 }],
         },
         {
           title: 'Habilidades adaptativas',
           text: 'Desarrollan comunicación, trabajo en equipo y liderazgo para crecer en cualquier entorno.',
-          bars: [{ label: 'Trabajo en equipo', value: 40 }, { label: 'Comunicación', value: 35 }, { label: 'Liderazgo', value: 25 }],
         },
       ],
     },

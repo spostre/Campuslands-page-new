@@ -5,12 +5,19 @@ import Footer from './Footer'
 import Mascot from '@/components/ui/Mascot'
 
 export default function MainLayout() {
-  const { pathname } = useLocation()
+  const { pathname, hash } = useLocation()
 
-  // Al cambiar de página, volver arriba
+  // Al cambiar de página, volver arriba; si el enlace trae un ancla (#contacto), ir a esa sección
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [pathname])
+    if (!hash) {
+      window.scrollTo(0, 0)
+      return
+    }
+    const frame = requestAnimationFrame(() => {
+      document.getElementById(hash.slice(1))?.scrollIntoView({ behavior: 'smooth' })
+    })
+    return () => cancelAnimationFrame(frame)
+  }, [pathname, hash])
 
   return (
     <div className="layout">

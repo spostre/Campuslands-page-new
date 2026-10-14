@@ -13,6 +13,8 @@
   backdrop-filter: blur(12px) saturate(1.2);
   border-bottom: 1px solid var(--header-border);
   color: var(--header-text);
+  /* Capa propia: evita restos de pintado del desenfoque cuando hay animaciones debajo */
+  transform: translateZ(0);
 }
 
 .header__inner {

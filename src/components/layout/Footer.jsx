@@ -28,8 +28,8 @@ export default function Footer() {
           </div>
 
           <FooterColumn title={t.footer.legalTitle}>
-            <a href={LINKS.legal.privacy} {...external}>{t.footer.privacy}</a>
-            <a href={LINKS.legal.terms} {...external}>{t.footer.terms}</a>
+            <Link to={LINKS.legal.privacy}>{t.footer.privacy}</Link>
+            <Link to={LINKS.legal.terms}>{t.footer.terms}</Link>
             <Link to="/creditos">{t.footer.credits}</Link>
           </FooterColumn>
 

@@ -1,6 +1,7 @@
 import Divider from '@/components/ui/Divider'
 import Emph from '@/components/ui/Emph'
 import ServiceIcon from '@/components/ui/ServiceIcon'
+import { Link } from 'react-router-dom'
 import { LINKS } from '@/constants/links'
 import { useLanguage } from '@/context/LanguageContext'
 import Starfield from '@/components/ui/Starfield'
@@ -25,12 +26,7 @@ export default function Services() {
         <ul className="services__grid">
           {services.items.map((item, i) => (
             <li key={item.key} className={i === 0 ? 'services__featured' : undefined}>
-              <a
-                className="service-card"
-                href={LINKS.services[item.key]}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <Link className="service-card" to={LINKS.services[item.key]}>
                 {/* Marca de agua: casco del logo en la destacada, ícono propio en las demás */}
                 {i === 0 ? (
                   <img src={helmetImage} alt="" className="service-card__mark" aria-hidden="true" />
@@ -48,7 +44,7 @@ export default function Services() {
                     {item.cta} <span aria-hidden="true">→</span>
                   </span>
                 </div>
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

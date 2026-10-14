@@ -15,8 +15,8 @@ const FUTURE_ICONS = ['arm', 'atom', 'neural', 'hologram', 'web3', 'fusion']
 // Tarjetas por fila en escritorio (hoy: 14 = 2 filas de 7; futuro: 1 fila de 6)
 const PER_ROW = 7
 
-// La tercera generación del conocimiento (banda clara con nieve ligera). Arriba, una persiana
-// de franjas negras que se abre con el scroll hace la transición desde la banda negra anterior.
+// La tercera generación del conocimiento (banda clara con nieve ligera). Arriba, una trama de
+// puntos negros que se achican ("polarizado") hace la transición desde la banda negra anterior.
 // Tarjetas oscuras (hoy) y azules (futuro) en filas que se reparten todo el ancho: al presionar
 // una, se ensancha, su ícono y título pasan a la izquierda, el ícono se dibuja y aparece la
 // descripción. Todo con CSS (transform/opacity y el ancho de la fila), sin librerías.
@@ -28,9 +28,6 @@ export default function Knowledge() {
   return (
     <section className="section knowledge surface-light">
       <Snowfall />
-      <div className="blinds" aria-hidden="true">
-        {Array.from({ length: 7 }, (_, i) => <span key={i} style={{ '--i': i }} />)}
-      </div>
 
       <div className="container">
         <header className="section-head knowledge__head">

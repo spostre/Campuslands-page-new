@@ -235,6 +235,13 @@ const en = {
         ],
       },
       {
+        title: 'Technology logos (Emplea)',
+        text: 'The Python, HTML5, CSS3, JavaScript, MySQL, PostgreSQL, Node.js, Java (OpenJDK), PHP, .NET and Git logos come from Simple Icons, released under CC0 1.0 (public domain). They are trademarks of their respective owners and are shown only to name the technologies we teach.',
+        items: [
+          { name: 'Simple Icons — CC0 1.0', href: 'https://github.com/simple-icons/simple-icons/blob/develop/LICENSE.md' },
+        ],
+      },
+      {
         title: 'Open-source software',
         text: 'The site is built with the following libraries, distributed under the MIT license.',
         items: [
@@ -249,6 +256,121 @@ const en = {
         items: [],
       },
     ],
+  },
+
+  // Campuslands Emplea (English translation of Content MD/Servicios/Servicios Emplea.md).
+  // PROVISIONAL (our own texts): the hero sample program and its translation, and the
+  // technology descriptions in "Specialists".
+  emplea: {
+    hero: {
+      eyebrow: 'Campuslands Emplea',
+      title: 'Boost your growth with *the talent your company needs.*',
+      text: 'We simplify hiring IT profiles with hands-on training, technical skills and adaptive skills. Ready to make an impact from day one.',
+      cta: 'Find your IT talent',
+      statValue: '+800',
+      statLabel: 'Campus talents working at tech companies',
+      file: 'my_first_program.py',
+      codeLabel: 'Python',
+      plainLabel: 'In plain words',
+      replay: 'Play again',
+      blocks: [
+        {
+          code: ['name = "Ana"', 'age = 19'],
+          plain: 'Stores two pieces of data: a person’s name, Ana, and her age, 19.',
+        },
+        {
+          code: ['if age >= 17:', '    print("Hi, " + name + ". You can be a camper")'],
+          plain: 'If she is 17 or older, it greets her by name and tells her she can become a camper.',
+        },
+        {
+          code: ['topics = ["Python", "AI", "English"]', 'for topic in topics:', '    print("Today I learn", topic)'],
+          plain: 'Makes a list of three topics and, one by one, shows on screen what she learns today.',
+        },
+      ],
+    },
+    leap: {
+      eyebrow: 'Tech Leap',
+      title: 'Your path to hiring *IT talent*',
+      text: 'Six stages designed to guarantee the perfect match between your needs and our IT talent.',
+      prev: 'Previous stage',
+      next: 'Next stage',
+      steps: [
+        { title: 'Discovery', text: 'We understand your needs, technologies and goals to identify the ideal profile.' },
+        { title: 'Talent search', text: 'We select and validate candidates who meet the technical and human requirements.' },
+        { title: 'Profile presentation', text: 'Receive a selection of talent and schedule interviews with the candidates who best fit your team.' },
+        { title: 'Selection', text: 'Choose the professional who best aligns with your culture, tech stack and goals.' },
+        { title: 'Onboarding', text: 'We formalize the hiring model and support the talent’s onboarding.' },
+        { title: 'Guarantee', text: 'We provide continuous follow-up to ensure a successful integration and offer support throughout the process.' },
+      ],
+      testimonialsTitle: 'Testimonials from partner companies',
+      testimonials: [
+        {
+          name: 'Cristian Velez',
+          role: 'Director @Mantis App',
+          quote: 'Working with a Camper was a key decision for our company’s growth. Their preparation, together with their willingness to learn, adapt and contribute meaningfully, made a big difference in our team. We look forward to keep hiring top-caliber talent, fully trusting Campuslands.',
+        },
+        {
+          name: 'Clément Memain',
+          role: 'CEO Consulting @Data/AI',
+          quote: 'We have loved the IT talent coming from Campuslands, with whom we have developed the Coding Queendom project. Today, 17 women are part of this initiative, and we are committed to increasing this number in the coming years.',
+        },
+      ],
+    },
+    stack: {
+      eyebrow: 'Specialists',
+      title: 'Specialists in the technologies that *drive your business*',
+      text: 'We train talent in the most in-demand tools to ensure immediate integration into your projects.',
+      areas: ['Artificial intelligence', 'Programming', 'Leadership and teamwork'],
+      hint: 'Pick a technology',
+      items: [
+        { key: 'python', name: 'Python', area: 'Programming and AI', text: 'The most used language for data, automation and artificial intelligence. Campers write scripts, analyze information and build services with it.' },
+        { key: 'web', name: 'HTML5 / CSS3 / JavaScript', area: 'Web development', text: 'The foundation of every web page and app: structure, design and behavior. They build clear interfaces that work on any screen.' },
+        { key: 'mysql', name: 'MySQL', area: 'Databases', text: 'They design tables, query and relate information in one of the databases most used by companies.' },
+        { key: 'postgresql', name: 'PostgreSQL', area: 'Databases', text: 'A robust database for growing projects: advanced queries, data integrity and good performance.' },
+        { key: 'node', name: 'Node.js', area: 'Backend', text: 'Server-side JavaScript to build fast APIs and services that connect applications with their data.' },
+        { key: 'java', name: 'Java', area: 'Enterprise backend', text: 'A stable language widely used in large companies. Object-oriented programming and long-lived applications.' },
+        { key: 'php', name: 'PHP', area: 'Web development', text: 'It powers a large part of the web. They build custom sites and systems connected to databases.' },
+        { key: 'dotnet', name: 'C# (.NET)', area: 'Enterprise backend', text: 'Microsoft’s ecosystem for business applications, APIs and cloud services.' },
+        { key: 'git', name: 'Git / Version control', area: 'Teamwork', text: 'They keep the history of every change and collaborate on the same code without stepping on each other, like professional teams do.' },
+      ],
+    },
+    why: {
+      eyebrow: 'Hiring models',
+      title: 'Why leading companies *choose us*',
+      prev: 'Previous',
+      next: 'Next',
+      goTo: 'Go to',
+      pending: 'pending',
+      slides: [
+        { title: 'SENA quota', tag: 'Practice with us', text: 'Talent in training who works at your company. We train your future collaborator for 10 months in IT skills. In the following 6 months they join your company in their productive stage, already trained and ready to add value.' },
+        { title: 'Talent Pool', tag: 'Hire now', text: 'We provide junior and semi-senior candidates who are already trained and experienced. We make the match, you hire directly.' },
+        { title: 'Staffing', tag: 'Grow your team', text: 'We assign developers who work as part of your team, but under our administration. You lead, we manage.' },
+        { title: 'Zero selection risk', tag: 'Guarantee', text: 'We follow up constantly: if the talent does not meet your expectations, we replace them at no additional cost.' },
+      ],
+    },
+    companies: {
+      eyebrow: 'Talent recruiters',
+      title: 'Companies that hire *Campuslands talent*',
+      text: 'These companies already hire and sponsor Campuslands talent.',
+    },
+    contact: {
+      eyebrow: 'Sales team',
+      title: 'Ready to scale *your team*?',
+      team: 'Campuslands Business Relations',
+      phone: '+57 318 945 6901',
+      email: 'karolain.huerfano@campuslands.com',
+      location: 'Floridablanca, Colombia',
+      phoneLabel: 'Phone',
+      emailLabel: 'Email',
+      locationLabel: 'Location',
+      cta: 'Contact us now',
+      follow: 'Follow us',
+    },
+  },
+
+  legal: {
+    index: 'Contents',
+    onlySpanish: 'This document is only available in Spanish.',
   },
 
   comingSoon: {
@@ -294,27 +416,22 @@ const en = {
 
     pillars: {
       title: 'What do our *campers* learn?',
-      hint: 'Hover over each pillar to see what they train in',
       items: [
         {
           title: 'Software development',
           text: 'They build real applications, from logic to databases, using the practices the industry relies on.',
-          bars: [{ label: 'Frontend', value: 40 }, { label: 'Backend', value: 35 }, { label: 'Databases', value: 25 }],
         },
         {
           title: 'Artificial intelligence',
           text: 'They use AI to code, automate tasks and solve problems faster.',
-          bars: [{ label: 'Generative AI', value: 45 }, { label: 'Prompting', value: 30 }, { label: 'Automation', value: 25 }],
         },
         {
           title: 'English',
           text: 'They strengthen the technical and conversational English that tech companies worldwide ask for.',
-          bars: [{ label: 'Conversation', value: 45 }, { label: 'Technical English', value: 35 }, { label: 'Writing', value: 20 }],
         },
         {
           title: 'Adaptive skills',
           text: 'They develop communication, teamwork and leadership to grow in any environment.',
-          bars: [{ label: 'Teamwork', value: 40 }, { label: 'Communication', value: 35 }, { label: 'Leadership', value: 25 }],
         },
       ],
     },

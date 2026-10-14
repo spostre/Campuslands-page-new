@@ -7,7 +7,8 @@ import Locations from './sections/Locations'
 import Social from './sections/Social'
 import './Home.css'
 
-// Bandas: negra (hero) · clara (pilares) · negra (servicios + aliados)
+// Bandas: negra (hero) · negra (pilares, con la estrella que enciende los títulos)
+//         · negra (servicios + aliados)
 //         · clara (Órbit + sedes) · negra (redes + pie)
 export default function Home() {
   return (

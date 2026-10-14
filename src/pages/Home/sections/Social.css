@@ -131,6 +131,14 @@
   background: var(--blue-600);
   border-color: var(--blue-600);
   color: var(--white);
+}
+
+/*
+ * La tarjeta sube un poco al pasar el cursor, pero lo detecta su contenedor (<li>), que no se
+ * mueve: así, con el cursor justo en el borde, la tarjeta no entra y sale del hover sin parar.
+ */
+.social__networks li:hover > .network,
+.network:focus-visible {
   transform: translateY(-3px);
 }
 

@@ -1,261 +1,191 @@
 /*
- * Cada pilar: cuadro oscuro (sin redondeo, sin número) + barras de habilidades al lado.
- * Las barras empiezan apagadas (una franja fina de color) y al pasar el cursor por el pilar
- * crecen hasta su parte sobre una pista que marca el 100% (los tres porcentajes suman 100),
- * con el nombre encima y el porcentaje fuera.
- * Colores: escala uniforme de azules de la marca (de más intenso a más claro).
+ * Pilares (banda negra): texto plano en cuatro columnas separadas por líneas finas.
+ * Los títulos se encienden letra por letra cuando la estrella fugaz pasa por ellos.
  */
-
-/* Trama de puntos muy sutil de fondo */
 .pillars {
-  background-image: radial-gradient(rgb(15 18 24 / 0.07) 1.2px, transparent 1.6px);
-  background-size: 22px 22px;
-  background-position: center top;
+  overflow: hidden;
 }
 
 .pillars__head {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 16px 48px;
-  flex-wrap: wrap;
-  margin-bottom: clamp(48px, 6vw, 72px);
+  margin-bottom: clamp(48px, 6vw, 80px);
 }
 
-/* Indicación para pasar el cursor (en táctil no hace falta: las barras ya se ven llenas) */
-.pillars__hint {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.875rem;
-  color: var(--muted);
-}
-
-/* Ícono de cursor de línea, en gris */
-.pillars__hint-icon {
-  width: 18px;
-  height: 18px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.6;
-  stroke-linejoin: round;
+.pillars__stage {
+  position: relative;
 }
 
 .pillars__list {
-  --card: clamp(210px, 16vw, 250px);
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: clamp(32px, 4vw, 56px) clamp(32px, 5vw, 80px);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
-/* Cuadro y barras comparten altura; todos los pilares de una fila miden lo mismo */
 .pillar {
-  display: grid;
-  grid-template-columns: var(--card) 1fr;
-  gap: 24px;
-  outline-offset: 6px;
-}
-
-.pillar__card {
-  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 20px;
-  min-height: var(--card); /* cuadrado como mínimo; crece si el texto lo necesita */
-  padding: 24px;
-  background: var(--ink-900);
-  color: #eef0f4;
-  transition: background-color 0.3s var(--ease);
+  gap: 18px;
+  padding: 8px clamp(18px, 2.4vw, 36px) 8px;
+  border-left: 1px solid rgb(255 255 255 / 0.1);
 }
 
-/* Esquina de acento: un pequeño corte en diagonal arriba a la derecha */
-.pillar__card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 18px;
-  height: 18px;
-  background: linear-gradient(225deg, var(--bg) 50%, transparent 50%);
+.pillar:first-of-type {
+  padding-left: 0;
+  border-left: 0;
 }
 
-.pillar:hover .pillar__card,
-.pillar:focus-visible .pillar__card {
-  background: var(--ink-950);
-}
-
-.pillar__icon {
-  width: 52px;
-  height: 52px;
-  opacity: 0.85;
-  transition: transform 0.4s var(--ease), opacity 0.3s var(--ease);
-}
-
-.pillar:hover .pillar__icon,
-.pillar:focus-visible .pillar__icon {
-  opacity: 1;
-  transform: translateY(-3px) rotate(-6deg);
+.pillar__num {
+  font-family: var(--font-nav);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--blue-400);
 }
 
 .pillar__title {
   font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: var(--display-weight);
-  letter-spacing: -0.015em;
-  line-height: 1.15;
+  font-size: clamp(1.6rem, 2.3vw, 2.15rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.12;
+  color: #ffffff;
 }
 
-/* Descripción "transparente" */
+/* Brillo final de las letras, tenue y permanente ("ya se encendieron") */
+.pl-ch {
+  text-shadow: 0 0 14px rgb(111 157 255 / 0.32);
+}
+
 .pillar__text {
-  margin-top: 10px;
-  font-size: 0.875rem;
-  line-height: 1.55;
-  opacity: 0.62;
+  max-width: 34ch;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: rgb(238 240 244 / 0.66);
 }
 
-/* ---- Barras ---- */
-.pillar__bars {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+/* ---- Antes y durante la animación ---- */
+.pillars.is-idle .pl-ch,
+.pillars.is-idle .pillar__num,
+.pillars.is-idle .pillar__text {
+  opacity: 0;
 }
 
-.skill {
-  --bar: #6f9dff; /* azul */
-  flex: 1;
-  display: flex;
-  align-items: stretch;
-  gap: 12px;
-  min-height: 0;
+.pillars.is-playing .pl-ch {
+  opacity: 0;
+  animation: pl-ignite 1.3s ease-out var(--t, 0ms) forwards;
 }
 
-.skill:nth-child(2) {
-  --bar: #9dbcff; /* azul medio */
+.pillars.is-playing .pillar__num {
+  opacity: 0;
+  animation: pl-fade 0.6s var(--ease) var(--t-num, 0ms) forwards;
 }
 
-.skill:nth-child(3) {
-  --bar: #c7d8ff; /* azul claro */
+.pillars.is-playing .pillar__text {
+  opacity: 0;
+  animation: pl-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) var(--t-text, 0ms) forwards;
 }
 
-/* Pista = 100%. Apagada no se ve; al encender aparece tenue con una marca al final */
-.skill__track {
-  position: relative;
-  flex: 1;
-  display: flex;
-  background: transparent;
-  transition: background-color 0.4s var(--ease);
+/* La letra aparece con un destello blanco-azulado que se asienta en el brillo tenue */
+@keyframes pl-ignite {
+  0% {
+    opacity: 0;
+    text-shadow: 0 0 0 rgb(255 255 255 / 0);
+  }
+  12% {
+    opacity: 1;
+    color: #ffffff;
+    text-shadow:
+      0 0 6px rgb(255 255 255 / 0.95),
+      0 0 18px rgb(170 200 255 / 0.95),
+      0 0 36px rgb(111 157 255 / 0.7);
+  }
+  100% {
+    opacity: 1;
+    text-shadow: 0 0 14px rgb(111 157 255 / 0.32);
+  }
 }
 
-.skill__track::after {
-  content: '';
+@keyframes pl-fade {
+  to { opacity: 1; }
+}
+
+@keyframes pl-rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ---- Estrella fugaz: punto brillante con estela ---- */
+.pillars__star {
   position: absolute;
   top: 0;
-  right: 0;
-  bottom: 0;
-  width: 2px;
-  background: var(--bar);
+  left: 0;
+  z-index: 2;
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow:
+    0 0 6px 1px #ffffff,
+    0 0 18px 5px rgb(170 200 255 / 0.75),
+    0 0 60px 18px rgb(111 157 255 / 0.22);
   opacity: 0;
-  transition: opacity 0.4s var(--ease);
+  pointer-events: none;
+  will-change: transform, opacity;
 }
 
-/* Apagada: franja fina. Encendida: crece hasta su porcentaje de la pista */
-.skill__fill {
-  width: 4px;
-  background: var(--bar);
-  transition: width 0.8s var(--ease) calc(var(--i) * 90ms);
-}
-
-/* Nombre encima de la barra: texto oscuro, legible sobre el relleno y sobre la pista */
-.skill__name {
+/* Estela detrás del punto (gira con la dirección del movimiento) */
+.pillars__star::before {
+  content: '';
   position: absolute;
   top: 50%;
-  left: 14px;
-  transform: translateY(-50%);
-  font-family: var(--font-nav);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  color: #0f1218;
-  opacity: 0;
-  transition: opacity 0.3s var(--ease);
+  right: 50%;
+  width: 190px;
+  height: 1.5px;
+  margin-top: -0.75px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, rgb(170 200 255 / 0.18) 45%, rgb(220 232 255 / 0.55) 82%, rgb(255 255 255 / 0.95));
 }
 
-.skill__value {
-  align-self: center;
-  width: 40px;
-  font-family: var(--font-nav);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--text);
-  opacity: 0;
-  transition: opacity 0.3s var(--ease);
+/* Halo alargado y tenue alrededor de la estela */
+.pillars__star::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  width: 120px;
+  height: 10px;
+  margin-top: -5px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, transparent, rgb(111 157 255 / 0.18));
+  filter: blur(4px);
 }
 
-.pillar:hover .skill__track,
-.pillar:focus-within .skill__track {
-  background: color-mix(in srgb, var(--bar) 22%, transparent);
-}
-
-.pillar:hover .skill__track::after,
-.pillar:focus-within .skill__track::after {
-  opacity: 0.6;
-}
-
-.pillar:hover .skill__fill,
-.pillar:focus-within .skill__fill {
-  width: calc(var(--p) * 1%);
-}
-
-.pillar:hover .skill__name,
-.pillar:hover .skill__value,
-.pillar:focus-within .skill__name,
-.pillar:focus-within .skill__value {
-  opacity: 1;
-  transition-delay: calc(0.45s + var(--i) * 90ms);
-}
-
-/* En pantallas táctiles (sin cursor) las barras se muestran ya llenas */
-@media (hover: none) {
-  .pillars__hint {
-    display: none;
-  }
-
-  .skill__track {
-    background: color-mix(in srgb, var(--bar) 22%, transparent);
-  }
-
-  .skill__fill {
-    width: calc(var(--p) * 1%);
-  }
-
-  .skill__name,
-  .skill__value {
-    opacity: 1;
-  }
+.pillars.is-done .pillars__star {
+  display: none;
 }
 
 @media (max-width: 1100px) {
   .pillars__list {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 48px;
+  }
+
+  .pillar:nth-of-type(odd) {
+    padding-left: 0;
+    border-left: 0;
   }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 560px) {
+  .pillars__list {
+    grid-template-columns: 1fr;
+    row-gap: 40px;
+  }
+
   .pillar {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  .pillar__card {
-    min-height: 220px;
-  }
-
-  .pillar__bars {
-    height: 150px;
+    padding-left: 0;
+    border-left: 0;
   }
 }
+
+

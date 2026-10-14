@@ -18,7 +18,9 @@ Qué recursos de terceros usa el sitio, qué obligaciones legales tiene cada uno
 | Estrellas (fijas y cayendo), luna de fondo, nieve, persiana (animación por scroll), desvanecidos, luz naranja de Historias, animaciones de tarjetas e íconos, sonido de la mascota | Funciones del navegador (canvas, Web Audio, scroll) — **ningún servicio externo** | **Nulo** | En navegadores muy antiguos simplemente no se ven / no suenan. | La página funciona igual. Con "reducir movimiento" quedan quietas. |
 | **Mapa de sedes** | Servidores de mapas de OpenStreetMap | **Medio** | Sin plan B, el recuadro quedaría vacío. | **Automático:** se muestra una captura del mismo mapa para la sede elegida (sección 4). |
 | Botones a WhatsApp y redes | WhatsApp, Instagram, TikTok, LinkedIn, Facebook | **Bajo** | El botón abre una página caída o con error. | Depende del tercero; actualizar la URL en `links.js` si cambia. |
-| **Botones marcados `[ANTIGUA]`** (servicios, políticas, "contratar talento") | La web anterior `campuslands.com` | **Medio–alto a futuro** | Cuando se retire la web antigua, esos botones darán error 404. | Cambiarlos por rutas internas a medida que se construyan las páginas nuevas (`src/constants/links.js`). |
+| Enlaces internos (servicios, políticas, contacto de Emplea) | Rutas de este sitio | **Nulo** | — | Ya no quedan enlaces a la web anterior `campuslands.com`. Los servicios sin diseño muestran "en construcción" en su ruta. |
+| **Logos de tecnologías** (Emplea) | Trazos copiados en `src/data/techLogos.js` desde Simple Icons (CC0) | **Nulo** | — | Sin dependencia externa. Si se quisiera cambiar alguno, usar Simple Icons u otra fuente CC0 y registrarlo aquí. |
+| **Fotos de Emplea** (retratos de testimonios, casco) | Archivos propios en `src/assets/images/emplea/` | **Nulo** | — | Recursos de la web anterior de Campuslands. Los fondos de "Por qué nos eligen" son imágenes generadas con Gemini, alojadas en el proyecto. |
 | **Imagen satelital** (sedes de Nosotros) | Archivo propio en `src/assets/images/maps/latam-satellite*.webp` (recorte de NASA Blue Marble, dominio público) | **Nulo** | — | Si se quisiera otra imagen: usar solo fuentes de dominio público o con licencia comercial (NASA, USGS/Landsat). **No** usar capturas de Google Maps/Earth ni de Esri/Mapbox sin licencia. Si se cambia el recorte, actualizar los límites en `sedesGeo.js`. |
 | **Videos** (Inicio, Sé un camper) | Archivos propios en `public/videos/` (material de Campuslands) | **Bajo** | Si un archivo falta o no carga, el recuadro queda vacío. | **Automático:** `VideoPlayer` muestra el recuadro reservado con el nombre del video. A futuro, si pesan demasiado para el servidor, alojarlos en YouTube/Vimeo o un CDN y cambiar la ruta en `src/constants/videos.js`. |
 | Preferencia de idioma | `localStorage` del navegador | **Nulo** | Si está bloqueado, el sitio abre en español. | — |
@@ -106,6 +108,11 @@ Si se agrega una librería, revisar su licencia (`node_modules/<paquete>/package
 | Nombres de redes y de WhatsApp | Marcas de sus titulares | Indicado en /creditos. |
 | Videos de testimonios y de Campuslands | Propios (entregados por Campuslands) | **⚖️** Confirmar que las personas que aparecen autorizaron el uso de su imagen en la web. |
 | Imagen satelital | NASA Blue Marble: Next Generation — dominio público | Mantener el crédito en /creditos ("NASA Earth Observatory"); no sugerir respaldo de NASA. |
+| Logos de las 20 empresas que contratan (Emplea) | Marcas de cada empresa; 9 no están entre los aliados del Inicio (Vensure, WMWISE, wiedii, CONEXALAB, SYSCOM, IRIDIAN, QUIBOR, SmartData, macondotek) | **⚖️** Confirmar autorización de cada empresa para mostrar su logo. Listado en `src/data/hiringCompanies.js`. |
+| Logos de tecnologías (Python, Java, PHP, etc.) | Marcas de sus titulares; dibujos de Simple Icons (CC0) | Uso nominativo: solo para nombrar lo que se enseña. Acreditado en /creditos. Java usa el logo de OpenJDK (Simple Icons no incluye el de Oracle). |
+| **Casco 3D** (contacto de Emplea) | Venía en los recursos de la web anterior (`casco.webp`); la copia `Idea/helmet.png` parece una vista previa de un banco de imágenes (fondo de cuadros pegado) | **⚖️** Confirmar que Campuslands tiene la licencia de esta imagen. Plan B: reemplazarla por el casco del logo (`logo-mark.png`). |
+| Retratos de Cristian Velez y Clément Memain | Recursos de la web anterior | **⚖️** Confirmar autorización de las personas para usar su foto. |
+| Fondos de "Por qué nos eligen" (Emplea) | 4 imágenes **generadas con Gemini** (IA de Google), entregadas por el responsable; originales en `Idea/` | **⚖️** Confirmar que el uso comercial está permitido por los términos de la cuenta con que se generaron. Muestran trajes con la bandera de Colombia: evitar que se interpreten como fotos reales de una agencia espacial. |
 | Fotos o videos de terceros | **No se usan** | Si se agregan, usar solo material propio o con licencia que permita uso comercial, y registrar la fuente. |
 
 ---
@@ -126,7 +133,9 @@ Si se agrega una librería, revisar su licencia (`node_modules/<paquete>/package
 - [ ] La página **/creditos** está enlazada en el pie y sus enlaces a licencias abren (`/licenses/...`).
 - [ ] Las capturas de respaldo del mapa corresponden a las coordenadas actuales de cada sede.
 - [ ] No hay una `Referrer-Policy` que bloquee el `Referer` en el servidor.
-- [ ] Revisados los enlaces `[ANTIGUA]` en `src/constants/links.js`.
+- [ ] **Texto de la política de privacidad completo**: el entregado (`Content MD/Politicas`) solo llega a la sección 3; faltan las secciones 4 a 7 que lista su propio índice.
+- [ ] Teléfono del equipo comercial de Emplea: el contenido dice "+57 318 945 690132"; se usó **+57 318 945 6901** (el mismo número del enlace de WhatsApp). Confirmar.
+- [ ] **⚖️** Licencia del casco 3D y autorización de logos y retratos de Emplea.
 - [ ] **⚖️** Autorización de uso de logos de aliados.
 - [ ] **⚖️** Política de tratamiento de datos actualizada (servicio de mapas).
 - [ ] **⚖️** Autorización de imagen de las personas en los videos.

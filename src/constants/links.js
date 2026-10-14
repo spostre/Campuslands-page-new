@@ -1,8 +1,8 @@
 // Destinos de los botones. Fuente: Content MD/Link/Links.md
 //
-// PENDIENTE: los enlaces marcados con [ANTIGUA] llevan a la web anterior
-// (campuslands.com). Cuando exista la página equivalente en este sitio, cambiarlos
-// por la ruta interna (ver SERVICE_ROUTES en navigation.js).
+// Los enlaces que antes iban a la web anterior (campuslands.com) ahora apuntan a las rutas
+// internas de este sitio. Los servicios que aún no tienen diseño muestran la página
+// "en construcción" en su propia ruta (ver SERVICE_ROUTES en navigation.js).
 
 const WA_MAIN = 'https://wa.me/573009711559'
 
@@ -10,17 +10,17 @@ export const LINKS = {
   contact: WA_MAIN,
   camperLogin: 'https://camper.campuslands.com/login',
 
-  // [ANTIGUA] → /servicios/...
+  // Rutas internas de los servicios
   services: {
-    aiAcademy: 'https://campuslands.com/servicios/ia-academy',
-    staffing: 'https://campuslands.com/servicios/staffing',
-    emplea: 'https://campuslands.com/servicios/emplea',
-    fullService: 'https://campuslands.com/servicios/fullservice',
-    international: 'https://campuslands.com/servicios/internacional',
+    aiAcademy: '/servicios/ia-academy',
+    staffing: '/servicios/staffing',
+    emplea: '/servicios/emplea',
+    fullService: '/servicios/fullservice',
+    international: '/servicios/internacional',
   },
 
-  // [ANTIGUA] → sección de contacto de la nueva página de Emplea
-  partnersContact: 'https://campuslands.com/servicios/emplea#partners-contact',
+  // Sección de contacto de la página de Emplea
+  partnersContact: '/servicios/emplea#contacto',
   orbitChat:
     'https://api.whatsapp.com/send/?phone=573009711559&text&type=phone_number&app_absent=0',
   // Sé un camper
@@ -50,9 +50,15 @@ export const LINKS = {
     facebook: 'https://www.facebook.com/campuslands',
   },
 
-  // [ANTIGUA] → páginas de políticas de este sitio
+  // Páginas legales de este sitio
   legal: {
-    privacy: 'https://campuslands.com/privacidad',
-    terms: 'https://campuslands.com/terminos',
+    privacy: '/politicas-de-privacidad',
+    terms: '/terminos-y-condiciones',
+  },
+
+  // Emplea: equipo comercial (Content MD/Link/Links.md → CONTACTAR AHORA)
+  emplea: {
+    contact: 'https://wa.me/573189456901',
+    email: 'mailto:karolain.huerfano@campuslands.com',
   },
 }

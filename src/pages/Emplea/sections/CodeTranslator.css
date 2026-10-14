@@ -1,0 +1,193 @@
+/* Editor oscuro dentro de la ventana Mac */
+.ct.mac {
+  border-color: rgb(15 18 24 / 0.16);
+  box-shadow: 0 40px 80px -40px rgb(15 18 24 / 0.55);
+}
+
+.ct .mac__body {
+  background: #0f1218;
+  color: #e6e9ef;
+}
+
+.ct__legend {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px 0;
+  font-family: var(--font-nav);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.ct__legend-code {
+  color: #8be0fb;
+}
+
+.ct__legend-arrow {
+  color: #5d6470;
+}
+
+.ct__legend-plain {
+  color: #f2f2f2;
+}
+
+.ct__body {
+  display: grid;
+  gap: 6px;
+  padding: 14px 10px 8px;
+  min-height: 340px;
+}
+
+/* Cada bloque: código + su traducción debajo */
+.ct__block {
+  position: relative;
+  padding: 10px 12px;
+  border-radius: 6px;
+  transition: background-color 0.4s var(--ease);
+}
+
+.ct__block::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 0;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--blue-400);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.45s var(--ease);
+}
+
+.ct__block.is-active {
+  background: rgb(111 157 255 / 0.08);
+}
+
+.ct__block.is-active::before,
+.ct__block.is-translated::before {
+  transform: scaleY(1);
+}
+
+.ct__block.is-translated::before {
+  background: rgb(111 157 255 / 0.4);
+}
+
+.ct__code {
+  margin: 0;
+  font-family: 'Consolas', 'SFMono-Regular', 'Menlo', monospace;
+  font-size: 0.875rem;
+  line-height: 1.75;
+  white-space: pre-wrap;
+  transition: opacity 0.5s var(--ease);
+}
+
+/* Ya traducido: el código queda atenuado y la traducción manda */
+.ct__block.is-translated .ct__code {
+  opacity: 0.45;
+}
+
+.ct__line {
+  display: flex;
+  gap: 16px;
+}
+
+.ct__num {
+  flex: none;
+  width: 18px;
+  text-align: right;
+  color: #4b515c;
+  user-select: none;
+}
+
+.tk-kw { color: #c792ea; }
+.tk-fn { color: #8be0fb; }
+.tk-str { color: #c3e88d; }
+.tk-num { color: #f78c6c; }
+.tk-op { color: #89ddff; }
+.tk-id { color: #e6e9ef; }
+
+/* Traducción en lenguaje natural, en la serif de la marca */
+.ct__plain {
+  display: flex;
+  gap: 10px;
+  margin: 8px 0 2px 34px;
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-size: 1.0625rem;
+  line-height: 1.45;
+  color: #ffffff;
+  animation: ct-plain-in 0.4s var(--ease) both;
+}
+
+.ct__plain-mark {
+  font-style: normal;
+  color: var(--blue-400);
+}
+
+.ct__caret {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 2px;
+  vertical-align: -0.12em;
+  background: var(--blue-400);
+  animation: ct-caret 0.9s steps(1) infinite;
+}
+
+@keyframes ct-plain-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes ct-caret {
+  50% { opacity: 0; }
+}
+
+.ct__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 22px 14px;
+  border-top: 1px solid rgb(255 255 255 / 0.06);
+  font-family: var(--font-nav);
+  font-size: 0.75rem;
+  color: #8e94a0;
+}
+
+.ct__replay {
+  border: 0;
+  background: none;
+  color: var(--blue-300);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s var(--ease);
+}
+
+.ct__replay.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (max-width: 520px) {
+  .ct__code {
+    font-size: 0.75rem;
+  }
+
+  .ct__plain {
+    margin-left: 0;
+    font-size: 0.9375rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ct__plain,
+  .ct__caret {
+    animation: none;
+  }
+}

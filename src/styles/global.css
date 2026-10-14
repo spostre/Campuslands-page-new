@@ -373,3 +373,47 @@ select {
     --gutter: 18px;
   }
 }
+
+/*
+ * Animaciones de entrada (hook useReveal): se disparan una sola vez, al entrar en pantalla.
+ * .reveal          → el elemento aparece (por defecto: sube y se desvanece hacia dentro)
+ * .reveal-stagger  → sus hijos aparecen en cascada (usar style={{ '--i': índice }})
+ * Variantes: --fade, --left, --right, --scale, --rotate. Retraso extra: style={{ '--d': '0.2s' }}
+ */
+.reveal,
+.reveal-stagger > * {
+  opacity: 0;
+  transform: var(--reveal-from, translateY(26px));
+  transition:
+    opacity 0.7s var(--ease),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--d, 0s) + var(--i, 0) * 90ms);
+}
+
+.reveal--fade { --reveal-from: none; }
+.reveal--left { --reveal-from: translateX(-32px); }
+.reveal--right { --reveal-from: translateX(32px); }
+.reveal--scale { --reveal-from: scale(0.94); }
+.reveal--rotate { --reveal-from: translateY(18px) rotate(-2.5deg); }
+
+.reveal.is-revealed,
+.reveal-stagger.is-revealed > * {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-stagger > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+
+
+
+
+
+
