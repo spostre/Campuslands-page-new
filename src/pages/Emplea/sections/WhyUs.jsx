@@ -4,17 +4,19 @@ import { useLanguage } from '@/context/LanguageContext'
 import { WHY_IMAGES } from './whyImages'
 import './WhyUs.css'
 
-const SLIDE_MS = 6500
+const IMAGE_MS = 7000
 
-// Por qué nos eligen (patrón del inicio de Idea 2): la imagen de cada modelo es el fondo de toda
-// la sección y el texto va suelto al centro, sin tarjeta. Arriba el corte con la sección
-// anterior es recto; abajo la imagen se funde con el negro de la sección siguiente (empresas).
-// Avanza sola cada pocos segundos; abajo, los nombres de los modelos con su barra de avance
-// sirven para saltar a cualquiera. Se pausa con el cursor encima o fuera de pantalla.
+// Por qué nos eligen (patrón del inicio de Idea 2): las fotos son el fondo de toda la sección y el
+// texto va suelto al centro, sin tarjeta. Arriba el corte con la sección anterior es recto; abajo
+// la imagen se funde con el negro de la sección siguiente (empresas).
+// - Fotos: rotan solas cada pocos segundos (fundido + acercamiento lento); se pausan fuera de
+//   pantalla o con la pestaña oculta. No dependen del texto.
+// - Texto: cambia solo a mano, con las flechas o con los nombres de los modelos de abajo.
 export default function WhyUs() {
   const { t } = useLanguage()
   const { why } = t.emplea
   const [index, setIndex] = useState(0)
+  const [image, setImage] = useState(0)
   const [visible, setVisible] = useState(false)
   const sectionRef = useRef(null)
   const total = why.slides.length
@@ -26,27 +28,32 @@ export default function WhyUs() {
     return () => io.disconnect()
   }, [])
 
+  // Rotación de las fotos, independiente del texto
+  useEffect(() => {
+    if (!visible || WHY_IMAGES.length < 2) return
+    const id = setInterval(() => {
+      if (!document.hidden) setImage((i) => (i + 1) % WHY_IMAGES.length)
+    }, IMAGE_MS)
+    return () => clearInterval(id)
+  }, [visible])
+
   const slide = why.slides[index]
 
   return (
-    <section ref={sectionRef} className={`why surface-dark ${visible ? '' : 'is-paused'}`}>
-      {/* Fondos: uno por modelo, cambian con un fundido y un acercamiento lento */}
+    <section ref={sectionRef} className="why surface-dark">
+      {/* Fondos: cambian con un fundido y un acercamiento lento */}
       <div className="why__bg" aria-hidden="true">
         {WHY_IMAGES.map((img, i) => (
-          <div key={i} className={`why__layer ${i === index ? 'is-active' : ''}`}>
-            {img ? (
-              <img
-                src={img.src}
-                srcSet={img.srcSet}
-                sizes="100vw"
-                alt=""
-                loading="lazy"
-                decoding="async"
-                style={{ objectPosition: img.position }}
-              />
-            ) : (
-              <span className="why__pending">{t.placeholder.image} · {why.pending}</span>
-            )}
+          <div key={i} className={`why__layer ${i === image ? 'is-active' : ''}`}>
+            <img
+              src={img.src}
+              srcSet={img.srcSet}
+              sizes="100vw"
+              alt=""
+              loading="lazy"
+              decoding="async"
+              style={{ objectPosition: img.position }}
+            />
           </div>
         ))}
       </div>
@@ -73,16 +80,12 @@ export default function WhyUs() {
               <li key={i}>
                 <button
                   type="button"
-                  className={`why__bar ${i === index ? 'is-active' : i < index ? 'is-done' : ''}`}
+                  className={`why__bar ${i === index ? 'is-active' : ''}`}
                   onClick={() => go(i)}
                   aria-label={`${why.goTo} ${s.title}`}
                   aria-current={i === index}
                 >
-                  {/* La barra activa se llena; al terminar pasa al siguiente modelo */}
-                  <span
-                    style={{ '--ms': `${SLIDE_MS}ms` }}
-                    onAnimationEnd={i === index ? () => go(index + 1) : undefined}
-                  />
+                  <span />
                   <em>{s.title}</em>
                 </button>
               </li>

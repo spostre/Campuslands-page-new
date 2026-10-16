@@ -362,7 +362,6 @@ const en = {
       prev: 'Previous',
       next: 'Next',
       goTo: 'Go to',
-      pending: 'pending',
       slides: [
         { title: 'SENA quota', tag: 'Apprenticeship', text: 'Trainees who work at your company. We train your future team member in IT skills for 10 months; over the following 6 months they join your company for their hands-on stage, already trained and ready to add value.' },
         { title: 'Talent Pool', tag: 'Hire now', text: 'We provide junior and semi-senior candidates who are already trained and experienced. We make the match, you hire directly.' },

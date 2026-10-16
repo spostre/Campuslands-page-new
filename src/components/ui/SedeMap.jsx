@@ -28,6 +28,8 @@ export default function SedeMap({ coords, label, snapshot }) {
       scrollWheelZoom: false,
       attributionControl: true,
     }).setView(coords, ZOOM)
+    // Enlace "Leaflet" de la atribución: en pestaña nueva, como todos los enlaces externos
+    map.attributionControl.setPrefix('<a href="https://leafletjs.com" target="_blank" rel="noopener noreferrer">Leaflet</a>')
 
     const tiles = L.tileLayer(TILES, { maxZoom: 18, attribution: ATTRIBUTION }).addTo(map)
     L.control.zoom({ position: 'bottomright' }).addTo(map)

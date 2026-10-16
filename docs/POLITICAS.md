@@ -33,7 +33,7 @@ Documentos relacionados: [README](../README.md) · [ESTRUCTURA.md](ESTRUCTURA.md
 | **Servicios externos en tiempo real** | Solo uno: teselas de OpenStreetMap (mapa), con respaldo automático. ✅ |
 | **Imágenes de terceros** | NASA (dominio público) y Simple Icons (CC0), acreditadas. ✅ |
 | **Cookies, analítica, rastreo** | Ninguno. ✅ |
-| **Pendiente ⚖️** | Autorizaciones de **logos de empresas**, **imagen de personas** en videos y fotos, licencia del **casco 3D** de Emplea, términos de uso de las **imágenes generadas con IA**, y **política de privacidad** completa. |
+| **Pendiente ⚖️** | Autorizaciones de **logos de empresas**, **imagen de personas** en videos y fotos, licencia del **casco 3D** de Emplea y **política de privacidad** completa. |
 
 ---
 
@@ -140,8 +140,8 @@ Las capturas reproducen el mismo mapa (zoom 13, filtro azul, marcador) con la at
 | **Videos de personas** | Nosotros (CEO + 8 campers: Amed Felipe, David Gomez, Dylan Rodriguez, Jesús Bustamante, Andres Daza, David Vargas, Ivana Paternina, Jhon Hernandez), Sé un camper (Santiago Laguado, Juan Rubio, Edinson Aparicio), Inicio (Juliana) | Autorización de uso de imagen de cada persona. El video de Jhon Hernandez muestra la marca **SURA**: confirmar que puede aparecer |
 | **Retratos** de Cristian Velez y Clément Memain | Emplea (testimonios) | Autorización de uso de imagen |
 | **Testimonios de AI Academy** (4 personas) | AI Academy | Que sean reales y haya permiso para publicarlos |
-| **Casco 3D** (`src/assets/images/emplea/helmet.webp`) | Contacto de Emplea | La copia de referencia parece de un banco de imágenes. Confirmar licencia; plan B: usar el casco del logo (`logo-mark.webp`) |
-| **4 imágenes generadas con Gemini** (`src/assets/images/emplea/why-*.webp`) | Emplea, "Por qué nos eligen" | Que los términos de la cuenta permitan uso comercial. Muestran trajes con la bandera de Colombia: evitar que se interpreten como fotos reales de una agencia espacial |
+| **Casco 3D** (`src/assets/images/emplea/helmet.webp`) | Contacto de Emplea | **Proviene del material entregado por Campuslands** al desarrollador; su origen y licencia son responsabilidad de Campuslands. Parece de un banco de imágenes o generado con IA: Campuslands debe confirmar que puede usarlo comercialmente. Plan B: usar el casco del logo (`logo-mark.webp`) |
+| **2 fotos de las sedes** (`src/assets/images/emplea/why-sesion.webp` y `why-sala.webp`) | Emplea, "Por qué nos eligen" | Fotos propias de Campuslands entregadas por el responsable. Se reconocen las caras de varios campers y de la expositora: autorización de uso de imagen |
 
 ### 6.3 Reglas para agregar imágenes o videos
 
@@ -172,7 +172,7 @@ Las capturas reproducen el mismo mapa (zoom 13, filtro azul, marcador) con la at
 - Los textos salen del material original de Campuslands (`Content MD/Whole page/`).
 - Los **escritos por el equipo** están marcados `[PROVISIONAL]` en `src/i18n/es.js` y `en.js`. Entre ellos: descripciones de las áreas del Inicio, descripciones de las tecnologías de Nosotros y de las herramientas de AI Academy, presentación del bloque de código de Sé un camper, texto de "Clase en vivo" y mensajes de la consulta de facturas.
 - La traducción al **inglés** es propia; conviene una revisión nativa, sobre todo en los testimonios.
-- **Diferencias conocidas con la web original** (decididas dejar así): match laboral 90.4% (el original muestra 85.4% en el bloque final), sin la tarjeta "Sé un Camper" en servicios del Inicio, sin la franja "Reclutando nodo Bogotá…", misión y visión con redacción ajustada, y teléfono de Emplea `+57 318 945 6901` (el original dice `…690132`).
+- **Diferencias conocidas con la web original** (decididas dejar así): match laboral 90.4% (el original muestra 85.4% en el bloque final), sin la tarjeta "Sé un Camper" en servicios del Inicio, sin la franja "Reclutando nodo Bogotá…", misión y visión con redacción ajustada, y teléfono de Emplea `+57 318 945 6901`: **corregido a propósito**; el original muestra `…690132` (12 dígitos, no existe en Colombia) pero sus propios botones de WhatsApp usan `573189456901`, así que era un error de digitación del original.
 - **Masterclass:** se actualiza a mano en `src/data/masterclass.js`. El original ya muestra el **21 oct de 2026**; el sitio aún dice 14 oct.
 
 ---
@@ -195,15 +195,14 @@ Las capturas reproducen el mismo mapa (zoom 13, filtro azul, marcador) con la at
 
 **Contenido**
 - [ ] Fecha y datos de la masterclass actualizados.
-- [ ] Teléfono del equipo comercial de Emplea confirmado.
+- [x] Teléfono del equipo comercial de Emplea: `+57 318 945 6901` (coincide con los enlaces de WhatsApp del original).
 - [ ] Destino de "Ir a masterclass" y "Generar diagnóstico" (hoy WhatsApp con mensaje prellenado).
 - [ ] Textos `[PROVISIONAL]` revisados o aprobados.
 
 **Legal ⚖️**
 - [ ] Autorización de los logos de empresas (aliados, empresas que contratan, clientes).
 - [ ] Autorización de imagen de todas las personas en videos y fotos.
-- [ ] Licencia del casco 3D de Emplea.
-- [ ] Uso comercial permitido para las imágenes generadas con Gemini.
+- [ ] Licencia del casco 3D de Emplea (a confirmar por Campuslands, que entregó la imagen).
 - [ ] Política de privacidad completa y con el servicio de mapas.
 
 ---

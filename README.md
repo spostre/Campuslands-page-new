@@ -4,6 +4,46 @@ Sitio web institucional de **Campuslands** (fábrica de talento TI): presenta la
 
 ---
 
+## ⚠️ A editar
+
+Puntos que requieren atención periódica o trabajo pendiente antes de que el sitio quede completo.
+
+### 1. Próxima masterclass — editar periódicamente
+
+Cada vez que cambie la masterclass de AI Academy (`/servicios/ia-academy`, el "pase de abordaje" de la portada):
+
+| Qué | Archivo |
+|---|---|
+| Tema, fecha, hora, instructor, cargo y código (en español e inglés) | [`src/data/masterclass.js`](src/data/masterclass.js) — único archivo a tocar; trae las instrucciones dentro |
+| Enlace del botón "Quiero asistir" (WhatsApp) | [`src/constants/links.js`](src/constants/links.js) → `aiAcademy.masterclass` |
+| Rótulos fijos ("Fecha", "Horario", "Instructor"…) | `src/i18n/es.js` y `en.js` → `aiAcademy.masterclass` (casi nunca cambian) |
+
+### 2. Facturación — necesita backend
+
+La página `/servicios/facturacion` tiene el formulario de consulta listo, pero **no consulta facturas reales**: mientras no haya API muestra "consulta en línea no disponible" y ofrece el contacto.
+
+| Qué | Archivo |
+|---|---|
+| Lógica de la consulta (qué URL llama y qué respuesta espera) | [`src/services/billing.js`](src/services/billing.js) |
+| Cliente HTTP común | [`src/services/api.js`](src/services/api.js) |
+| Página y formulario | [`src/pages/Billing/Billing.jsx`](src/pages/Billing/Billing.jsx) |
+| Variables para activarla | `.env` → `VITE_API_URL` (servidor) y `VITE_BILLING_ENDPOINT` (ruta, p. ej. `/billing/invoices`) |
+
+El backend debe responder a `GET {VITE_API_URL}{VITE_BILLING_ENDPOINT}?document=<número>` con una lista de `{ number, date, amount, status }`. Con eso definido, la página empieza a mostrar resultados sin más cambios.
+
+### 3. Formulario de cotización de FullService — necesita backend
+
+El formulario de contacto de `/servicios/fullservice` **no envía correos por sí mismo**: valida los campos y abre el programa de correo del visitante con el mensaje ya escrito (`mailto:`). Si el visitante no tiene un programa de correo configurado, no se envía nada.
+
+| Qué | Archivo |
+|---|---|
+| Envío del formulario (función `submit`) | [`src/pages/FullService/sections/FsContact.jsx`](src/pages/FullService/sections/FsContact.jsx) |
+| Correo de destino | [`src/constants/links.js`](src/constants/links.js) → `fullService.email` |
+
+Para que envíe de verdad: crear un endpoint en el backend (o un servicio de formularios) y reemplazar en `submit` la línea `window.location.href = 'mailto:…'` por un `apiFetch(...)` con método `POST` que mande empresa, correo y necesidades.
+
+---
+
 ## Tecnologías
 
 | Capa | Tecnología | Versión | Para qué |

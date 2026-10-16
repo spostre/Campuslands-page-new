@@ -1,5 +1,5 @@
 /*
- * Sección a todo el ancho con la imagen de fondo (inicio de Idea 2). Corte recto arriba;
+ * Sección a todo el ancho con fotos de fondo que rotan solas (inicio de Idea 2). Corte recto arriba;
  * abajo la imagen se funde con el negro de la sección de empresas que sigue.
  */
 .why {
@@ -38,29 +38,7 @@
   object-fit: cover;
 }
 
-/* Mientras no hay imagen: fondo oscuro con un leve brillo y la marca de "pendiente" */
-.why__layer:not(:has(img)) {
-  background:
-    radial-gradient(70% 60% at 50% 35%, rgb(111 157 255 / 0.14), transparent 70%),
-    linear-gradient(180deg, #1a1d24, #0b0c0f);
-}
-
-.why__pending {
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  padding: 6px 12px;
-  border: 1px dashed rgb(255 255 255 / 0.3);
-  border-radius: 6px;
-  font-family: var(--font-nav);
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgb(255 255 255 / 0.55);
-}
-
-/* Velo para leer el texto + fundido al negro de la sección siguiente, abajo */
+/* Velo para leer el texto sobre fotos claras + fundido al negro de la sección siguiente, abajo */
 .why::after {
   content: '';
   position: absolute;
@@ -69,11 +47,11 @@
   background:
     linear-gradient(
       180deg,
-      rgb(11 12 15 / 0.55),
-      rgb(11 12 15 / 0.12) 26%,
-      rgb(11 12 15 / 0.1) 42%,
-      rgb(11 12 15 / 0.6) 64%,
-      rgb(11 12 15 / 0.9) 84%,
+      rgb(11 12 15 / 0.62),
+      rgb(11 12 15 / 0.3) 26%,
+      rgb(11 12 15 / 0.32) 42%,
+      rgb(11 12 15 / 0.7) 62%,
+      rgb(11 12 15 / 0.92) 82%,
       var(--ink-950)
     );
   pointer-events: none;
@@ -142,7 +120,7 @@
   color: rgb(255 255 255 / 0.85);
 }
 
-/* ---- Controles: flechas + nombres de los modelos con su barra de avance ---- */
+/* ---- Controles: flechas + nombres de los modelos (el texto cambia solo a mano) ---- */
 .why__controls {
   display: flex;
   align-items: flex-end;
@@ -223,25 +201,13 @@
   background-image: linear-gradient(#ffffff, #ffffff);
   background-repeat: no-repeat;
   background-size: 0% 100%;
+  transition: background-size 0.45s var(--ease);
 }
 
-.why__bar.is-done span {
+/* El modelo que se está leyendo queda con la barra llena */
+.why__bar.is-active span,
+.why__bar:hover span {
   background-size: 100% 100%;
-}
-
-.why__bar.is-active span {
-  animation: why-fill var(--ms) linear both;
-}
-
-/* Pausa con el cursor encima o fuera de pantalla */
-.why:hover .why__bar.is-active span,
-.why.is-paused .why__bar.is-active span {
-  animation-play-state: paused;
-}
-
-@keyframes why-fill {
-  from { background-size: 0% 100%; }
-  to { background-size: 100% 100%; }
 }
 
 @media (max-width: 640px) {

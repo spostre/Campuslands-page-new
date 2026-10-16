@@ -366,7 +366,6 @@ const es = {
       prev: 'Anterior',
       next: 'Siguiente',
       goTo: 'Ir a',
-      pending: 'pendiente',
       slides: [
         { title: 'Cuota Sena', tag: 'Practica con nosotros', text: 'Talento en formación que trabaja en tu empresa. Formamos a tu futuro colaborador durante 10 meses en habilidades TI. En los siguientes 6 meses llega a tu empresa en etapa productiva, ya entrenado y listo para aportar valor.' },
         { title: 'Talent Pool', tag: 'Contrata ya', text: 'Te brindamos candidatos junior y semi senior ya formados y con experiencia. Nosotros hacemos el match, tú contratas directamente.' },
