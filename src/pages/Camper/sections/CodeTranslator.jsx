@@ -28,18 +28,34 @@ function tokenize(line) {
 /*
  * Programa en Python que se "traduce" a lenguaje natural bloque por bloque: el bloque se
  * resalta, el código se atenúa y debajo se escribe su significado en palabras.
- * Se ejecuta una vez al cargar la página; al final aparece "Ver de nuevo".
+ * Empieza la primera vez que el bloque entra en pantalla (va a mitad de "Sé un camper");
+ * al final aparece "Ver de nuevo".
  * Con "reducir movimiento" se muestra directamente todo traducido.
  */
 export default function CodeTranslator({ file, blocks, codeLabel, plainLabel, replayLabel }) {
   const reduce = useRef(
     typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches,
   )
-  // current: bloque en curso; phase: 'wait' | 'scan' | 'type' | 'done'; typed: letras escritas
+  // current: bloque en curso; phase: 'idle' | 'wait' | 'scan' | 'type' | 'done'; typed: letras escritas
   const [state, setState] = useState(() =>
-    reduce.current ? { current: blocks.length, phase: 'done', typed: 0 } : { current: 0, phase: 'wait', typed: 0 },
+    reduce.current ? { current: blocks.length, phase: 'done', typed: 0 } : { current: 0, phase: 'idle', typed: 0 },
   )
   const timer = useRef(0)
+  const rootRef = useRef(null)
+
+  // Espera a que el bloque se vea en pantalla para empezar
+  useEffect(() => {
+    const el = rootRef.current
+    if (!el || state.phase !== 'idle') return
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setState({ current: 0, phase: 'wait', typed: 0 })
+        io.disconnect()
+      }
+    }, { threshold: 0.35 })
+    io.observe(el)
+    return () => io.disconnect()
+  }, [state.phase])
 
   const replay = useCallback(() => setState({ current: 0, phase: 'scan', typed: 0 }), [])
 
@@ -63,6 +79,7 @@ export default function CodeTranslator({ file, blocks, codeLabel, plainLabel, re
   let lineNumber = 0
 
   return (
+    <div ref={rootRef}>
     <MacWindow title={file} className="ct">
       <div className="ct__legend" aria-hidden="true">
         <span className="ct__legend-code">{codeLabel}</span>
@@ -73,7 +90,7 @@ export default function CodeTranslator({ file, blocks, codeLabel, plainLabel, re
       <div className="ct__body">
         {blocks.map((block, i) => {
           const translated = i < state.current
-          const active = i === state.current && state.phase !== 'wait' && state.phase !== 'done'
+          const active = i === state.current && !['idle', 'wait', 'done'].includes(state.phase)
           const typing = active && state.phase === 'type'
           return (
             <div
@@ -124,5 +141,6 @@ export default function CodeTranslator({ file, blocks, codeLabel, plainLabel, re
         </button>
       </div>
     </MacWindow>
+    </div>
   )
 }

@@ -148,7 +148,7 @@ export default function Pillars() {
           <span ref={starRef} className="pillars__star" aria-hidden="true" />
           <ol className="pillars__list">
             {pillars.items.map((item, index) => (
-              <li key={item.title} className="pillar">
+              <li key={index} className="pillar">
                 <span className="pillar__num">{String(index + 1).padStart(2, '0')}</span>
                 <h3 className="pillar__title" aria-label={item.title}>
                   {item.title.split(' ').map((word, w, words) => (

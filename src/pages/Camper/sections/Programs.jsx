@@ -77,8 +77,8 @@ function Showcase({ program, labels, flip }) {
           </p>
           <p className="showcase__list-title">{program.levels ? labels.levels : labels.includes}</p>
           <ul className="showcase__list">
-            {(program.levels ?? program.includes).map((item) => (
-              <li key={item} className="mono-label">{item}</li>
+            {(program.levels ?? program.includes).map((item, i) => (
+              <li key={i} className="mono-label">{item}</li>
             ))}
           </ul>
         </aside>

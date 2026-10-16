@@ -44,6 +44,31 @@ const es = {
       sideTitle: 'Qué aprendes',
       age: 'Desde los 17 años · Sin límite de edad',
     },
+    // Bloque de código que se traduce a palabras (antes en la portada de Emplea)
+    code: {
+      // [PROVISIONAL] eyebrow/title/text son textos nuestros para presentar el bloque de código
+      eyebrow: 'Así se aprende',
+      title: 'Tu primer programa, *en palabras*',
+      text: 'Programar no es magia: cada línea le dice al computador qué hacer. En Campuslands aprendes desde cero, entendiendo el sentido de cada paso.',
+      file: 'mi_primer_programa.py',
+      codeLabel: 'Python',
+      plainLabel: 'En palabras',
+      replay: 'Ver de nuevo',
+      blocks: [
+        {
+          code: ['nombre = "Ana"', 'edad = 19'],
+          plain: 'Guarda dos datos: el nombre de una persona, Ana, y su edad, 19 años.',
+        },
+        {
+          code: ['if edad >= 17:', '    print("Hola, " + nombre + ". Ya puedes ser camper")'],
+          plain: 'Si tiene 17 años o más, la saluda por su nombre y le dice que ya puede ser camper.',
+        },
+        {
+          code: ['temas = ["Python", "IA", "Inglés"]', 'for tema in temas:', '    print("Hoy aprendo", tema)'],
+          plain: 'Hace una lista de tres temas y, uno por uno, muestra en pantalla qué aprende hoy.',
+        },
+      ],
+    },
     routes: {
       eyebrow: 'Programas',
       title: 'Rutas de *entrenamiento*',
@@ -254,8 +279,8 @@ const es = {
         ],
       },
       {
-        title: 'Logos de tecnologías (Emplea)',
-        text: 'Los logos de Python, HTML5, CSS3, JavaScript, MySQL, PostgreSQL, Node.js, Java (OpenJDK), PHP, .NET y Git provienen de Simple Icons, publicados bajo CC0 1.0 (dominio público). Son marcas de sus respectivos titulares y se muestran solo para nombrar las tecnologías que se enseñan.',
+        title: 'Logos de tecnologías (Emplea, FullService y AI Academy)',
+        text: 'Los logos de Python, HTML5, CSS3, JavaScript, MySQL, PostgreSQL, Node.js, Java (OpenJDK), PHP, .NET y Git (Emplea), Next.js, AWS y Rust (FullService) y Make, Gemini, Claude, GitHub Copilot, Notion, Zapier, Perplexity, NotebookLM y ElevenLabs (AI Academy) provienen de Simple Icons, publicados bajo CC0 1.0 (dominio público). Son marcas de sus respectivos titulares y se muestran solo para nombrar las tecnologías y herramientas que se usan o se enseñan.',
         items: [
           { name: 'Simple Icons — CC0 1.0', href: 'https://github.com/simple-icons/simple-icons/blob/develop/LICENSE.md' },
         ],
@@ -288,24 +313,6 @@ const es = {
       cta: 'Encuentra tu talento TI',
       statValue: '+800',
       statLabel: 'Talentos Campus trabajando en empresas tech',
-      file: 'mi_primer_programa.py',
-      codeLabel: 'Python',
-      plainLabel: 'En palabras',
-      replay: 'Ver de nuevo',
-      blocks: [
-        {
-          code: ['nombre = "Ana"', 'edad = 19'],
-          plain: 'Guarda dos datos: el nombre de una persona, Ana, y su edad, 19 años.',
-        },
-        {
-          code: ['if edad >= 17:', '    print("Hola, " + nombre + ". Ya puedes ser camper")'],
-          plain: 'Si tiene 17 años o más, la saluda por su nombre y le dice que ya puede ser camper.',
-        },
-        {
-          code: ['temas = ["Python", "IA", "Inglés"]', 'for tema in temas:', '    print("Hoy aprendo", tema)'],
-          plain: 'Hace una lista de tres temas y, uno por uno, muestra en pantalla qué aprende hoy.',
-        },
-      ],
     },
     leap: {
       eyebrow: 'Tech Leap',
@@ -717,9 +724,6 @@ const es = {
     back: 'Volver al inicio',
   },
 
-  mascot: {
-    label: 'Mascota de Campuslands: ¡tócala!',
-  },
 
   placeholder: {
     image: 'Imagen',

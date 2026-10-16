@@ -17,17 +17,17 @@
   align-items: center;
 }
 
-/* Lugar de la mascota + nombre */
+/* Logo: casco a color (original) y el nombre en blanco */
 .billing__brand {
   display: grid;
   justify-items: center;
   gap: clamp(18px, 2vw, 28px);
 }
 
-/* Misma proporción que la imagen de la mascota (315 × 379) */
-.billing__dock {
-  width: min(240px, 60%);
-  aspect-ratio: 315 / 379;
+.billing__mark {
+  width: min(260px, 64%);
+  height: auto;
+  filter: drop-shadow(0 0 30px rgb(111 157 255 / 0.3));
 }
 
 .billing__word {

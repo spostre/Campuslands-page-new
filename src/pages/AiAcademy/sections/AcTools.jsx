@@ -4,15 +4,17 @@ import Emph from '@/components/ui/Emph'
 import { LINKS } from '@/constants/links'
 import { useLanguage } from '@/context/LanguageContext'
 import { useReveal } from '@/hooks/useReveal'
+import { AI_TOOL_LOGOS } from '@/data/aiToolLogos'
 import './AcTools.css'
 
 // Módulos y herramientas (banda negra). Arriba los cuatro módulos formativos en columnas
-// numeradas. Abajo las 14 herramientas como barras desplegables en dos columnas (una abierta a
-// la vez): al abrir, la barra muestra una descripción breve. Sin logos de marcas: cada
-// herramienta lleva su inicial en un cuadro, para no depender de licencias de logos.
+// numeradas. Abajo las herramientas: el título a la izquierda y el texto con los botones a la
+// derecha; debajo, las 14 herramientas como fichas en cuadrícula a todo el ancho, cada una con su
+// logo (Simple Icons; la inicial si no hay logo libre). Al tocar una ficha se despliega su
+// descripción (una abierta a la vez).
 export default function AcTools() {
   const { modules, tools } = useLanguage().t.aiAcademy
-  const [open, setOpen] = useState(0)
+  const [open, setOpen] = useState(-1)
   const modulesRef = useReveal()
 
   return (
@@ -25,7 +27,7 @@ export default function AcTools() {
 
         <ol ref={modulesRef} className="ac-modules reveal-stagger">
           {modules.items.map((m, i) => (
-            <li key={m.title} style={{ '--i': i }}>
+            <li key={i} style={{ '--i': i }}>
               <span className="ac-modules__code">Module 0{i + 1}</span>
               <h3 className="ac-modules__title">{m.title}</h3>
               <p className="ac-modules__text">{m.text}</p>
@@ -56,7 +58,13 @@ export default function AcTools() {
                     aria-controls={id}
                     onClick={() => setOpen(isOpen ? -1 : i)}
                   >
-                    <span className="ac-acc__mark" aria-hidden="true">{tool.name.charAt(0)}</span>
+                    <span className={`ac-acc__mark${AI_TOOL_LOGOS[tool.name] ? ' has-logo' : ''}`} aria-hidden="true">
+                      {AI_TOOL_LOGOS[tool.name] ? (
+                        <svg viewBox="0 0 24 24"><path d={AI_TOOL_LOGOS[tool.name]} /></svg>
+                      ) : (
+                        tool.name.charAt(0)
+                      )}
+                    </span>
                     <span className="ac-acc__name">{tool.name}</span>
                     <span className="ac-acc__plus" aria-hidden="true" />
                   </button>

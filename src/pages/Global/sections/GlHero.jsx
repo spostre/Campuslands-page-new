@@ -6,6 +6,7 @@ import { useLanguage } from '@/context/LanguageContext'
 import Starfield from '@/components/ui/Starfield'
 import earth from '@/assets/images/global/earth-globe.webp'
 import earthSmall from '@/assets/images/global/earth-globe-1800.webp'
+import earthMobile from '@/assets/images/global/earth-globe-1100.webp'
 import './GlHero.css'
 
 /*
@@ -49,14 +50,18 @@ export default function GlHero() {
       <div className="gl-hero__sky" aria-hidden="true">
         <Starfield origin="top" density={0.6} />
       </div>
-      <img
-        className="gl-hero__earth"
-        src={earth}
-        srcSet={`${earthSmall} 1800w, ${earth} 3600w`}
-        sizes="140vw"
-        alt=""
-        fetchPriority="high"
-      />
+      {/* En pantallas angostas el vidrio cubre todo y desenfoca la Tierra: basta la versión liviana */}
+      <picture>
+        <source media="(max-width: 900px)" srcSet={earthMobile} />
+        <img
+          className="gl-hero__earth"
+          src={earth}
+          srcSet={`${earthSmall} 1800w, ${earth} 3600w`}
+          sizes="140vw"
+          alt=""
+          fetchPriority="high"
+        />
+      </picture>
       <div className="gl-hero__glass" aria-hidden="true" />
 
       <div className="gl-hero__word gl-hero__word--ink" aria-hidden="true">
@@ -79,7 +84,7 @@ export default function GlHero() {
           <p className="gl-process__text">{process.text}</p>
           <ol className="gl-process__steps">
             {process.steps.map((step, i) => (
-              <li key={step.title} className="gl-step" style={{ '--i': i }}>
+              <li key={i} className="gl-step" style={{ '--i': i }}>
                 <span className="gl-step__num">0{i + 1}</span>
                 <h3 className="gl-step__title">{step.title}</h3>
                 <p className="gl-step__text">{step.text}</p>

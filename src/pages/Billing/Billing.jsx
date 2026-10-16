@@ -4,12 +4,14 @@ import Emph from '@/components/ui/Emph'
 import { LINKS } from '@/constants/links'
 import { useLanguage } from '@/context/LanguageContext'
 import { lookupInvoices } from '@/services/billing'
-import logoWordmark from '@/assets/images/logo-wordmark.png'
+import Starfield from '@/components/ui/Starfield'
+import logoMark from '@/assets/images/logo-mark.webp'
+import logoWordmark from '@/assets/images/logo-wordmark.webp'
 import './Billing.css'
 
 /*
- * Facturación — una sola sección oscura, simple. Izquierda: el lugar donde aterriza la mascota
- * (vuela desde la esquina al entrar a esta página) y debajo el nombre Campuslands en blanco.
+ * Facturación — una sola sección oscura, simple, con estrellas de fondo. Izquierda: el logo de
+ * Campuslands (casco a color + nombre en blanco).
  * Derecha: título, texto y el formulario de consulta por número de documento, con el resultado
  * debajo (sin facturas / encontradas / consulta no disponible) y el contacto de soporte.
  */
@@ -32,12 +34,11 @@ export default function Billing() {
   }
 
   return (
-    <section className="billing surface-dark">
+    <section className="billing surface-dark has-stars">
+      <Starfield origin="top" density={1} />
       <div className="container billing__grid">
-        {/* Lugar de la mascota: al entrar a Facturación, la mascota de la esquina vuela hasta aquí
-            y toma este tamaño (ver "Muelle" en src/components/ui/Mascot.jsx). Debajo, el nombre. */}
         <div className="billing__brand">
-          <div className="billing__dock" data-mascot-dock aria-hidden="true" />
+          <img className="billing__mark" src={logoMark} alt="" />
           <img className="billing__word" src={logoWordmark} alt="Campuslands" />
         </div>
 

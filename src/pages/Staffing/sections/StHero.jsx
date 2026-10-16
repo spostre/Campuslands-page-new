@@ -3,7 +3,7 @@ import Emph from '@/components/ui/Emph'
 import { LINKS } from '@/constants/links'
 import { useLanguage } from '@/context/LanguageContext'
 import { STAFFING_SYMBOLS } from '../staffingSymbols'
-import logoMark from '@/assets/images/logo-mark.png'
+import logoMark from '@/assets/images/logo-mark.webp'
 import './StHero.css'
 
 /*

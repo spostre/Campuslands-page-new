@@ -1,4 +1,5 @@
 import CamperHero from './sections/CamperHero'
+import CamperCode from './sections/CamperCode'
 import Programs from './sections/Programs'
 import Stories from './sections/Stories'
 import FallingStars from '@/components/ui/FallingStars'
@@ -10,6 +11,7 @@ export default function Camper() {
     <div className="page-mono surface-dark">
       <FallingStars />
       <CamperHero />
+      <CamperCode />
       <Programs />
       <Stories />
     </div>

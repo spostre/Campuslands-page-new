@@ -38,7 +38,7 @@ export default function GlModel() {
           <div className="gl-panel__detail">
             <ul className="gl-panel__features">
               {model.features.map((f, i) => (
-                <li key={f}>
+                <li key={i}>
                   <span>0{i + 1}</span>
                   {f}
                 </li>
@@ -47,7 +47,7 @@ export default function GlModel() {
 
             <ol className="gl-ladder">
               {model.levels.map((level, i) => (
-                <li key={level.name} className="gl-ladder__step" style={{ '--h': i }}>
+                <li key={i} className="gl-ladder__step" style={{ '--h': i }}>
                   <span className="gl-ladder__name">{level.name}</span>
                   <span className="gl-ladder__title">{level.title}</span>
                   <span className="gl-ladder__text">{level.text}</span>

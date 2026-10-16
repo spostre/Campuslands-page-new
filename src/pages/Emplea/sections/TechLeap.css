@@ -68,7 +68,7 @@
   font-weight: 600;
   letter-spacing: 0.06em;
   text-align: left;
-  color: rgb(255 255 255 / 0.4);
+  color: rgb(255 255 255 / 0.62);
   cursor: pointer;
   transition: border-color 0.4s var(--ease), color 0.4s var(--ease);
 }

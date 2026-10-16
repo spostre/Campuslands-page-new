@@ -2,7 +2,7 @@ import Button from '@/components/ui/Button'
 import Emph from '@/components/ui/Emph'
 import { LINKS } from '@/constants/links'
 import { useLanguage } from '@/context/LanguageContext'
-import logoMark from '@/assets/images/logo-mark.png'
+import logoMark from '@/assets/images/logo-mark.webp'
 import './AcStories.css'
 
 const initials = (name) =>
@@ -30,7 +30,7 @@ export default function AcStories() {
 
         <ul className="ac-quotes">
           {stories.items.map((s, i) => (
-            <li key={s.name} className="ac-quote">
+            <li key={i} className="ac-quote">
               <span className="ac-quote__mark" aria-hidden="true">“</span>
               <blockquote>{s.quote}</blockquote>
               <div className="ac-quote__who">

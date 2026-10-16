@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { LINKS } from '@/constants/links'
 import { useLanguage } from '@/context/LanguageContext'
 import Starfield from '@/components/ui/Starfield'
-import helmetImage from '@/assets/images/logo-mark.png'
+import helmetImage from '@/assets/images/logo-mark.webp'
 import './Services.css'
 
 // Mosaico tipo "bento" (sección negra): el primer servicio es la tarjeta destacada 2×2

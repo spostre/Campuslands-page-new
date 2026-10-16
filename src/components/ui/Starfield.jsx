@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { isLowPower } from '@/utils/device'
 import './Starfield.css'
 
 /*
@@ -8,7 +9,8 @@ import './Starfield.css'
  * - Con "reducir movimiento" se dibujan quietas.
  * Uso: dentro de un contenedor con la clase `has-stars` (ver global.css).
  */
-const FPS = 30
+// En equipos modestos: menos cuadros por segundo y la mitad de estrellas
+const FPS = isLowPower ? 20 : 30
 const COLORS = ['255,255,255', '200,218,255', '147,182,255']
 
 // Centro de la zona de estrellas, en fracciones del ancho/alto de la sección
@@ -36,7 +38,7 @@ export default function Starfield({ origin = 'top', density = 1 }) {
     let visible = true
 
     const createStars = () => {
-      const count = Math.min(190, Math.round(((width * height) / 7000) * density))
+      const count = Math.min(190, Math.round(((width * height) / 7000) * density * (isLowPower ? 0.5 : 1)))
       stars = Array.from({ length: count }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,

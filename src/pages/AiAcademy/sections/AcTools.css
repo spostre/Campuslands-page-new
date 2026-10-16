@@ -186,3 +186,113 @@
     transition: none;
   }
 }
+
+/* ==========================================================================
+   Herramientas en cuadrícula con logo (reemplaza la lista en dos columnas)
+   ========================================================================== */
+.ac-tools__body {
+  grid-template-columns: 1fr;
+  gap: clamp(28px, 3vw, 44px);
+}
+
+/* Título a la izquierda; texto y botones a la derecha */
+.ac-tools__intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px clamp(32px, 5vw, 90px);
+  align-items: end;
+}
+
+.ac-tools__intro p {
+  margin: 0 0 20px;
+}
+
+.ac-tools__intro .btn-row {
+  grid-column: 2;
+}
+
+.ac-tools__intro .ac-tools__title {
+  grid-row: span 2;
+  align-self: start;
+}
+
+/* Fichas: cuadrícula a todo el ancho */
+.ac-acc {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.ac-acc__item {
+  border: 1px solid rgb(255 255 255 / 0.1);
+  border-radius: 4px;
+  background: rgb(255 255 255 / 0.025);
+  transition: border-color 0.25s, background-color 0.25s;
+}
+
+.ac-acc__item:hover,
+.ac-acc__item.is-open {
+  border-color: rgb(147 182 255 / 0.45);
+  background: rgb(111 157 255 / 0.06);
+}
+
+.ac-acc__btn {
+  grid-template-columns: 40px minmax(0, 1fr) 14px;
+  padding: 14px 16px;
+}
+
+/* Logo de la herramienta (blanco) o su inicial */
+.ac-acc__mark {
+  width: 40px;
+  height: 40px;
+  font-size: 0.9375rem;
+}
+
+.ac-acc__mark.has-logo svg {
+  width: 22px;
+  height: 22px;
+  fill: #ffffff;
+}
+
+.ac-acc__item.is-open .ac-acc__mark,
+.ac-acc__btn:hover .ac-acc__mark {
+  background: var(--blue-600);
+  border-color: var(--blue-600);
+}
+
+.ac-acc__panel p {
+  padding: 0 16px 0 72px;
+}
+
+.ac-acc__item.is-open .ac-acc__panel p {
+  padding-bottom: 16px;
+}
+
+@media (max-width: 1100px) {
+  .ac-acc {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .ac-tools__intro {
+    grid-template-columns: 1fr;
+  }
+
+  .ac-tools__intro .btn-row {
+    grid-column: auto;
+  }
+
+  .ac-tools__intro .ac-tools__title {
+    grid-row: auto;
+  }
+
+  .ac-acc {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .ac-acc {
+    grid-template-columns: 1fr;
+  }
+}

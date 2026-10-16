@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { isLowPower } from '@/utils/device'
 import './FallingStars.css'
 
 /*
@@ -7,7 +8,8 @@ import './FallingStars.css'
  * Puntos pequeños que caen despacio con una leve deriva y algunos con estela corta.
  * ~30 fps, pausado con la pestaña oculta; quietas con "reducir movimiento".
  */
-const FPS = 30
+// En equipos modestos: menos cuadros por segundo y la mitad de estrellas
+const FPS = isLowPower ? 20 : 30
 
 export default function FallingStars({ density = 1, contained = false }) {
   const canvasRef = useRef(null)
@@ -41,7 +43,7 @@ export default function FallingStars({ density = 1, contained = false }) {
       canvas.width = Math.round(width * dpr)
       canvas.height = Math.round(height * dpr)
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-      const count = Math.min(140, Math.round(((width * height) / 14000) * density))
+      const count = Math.min(140, Math.round(((width * height) / 14000) * density * (isLowPower ? 0.5 : 1)))
       stars = Array.from({ length: count }, () => spawn())
       draw(0)
     }

@@ -38,7 +38,7 @@ export default function StOptions() {
 
                 <ul className="gl-panel__features st-panel__features">
                   {item.features.map((f, i) => (
-                    <li key={f}>
+                    <li key={i}>
                       <span>0{i + 1}</span>
                       {f}
                     </li>
@@ -47,7 +47,7 @@ export default function StOptions() {
 
                 <ol className="gl-ladder st-ladder">
                   {item.levels.map((level, i) => (
-                    <li key={level.name} className="gl-ladder__step" style={{ '--h': i }}>
+                    <li key={i} className="gl-ladder__step" style={{ '--h': i }}>
                       <span className="gl-ladder__name">{level.name}</span>
                       {level.title ? (
                         <>

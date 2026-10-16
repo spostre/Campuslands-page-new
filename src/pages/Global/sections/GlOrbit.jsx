@@ -4,7 +4,7 @@ import MacWindow from '@/components/ui/MacWindow'
 import { LINKS } from '@/constants/links'
 import { useLanguage } from '@/context/LanguageContext'
 import { useReveal } from '@/hooks/useReveal'
-import chatImage from '@/assets/images/orbit-chat.jpg'
+import chatImage from '@/assets/images/orbit-chat.webp'
 import '@/pages/Home/sections/Orbit.css'
 import './GlOrbit.css'
 

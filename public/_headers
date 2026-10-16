@@ -1,0 +1,22 @@
+# Caché (Netlify / Cloudflare Pages leen este archivo; en otro hosting configurar lo mismo).
+# Archivos con huella en el nombre (JS, CSS, imágenes y fuentes que genera Vite): 1 año, inmutables.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Videos y portadas (nombre fijo): 1 semana
+/videos/*
+  Cache-Control: public, max-age=604800
+
+# Licencias, robots y favicon: 1 día
+/licenses/*
+  Cache-Control: public, max-age=86400
+/robots.txt
+  Cache-Control: public, max-age=86400
+/favicon.png
+  Cache-Control: public, max-age=86400
+
+# La página en sí: siempre se revalida para recibir la última versión al publicar
+/index.html
+  Cache-Control: no-cache
+/
+  Cache-Control: no-cache

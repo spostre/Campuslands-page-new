@@ -70,7 +70,7 @@ export default function WhyUs() {
 
           <ol className="why__bars">
             {why.slides.map((s, i) => (
-              <li key={s.title}>
+              <li key={i}>
                 <button
                   type="button"
                   className={`why__bar ${i === index ? 'is-active' : i < index ? 'is-done' : ''}`}

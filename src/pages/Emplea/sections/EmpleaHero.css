@@ -85,3 +85,15 @@
   }
 }
 
+
+/* Logo de Campuslands en el lugar del antiguo bloque de código */
+.emplea-hero__logo {
+  display: grid;
+  place-items: center;
+}
+
+.emplea-hero__logo img {
+  width: min(420px, 80%);
+  height: auto;
+  filter: drop-shadow(0 30px 60px rgb(31 85 214 / 0.18));
+}

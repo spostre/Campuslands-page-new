@@ -2,7 +2,7 @@ import Button from '@/components/ui/Button'
 import Emph from '@/components/ui/Emph'
 import { LINKS } from '@/constants/links'
 import { useLanguage } from '@/context/LanguageContext'
-import helmetImage from '@/assets/images/logo-mark.png'
+import helmetImage from '@/assets/images/logo-mark.webp'
 import './CamperHero.css'
 
 // Portada: título a la izquierda, casco del logo iluminado desde atrás al centro
@@ -34,7 +34,7 @@ export default function CamperHero() {
           <p className="mono-label camper-hero__side-title">{hero.sideTitle}</p>
           <ul>
             {hero.side.map((item, i) => (
-              <li key={item} className="mono-label">
+              <li key={i} className="mono-label">
                 <span className="camper-hero__side-num">{String(i + 1).padStart(2, '0')}</span>
                 {item}
               </li>

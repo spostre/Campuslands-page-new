@@ -1,86 +1,151 @@
-# Campuslands – Nueva web
+# Campuslands — Sitio web
 
-Rediseño del sitio web de Campuslands. Construido con **React 19**, **Vite 6** y **React Router 7** (JavaScript), sin framework de CSS. Bilingüe (español / inglés).
+Sitio web institucional de **Campuslands** (fábrica de talento TI): presenta la formación de campers, la empresa y sus seis líneas de servicio. Es una aplicación de una sola página (SPA) hecha con **React 19 + Vite 6 + React Router 7**, en JavaScript y CSS propio, bilingüe (español / inglés) y sin dependencia de backend para funcionar.
 
-## Ejecutar
+---
 
-Requisitos: Node.js 20 o superior.
+## Tecnologías
+
+| Capa | Tecnología | Versión | Para qué |
+|---|---|---|---|
+| Interfaz | [React](https://react.dev) + React DOM | 19.3 | Componentes de toda la página |
+| Rutas | [React Router](https://reactrouter.com) (`react-router-dom`) | 7.18 | Navegación entre páginas sin recargar, anclas a secciones |
+| Compilación | [Vite](https://vite.dev) + `@vitejs/plugin-react` | 6.4 / 4.7 | Servidor de desarrollo y empaquetado optimizado |
+| Mapa | [Leaflet](https://leafletjs.com) + teselas de OpenStreetMap | 1.9 | Mapa interactivo de sedes (con respaldo automático si el servicio falla) |
+| Estilos | CSS propio por componente + variables CSS | — | Sin Tailwind ni librerías de UI; tokens en `src/styles/variables.css` |
+| Animación | CSS (transform/opacity), Canvas 2D, IntersectionObserver | — | Estrellas, entradas al hacer scroll, cifras animadas; sin librerías de animación |
+| Tipografías | Hanken Grotesk, Newsreader, Poppins (alojadas, OFL) | — | Sin llamadas a Google Fonts |
+| Idiomas | Diccionarios propios (`src/i18n/es.js`, `en.js`) + React Context | — | Sin librería de i18n |
+
+Solo hay **4 dependencias de ejecución** (React, React DOM, React Router y Leaflet) y 2 de desarrollo (Vite y su plugin de React). No hay TypeScript, ni backend, ni base de datos.
+
+---
+
+## Puesta en marcha
+
+Requisitos: **Node.js 20 o superior** (probado con Node 24).
 
 ```bash
 npm install      # instala dependencias (una vez)
-npm run dev      # desarrollo en http://localhost:5173
-npm run build    # versión final optimizada en dist/
-npm run preview  # sirve la versión final para revisarla
+npm run dev      # desarrollo con recarga en caliente → http://localhost:5173
+npm run build    # versión de producción optimizada → carpeta dist/
+npm run preview  # sirve dist/ para revisarla antes de publicar
 ```
+
+Variables de entorno opcionales (copiar `.env.example` a `.env`):
+
+| Variable | Uso | Si está vacía |
+|---|---|---|
+| `VITE_API_URL` | URL base de una API futura | No se usa todavía |
+| `VITE_BILLING_ENDPOINT` | Ruta de la API de consulta de facturas | Facturación muestra "consulta en línea no disponible" y ofrece el contacto |
+
+---
 
 ## Páginas
 
-| Ruta | Página | Estado |
+| Ruta | Página | Notas |
 |---|---|---|
-| `/` | Inicio | Hecha |
-| `/se-un-camper` | Sé un camper | Hecha |
-| `/nosotros` | Nosotros | Hecha |
-| `/servicios/emplea` | Campuslands Emplea | Hecha |
-| `/servicios/fullservice` | FullService | Hecha |
-| `/servicios/internacional` | Campuslands Global | Hecha |
-| `/servicios/ia-academy` | Campuslands AI Academy | Hecha |
-| `/servicios/staffing` | Staffing tecnológico | Hecha |
-| `/servicios/facturacion` | Facturación | Hecha (consulta sin API conectada) |
-| `/politicas-de-privacidad`, `/terminos-y-condiciones` | Políticas | Hechas |
-| `/creditos` | Créditos y licencias de terceros | Hecha |
-| `/servicios/*` (otros 5) | Servicios | "En construcción" |
-| cualquier otra | 404 | Hecha |
+| `/` | Inicio | Métricas, áreas de formación, servicios, aliados, chatbot Órbit, mapa de sedes, redes |
+| `/se-un-camper` | Sé un camper | Rutas de formación, programa en Python que se traduce a palabras, historias de éxito |
+| `/nosotros` | Nosotros | Video del CEO, sedes e impacto, misión y visión, tecnologías, 8 videos de campers |
+| `/servicios/emplea` | Campuslands Emplea | Tech Leap, tecnologías, modelos de contratación, empresas, contacto comercial |
+| `/servicios/fullservice` | FullService | Fases, servicios, tech stack, clientes, formulario de cotización |
+| `/servicios/internacional` | Campuslands Global | Proceso de contratación, Órbit, modelo de servicio, empresas |
+| `/servicios/ia-academy` | Campuslands AI Academy | Próxima masterclass, misiones (planes), método, herramientas de IA, testimonios |
+| `/servicios/staffing` | Staffing tecnológico | Tres opciones de staffing con niveles |
+| `/servicios/facturacion` | Facturación | Formulario de consulta (lista para conectar a una API) |
+| `/politicas-de-privacidad`, `/terminos-y-condiciones` | Documentos legales | Texto íntegro con índice navegable |
+| `/creditos` | Créditos y licencias | Atribuciones de todo recurso de terceros |
+| cualquier otra | 404 | |
 
-## Estructura
+---
+
+## Características destacadas
+
+- **Bilingüe ES/EN** con cambio instantáneo; el idioma elegido se recuerda en el navegador.
+- **Diseño responsive** probado de 320 a 1920 px de ancho, sin desbordes horizontales.
+- **Animaciones con criterio de rendimiento:** solo `transform` y `opacity`; canvas que se pausan fuera de pantalla; respeto a "reducir movimiento" del sistema; **modo de bajo consumo automático** en equipos modestos.
+- **Carga por página** (`React.lazy`): cada página descarga solo su código y estilos.
+- **Imágenes optimizadas** (WebP, varias resoluciones con `srcset`) y videos que no se descargan hasta que se reproducen.
+- **Accesibilidad:** textos alternativos, foco visible, roles ARIA, contraste revisado. Lighthouse 96–100.
+- **Resiliencia:** el mapa cambia solo a una captura si OpenStreetMap no responde; los videos muestran un recuadro si faltan.
+- **Sin cookies, sin analítica, sin rastreo.**
+- **Contenido editable sin tocar componentes:** textos en `src/i18n/`, enlaces en `src/constants/links.js`, listas de empresas en `src/data/`, masterclass en `src/data/masterclass.js`.
+
+### Resultados de Lighthouse (móvil simulado, octubre 2026)
+
+| Rendimiento | Accesibilidad | Buenas prácticas | SEO |
+|---|---|---|---|
+| 92–96 | 96–100 | 100 | 100 |
+
+### Navegadores probados
+
+Chrome 155, Edge 155, Brave 155, Opera 137 y Opera GX 137 (motor Chromium), en 13 rutas y 7 anchos de pantalla, sin errores. Compatibilidad con Safari y Firefox revisada en el código (prefijos y respaldos incluidos), pendiente de prueba en dispositivo real.
+
+---
+
+## Estructura resumida
 
 ```
-├── index.html            Página base
-├── public/
-│   ├── favicon.png
-│   └── licenses/         Textos de licencia de fuentes y librerías (enlazados desde /creditos)
+├── index.html          Página base (título, meta descripción, idioma inicial)
+├── vite.config.js      Alias "@" → src/
+├── public/             Se publica tal cual: videos, licencias, robots.txt, _headers, _redirects
+├── docs/               Documentación (ver abajo)
 └── src/
-    ├── main.jsx          Arranque (carga estilos globales y monta la app)
-    ├── App.jsx           Proveedor de idioma + enrutador
-    ├── routes/           Rutas (qué página va en cada URL)
-    ├── pages/            Una carpeta por página (Home tiene sus secciones en sections/)
-    ├── components/
-    │   ├── layout/       Encabezado, pie, logo y estructura común
-    │   └── ui/           Piezas reutilizables (botones, mapa, mascota, estrellas…)
-    ├── styles/           Tokens de diseño (variables.css) y estilos globales
-    ├── i18n/             Textos en español (es.js) e inglés (en.js)
-    ├── constants/        URLs externas (links.js) y rutas del menú
-    ├── data/             Aliados y sedes
-    ├── hooks/            Utilidades de React
-    └── assets/           Imágenes, logos de aliados, capturas del mapa y tipografías
+    ├── main.jsx        Arranque
+    ├── App.jsx         Idioma + enrutador
+    ├── routes/         Qué página va en cada URL (carga diferida)
+    ├── pages/          Una carpeta por página, con sus secciones en sections/
+    ├── components/     layout/ (encabezado, pie) y ui/ (piezas reutilizables)
+    ├── i18n/           Todos los textos (es.js, en.js)
+    ├── constants/      Enlaces, rutas del menú y videos
+    ├── data/           Empresas, sedes, logos de tecnologías, masterclass
+    ├── hooks/          Animaciones de entrada, conteo de cifras, carga tardía
+    ├── services/       Cliente de API y consulta de facturas
+    ├── utils/          Detección de equipos modestos
+    ├── content/legal/  Texto de las políticas (markdown)
+    ├── styles/         Variables de diseño y estilos globales
+    └── assets/         Imágenes, logos y tipografías
 ```
 
-Alias `@` → `src/` (ej.: `import Button from '@/components/ui/Button'`).
+La explicación archivo por archivo está en [docs/ESTRUCTURA.md](docs/ESTRUCTURA.md).
+
+---
 
 ## Cambios frecuentes
 
 | Quiero… | Dónde |
 |---|---|
-| Cambiar un texto | `src/i18n/es.js` y `src/i18n/en.js` (las palabras entre `*asteriscos*` salen en cursiva destacada) |
+| Cambiar un texto | `src/i18n/es.js` y `src/i18n/en.js` (`*palabra*` = cursiva destacada) |
 | Cambiar a dónde lleva un botón | `src/constants/links.js` |
-| Agregar o quitar un aliado | logo en `src/assets/logos/` + lista en `src/data/partners.js` |
-| Cambiar una sede o sus coordenadas | `src/data/sedes.js` (y regenerar su captura de respaldo del mapa) |
-| Cambiar colores, fuentes o espacios | `src/styles/variables.css` y `src/styles/global.css` |
-| Agregar una página | carpeta en `src/pages/` + ruta en `src/routes/AppRoutes.jsx` |
+| Actualizar la próxima masterclass | `src/data/masterclass.js` (instrucciones dentro) |
+| Agregar o quitar una empresa | Logo en `src/assets/logos/` + lista en `src/data/partners.js`, `hiringCompanies.js` o `fullServiceClients.js` |
+| Cambiar un video | Archivo en `public/videos/` + `src/constants/videos.js` |
+| Cambiar colores, fuentes o espacios | `src/styles/variables.css` |
+| Conectar la consulta de facturas | `VITE_BILLING_ENDPOINT` + `src/services/billing.js` |
 
-## Recursos de terceros
+---
 
-- **Tipografías** (Hanken Grotesk, Newsreader, Poppins): alojadas en el proyecto, licencia SIL Open Font License 1.1.
-- **Mapa de sedes**: Leaflet (BSD-2-Clause) + datos © colaboradores de OpenStreetMap (ODbL). El servicio de mapas de OpenStreetMap no tiene garantía; si falla, el sitio muestra automáticamente una captura del mismo mapa para cada sede.
-- **Librerías**: React, React DOM y React Router (MIT).
-- **Imagen satelital** (Nosotros): NASA Blue Marble, dominio público.
-- **Logos de tecnologías** (Emplea): Simple Icons, CC0.
+## Publicación
 
-Créditos y licencias completas: página `/creditos` y carpeta `public/licenses/`.
+1. `npm run build` → sube la carpeta `dist/` a cualquier hosting de sitios estáticos (Netlify, Cloudflare Pages, Vercel, S3 + CloudFront, Apache/Nginx).
+2. **Rutas:** como es una SPA, el servidor debe devolver `index.html` para cualquier ruta. `public/_redirects` ya lo hace en Netlify y Cloudflare Pages; en otro hosting hay que configurarlo.
+3. **Caché:** `public/_headers` define 1 año para los archivos con huella (`/assets/*`), 1 semana para videos y revalidación para `index.html`. Igual que arriba: aplicar el equivalente si el hosting no lee ese archivo.
+4. **Videos:** `public/videos/` pesa ~120 MB (24 archivos). Funciona en un hosting estático, pero para un repositorio Git conviene Git LFS o alojarlos en un CDN / YouTube / Vimeo y cambiar las rutas en `src/constants/videos.js`.
+
+---
+
+## Licencias y créditos
+
+El código del sitio es de Campuslands. Los recursos de terceros (tipografías OFL, Leaflet BSD-2, React y React Router MIT, datos de OpenStreetMap ODbL, imágenes de NASA de dominio público, logos de Simple Icons CC0) están acreditados en la página `/creditos` y sus licencias en `public/licenses/`. Detalle de obligaciones, riesgos y autorizaciones pendientes en [docs/POLITICAS.md](docs/POLITICAS.md).
+
+---
 
 ## Documentación
 
-En `docs/` hay documentación más detallada:
-
-- `ESTRUCTURA.md`: carpetas, archivos y cómo modificarlos.
-- `POLITICAS.md`: licencias, privacidad y riesgo de fallas por sección.
-- `DISENO.md`: guía de diseño interna.
+| Archivo | Contenido |
+|---|---|
+| [docs/ESTRUCTURA.md](docs/ESTRUCTURA.md) | Arquitectura, archivo por archivo, cómo funciona cada sistema y cómo modificarlo |
+| [docs/POLITICAS.md](docs/POLITICAS.md) | Licencias, marcas, privacidad, riesgos por sección, planes B y lista previa a publicar |
+| `docs/DISENO.md` | Guía de diseño interna (no se sube al repositorio) |
+| `docs/POR_HACER.md` | Pendientes internos (no se sube al repositorio) |

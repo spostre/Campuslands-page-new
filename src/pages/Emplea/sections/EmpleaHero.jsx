@@ -2,11 +2,12 @@ import Button from '@/components/ui/Button'
 import Emph from '@/components/ui/Emph'
 import { LINKS } from '@/constants/links'
 import { useLanguage } from '@/context/LanguageContext'
-import CodeTranslator from './CodeTranslator'
+import logoFull from '@/assets/images/logo-full.webp'
 import './EmpleaHero.css'
 
 // Portada de Emplea (banda clara, pantalla completa): texto, botón y cifra a la izquierda;
-// a la derecha, un programa sencillo en Python que se traduce a palabras bloque por bloque.
+// a la derecha, el logo de Campuslands (el programa que se traducía a palabras se movió a
+// la sección "Tu primer programa" de Sé un camper).
 export default function EmpleaHero() {
   const { hero } = useLanguage().t.emplea
 
@@ -27,14 +28,9 @@ export default function EmpleaHero() {
           </p>
         </div>
 
-        <div className="emplea-hero__window">
-          <CodeTranslator
-            file={hero.file}
-            blocks={hero.blocks}
-            codeLabel={hero.codeLabel}
-            plainLabel={hero.plainLabel}
-            replayLabel={hero.replay}
-          />
+        {/* Logo de Campuslands (el bloque de código pasó a "Sé un camper") */}
+        <div className="emplea-hero__window emplea-hero__logo">
+          <img src={logoFull} alt="Campuslands" />
         </div>
       </div>
     </section>

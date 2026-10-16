@@ -60,7 +60,7 @@ export default function TechLeap() {
 
             <ol className="leap-panel__steps" aria-hidden="true">
               {leap.steps.map((s, i) => (
-                <li key={s.title} className={i === step ? 'is-active' : i < step ? 'is-past' : undefined}>
+                <li key={i} className={i === step ? 'is-active' : i < step ? 'is-past' : undefined}>
                   <button type="button" tabIndex={-1} onClick={() => setStep(i)}>
                     {String(i + 1).padStart(2, '0')}
                   </button>
@@ -69,7 +69,7 @@ export default function TechLeap() {
             </ol>
 
             <div key={step} className="leap-panel__content" aria-live="polite">
-              <span className="leap-panel__num">{String(step + 1).padStart(2, '0')}</span>
+              <span className="leap-panel__num" aria-hidden="true">{String(step + 1).padStart(2, '0')}</span>
               <h3 className="leap-panel__title">{leap.steps[step].title}</h3>
               <p className="leap-panel__body">{leap.steps[step].text}</p>
             </div>

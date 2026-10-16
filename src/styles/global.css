@@ -417,3 +417,23 @@ select {
 
 
 
+
+/* Espacio reservado mientras se descarga una página (rutas con carga diferida) */
+.page-loading {
+  min-height: 100vh;
+  background: var(--ink-950);
+}
+
+/*
+ * Modo de bajo consumo (src/utils/device.js): en equipos modestos se apagan los movimientos
+ * continuos más costosos. Las entradas de una sola vez se mantienen.
+ */
+.is-low-power .gl-hero__earth,
+.is-low-power .fs-contact__moon img,
+.is-low-power .gl-orbit__glow span,
+.is-low-power .ac-orbit span,
+.is-low-power .fs-hex__shape,
+.is-low-power .ac-pass__dot::after,
+.is-low-power .about-stories__glow span {
+  animation: none !important;
+}

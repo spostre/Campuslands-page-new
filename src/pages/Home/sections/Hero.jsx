@@ -4,7 +4,7 @@ import Starfield from '@/components/ui/Starfield'
 import { LINKS } from '@/constants/links'
 import { useLanguage } from '@/context/LanguageContext'
 import { useCountUp } from '@/hooks/useCountUp'
-import helmetImage from '@/assets/images/logo-mark.png'
+import helmetImage from '@/assets/images/logo-mark.webp'
 import './Hero.css'
 
 // Portada (negra) con estrellas al fondo y las métricas de impacto justo debajo del texto
@@ -33,7 +33,7 @@ export default function Hero() {
           <p className="hero-metrics__statement">{metrics.statement}</p>
           <ul className="hero-metrics__list">
             {metrics.stats.map((stat, i) => (
-              <Stat key={stat.label} {...stat} delay={i * 150} />
+              <Stat key={i} {...stat} delay={i * 150} />
             ))}
           </ul>
         </div>

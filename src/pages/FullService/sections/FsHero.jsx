@@ -3,7 +3,7 @@ import Emph from '@/components/ui/Emph'
 import Starfield from '@/components/ui/Starfield'
 import { LINKS } from '@/constants/links'
 import { useLanguage } from '@/context/LanguageContext'
-import helmetImage from '@/assets/images/logo-mark.png'
+import helmetImage from '@/assets/images/logo-mark.webp'
 import './FsHero.css'
 
 /*
@@ -65,7 +65,7 @@ export default function FsHero() {
 
           <ul className="fs-tags">
             {hero.tags.map((tag, i) => (
-              <li key={tag} className="fs-tag" style={{ '--i': i }}>{tag}</li>
+              <li key={i} className="fs-tag" style={{ '--i': i }}>{tag}</li>
             ))}
           </ul>
         </div>

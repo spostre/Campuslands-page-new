@@ -4,7 +4,7 @@ import Emph from '@/components/ui/Emph'
 import MacWindow from '@/components/ui/MacWindow'
 import { LINKS } from '@/constants/links'
 import { useLanguage } from '@/context/LanguageContext'
-import chatImage from '@/assets/images/orbit-chat.jpg'
+import chatImage from '@/assets/images/orbit-chat.webp'
 import './Orbit.css'
 
 // Chatbot Órbit (sección clara) con la captura real del chat de WhatsApp

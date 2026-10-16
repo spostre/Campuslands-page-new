@@ -74,7 +74,7 @@ export default function Stack() {
         <p className="stack__hint">{stack.hint}</p>
         <ul ref={tilesRef} className="stack__tiles reveal-stagger" role="tablist" aria-label={stack.hint}>
           {stack.items.map((tech, i) => (
-            <li key={tech.key} style={{ '--i': i }}>
+            <li key={tech.key} role="presentation" style={{ '--i': i }}>
               <button
                 type="button"
                 role="tab"

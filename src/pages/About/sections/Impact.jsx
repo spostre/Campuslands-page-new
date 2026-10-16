@@ -62,8 +62,8 @@ export default function Impact() {
         </header>
 
         <ul className="impact__stats">
-          {impact.stats.map((stat) => (
-            <Stat key={stat.label} {...stat} />
+          {impact.stats.map((stat, i) => (
+            <Stat key={i} {...stat} />
           ))}
         </ul>
       </div>

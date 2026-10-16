@@ -209,7 +209,7 @@
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--gray-500);
+  color: var(--gray-600);
 }
 
 .ac-pass__fields dd {

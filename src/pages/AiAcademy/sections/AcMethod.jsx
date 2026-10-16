@@ -28,7 +28,7 @@ export default function AcMethod() {
 
           <ol ref={pillarsRef} className="ac-pillars reveal-stagger">
             {method.pillars.map((p, i) => (
-              <li key={p} style={{ '--i': i }}>
+              <li key={i} style={{ '--i': i }}>
                 <span className="ac-pillars__num">0{i + 1}</span>
                 <span className="ac-pillars__word">
                   <span className="ac-pillars__initial">{p.charAt(0)}</span>
@@ -43,7 +43,7 @@ export default function AcMethod() {
           <span className="ac-gains__title">{method.gainsTitle}</span>
           <ul>
             {method.gains.map((g, i) => (
-              <li key={g}>
+              <li key={i}>
                 <span>0{i + 1}</span>
                 {g}
               </li>

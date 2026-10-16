@@ -73,7 +73,6 @@ export default function AboutStories() {
                 type="button"
                 className="reel-card__btn"
                 onClick={() => setPlaying(v)}
-                aria-label={`${stories.watch} ${v.name}`}
               >
                 <img className="reel-card__poster" src={v.poster} alt="" loading="lazy" />
                 <span className="reel-card__play" aria-hidden="true">

@@ -3,7 +3,7 @@
 const en = {
   nav: {
     home: 'Home',
-    camper: 'Be a camper',
+    camper: 'Become a camper',
     services: 'Services',
     about: 'About us',
     contact: 'Contact',
@@ -24,7 +24,7 @@ const en = {
     tagline: 'An IT talent factory training the young people who will build tomorrow’s technology.',
     legalTitle: 'Legal',
     socialTitle: 'Social',
-    privacy: 'Personal data processing policy',
+    privacy: 'Privacy policy',
     terms: 'Terms and conditions',
     credits: 'Credits and licenses',
     rights: '© 2026 Campuslands. All rights reserved.',
@@ -32,21 +32,46 @@ const en = {
 
   camper: {
     hero: {
-      eyebrow: 'Be a camper',
+      eyebrow: 'Become a camper',
       title: 'Turn your potential into the career *of the future.*',
-      text: 'Learn Software Development, Artificial Intelligence, English and Adaptive Skills in a training program designed for the job market.',
+      text: 'Learn Software Development, Artificial Intelligence, English and Adaptive Skills in a program built for the real job market.',
       cta: 'I want to start',
-      secondary: 'See paths',
+      secondary: 'See programs',
       orbit: ['Software development', 'Artificial intelligence', 'English', 'Adaptive skills'],
       side: ['Software development', 'Artificial intelligence', 'English', 'Adaptive skills'],
       sideTitle: 'What you learn',
-      age: 'From 17 years old · No age limit',
+      age: 'Ages 17 and up · No upper age limit',
+    },
+    // Bloque de código que se traduce a palabras (antes en la portada de Emplea)
+    code: {
+      // [PROVISIONAL] eyebrow/title/text are our own copy to introduce the code block
+      eyebrow: 'How you learn',
+      title: 'Your first program, *in plain words*',
+      text: 'Coding is not magic: every line tells the computer what to do. At Campuslands you learn from scratch, understanding the meaning of each step.',
+      file: 'my_first_program.py',
+      codeLabel: 'Python',
+      plainLabel: 'In plain words',
+      replay: 'Play again',
+      blocks: [
+        {
+          code: ['name = "Ana"', 'age = 19'],
+          plain: 'Stores two pieces of data: a person’s name, Ana, and her age, 19.',
+        },
+        {
+          code: ['if age >= 17:', '    print("Hi, " + name + ". You can be a camper")'],
+          plain: 'If she is 17 or older, it greets her by name and tells her she can become a camper.',
+        },
+        {
+          code: ['topics = ["Python", "AI", "English"]', 'for topic in topics:', '    print("Today I learn", topic)'],
+          plain: 'Makes a list of three topics and, one by one, shows on screen what she learns today.',
+        },
+      ],
     },
     routes: {
       eyebrow: 'Programs',
-      title: 'Training *paths*',
-      text: 'Different paths for different profiles and stages of life. Young people, adults and professionals reinventing themselves.',
-      age: { value: '17+', title: 'From 17 years old and up!', text: 'No age limit' },
+      title: 'Training *programs*',
+      text: 'Programs for every profile and stage of life: young people, adults and professionals starting a new chapter.',
+      age: { value: '17+', title: 'Ages 17 and up!', text: 'No upper age limit' },
       includes: 'Includes',
       schedule: 'Schedule',
       months: 'months',
@@ -88,7 +113,7 @@ const en = {
               mission: 'Mission 01',
               name: 'Speak Up',
               duration: 10,
-              text: 'Our program is structured to take you from beginner to advanced level.',
+              text: 'Our program takes you all the way from beginner to advanced.',
               levels: ['A1', 'A2', 'B1', 'B2'],
               schedules: ['6:00 pm to 10:00 pm'],
               format: '100% On-site',
@@ -114,7 +139,7 @@ const en = {
       videoPrefix: 'Testimonial by',
       items: [
         { name: 'Santiago Laguado', role: 'Trainer – AI Academy' },
-        { name: 'Juan Rubio', role: 'Camper graduate' },
+        { name: 'Juan Rubio', role: 'Campuslands graduate' },
         { name: 'Edinson Aparicio', role: 'Camper, San Gil campus' },
       ],
     },
@@ -123,19 +148,19 @@ const en = {
   about: {
     hero: {
       eyebrow: 'Campuslands',
-      title: 'The story of how an idea can *change lives*',
-      text: 'We connect your company with pre-vetted developers who quickly integrate into your internal processes.',
+      title: 'How one idea can *change lives*',
+      text: 'We connect your company with pre-vetted developers who quickly fit into your internal processes.',
       videoLabel: 'Video by Diego Tarazona',
       person: 'Diego Tarazona',
       role: 'C.E.O Campuslands',
     },
     impact: {
       eyebrow: 'Our campuses',
-      title: 'Places where we make an *impact*',
+      title: 'Where we make an *impact*',
       stats: [
         { label: 'Total impact', value: '+6,480', note: '' },
-        { label: '2026 impact', value: '1650', note: '4+ family members per young person impacted' },
-        { label: 'Year 2026', value: 'Campus Guatemala', note: 'New international campus' },
+        { label: '2026 impact', value: '1650', note: 'Each young person impacts 4+ family members' },
+        { label: 'Year 2026', value: 'Guatemala campus', note: 'Our new international campus' },
       ],
       mapTitle: 'Campuses and capacity',
       capacity: 'campers',
@@ -157,14 +182,14 @@ const en = {
       mapLabel: 'Map of Campuslands campuses in Colombia and Guatemala',
     },
     purpose: {
-      mission: { eyebrow: 'Our mission', title: 'Transforming *talent*', quote: 'To empower young people from diverse backgrounds through accessible technology education, developing their skills in programming, English and social competencies to open doors to high-impact professional opportunities.' },
-      vision: { eyebrow: 'The vision that guides us', title: 'A new *digital* class', quote: 'To build a global community of digital talent, where young people anywhere have access to the tools they need for a prosperous and meaningful future, contributing to a new digital social class.' },
+      mission: { eyebrow: 'Our mission', title: 'Transforming *talent*', quote: 'To empower young people from all backgrounds through accessible tech education, building their programming, English and people skills to open doors to high-impact professional opportunities.' },
+      vision: { eyebrow: 'The vision that guides us', title: 'A new *digital* class', quote: 'To build a global community of digital talent where young people anywhere have the tools they need for a prosperous, meaningful future, helping shape a new digital social class.' },
     },
     knowledge: {
       eyebrow: 'Campuslands',
-      title: 'Today campuslands is born, the third generation of *knowledge*',
-      todayTitle: 'Fourth industrial revolution – today',
-      futureTitle: 'Technologies of the future',
+      title: 'Campuslands is born: the third generation of *knowledge*',
+      todayTitle: 'The fourth industrial revolution, today',
+      futureTitle: 'Tomorrow’s technologies',
       today: [
         { name: 'AI', text: 'Systems that learn and help make decisions.' },
         { name: 'Programming', text: 'The language for building software and solutions.' },
@@ -178,12 +203,12 @@ const en = {
         { name: 'Blockchain', text: 'Secure, verifiable digital records.' },
         { name: 'Edge Computing', text: 'Processing data close to where it is created.' },
         { name: 'Virtual Reality', text: 'Three-dimensional digital experiences.' },
-        { name: 'Automation', text: 'Processes that run by themselves, error-free.' },
+        { name: 'Automation', text: 'Processes that run on their own, without errors.' },
         { name: '5G', text: 'Ultra-fast mobile connections.' },
       ],
       future: [
         { name: 'Autonomous Robots', text: 'Machines that perceive, decide and act on their own.' },
-        { name: 'Quantum Computing', text: 'Calculations impossible for today’s computers.' },
+        { name: 'Quantum Computing', text: 'Calculations beyond the reach of today’s computers.' },
         { name: 'Neural Networks', text: 'Models inspired by the human brain.' },
         { name: 'Holograms', text: 'Three-dimensional images projected in space.' },
         { name: 'Web 3.0', text: 'A decentralized internet owned by its users.' },
@@ -195,9 +220,9 @@ const en = {
       title: 'Success *stories*',
       text: 'See how our campers turned their talent into real opportunities in the tech industry.',
       cta: 'I want to start',
-      secondary: 'Request advice',
+      secondary: 'Get advice',
       video: 'Camper testimonial',
-      watch: 'Watch the testimonial of',
+      watch: 'Watch the story of',
       close: 'Close video',
       prev: 'Previous video',
       next: 'Next video',
@@ -250,8 +275,8 @@ const en = {
         ],
       },
       {
-        title: 'Technology logos (Emplea)',
-        text: 'The Python, HTML5, CSS3, JavaScript, MySQL, PostgreSQL, Node.js, Java (OpenJDK), PHP, .NET and Git logos come from Simple Icons, released under CC0 1.0 (public domain). They are trademarks of their respective owners and are shown only to name the technologies we teach.',
+        title: 'Technology logos (Emplea, FullService and AI Academy)',
+        text: 'The Python, HTML5, CSS3, JavaScript, MySQL, PostgreSQL, Node.js, Java (OpenJDK), PHP, .NET and Git (Emplea), Next.js, AWS and Rust (FullService) and Make, Gemini, Claude, GitHub Copilot, Notion, Zapier, Perplexity, NotebookLM and ElevenLabs (AI Academy) logos come from Simple Icons, released under CC0 1.0 (public domain). They are trademarks of their respective owners and are shown only to name the technologies and tools we use or teach.',
         items: [
           { name: 'Simple Icons — CC0 1.0', href: 'https://github.com/simple-icons/simple-icons/blob/develop/LICENSE.md' },
         ],
@@ -280,28 +305,10 @@ const en = {
     hero: {
       eyebrow: 'Campuslands Emplea',
       title: 'Boost your growth with *the talent your company needs.*',
-      text: 'We simplify hiring IT profiles with hands-on training, technical skills and adaptive skills. Ready to make an impact from day one.',
+      text: 'We make hiring IT talent simple: people with hands-on training, technical skills and adaptive skills, ready to make an impact from day one.',
       cta: 'Find your IT talent',
       statValue: '+800',
-      statLabel: 'Campus talents working at tech companies',
-      file: 'my_first_program.py',
-      codeLabel: 'Python',
-      plainLabel: 'In plain words',
-      replay: 'Play again',
-      blocks: [
-        {
-          code: ['name = "Ana"', 'age = 19'],
-          plain: 'Stores two pieces of data: a person’s name, Ana, and her age, 19.',
-        },
-        {
-          code: ['if age >= 17:', '    print("Hi, " + name + ". You can be a camper")'],
-          plain: 'If she is 17 or older, it greets her by name and tells her she can become a camper.',
-        },
-        {
-          code: ['topics = ["Python", "AI", "English"]', 'for topic in topics:', '    print("Today I learn", topic)'],
-          plain: 'Makes a list of three topics and, one by one, shows on screen what she learns today.',
-        },
-      ],
+      statLabel: 'Campuslands talents working at tech companies',
     },
     leap: {
       eyebrow: 'Tech Leap',
@@ -312,22 +319,22 @@ const en = {
       steps: [
         { title: 'Discovery', text: 'We understand your needs, technologies and goals to identify the ideal profile.' },
         { title: 'Talent search', text: 'We select and validate candidates who meet the technical and human requirements.' },
-        { title: 'Profile presentation', text: 'Receive a selection of talent and schedule interviews with the candidates who best fit your team.' },
+        { title: 'Candidate shortlist', text: 'Get a curated shortlist and schedule interviews with the candidates who best fit your team.' },
         { title: 'Selection', text: 'Choose the professional who best aligns with your culture, tech stack and goals.' },
-        { title: 'Onboarding', text: 'We formalize the hiring model and support the talent’s onboarding.' },
-        { title: 'Guarantee', text: 'We provide continuous follow-up to ensure a successful integration and offer support throughout the process.' },
+        { title: 'Onboarding', text: 'We finalize the hiring model and support your new hire’s onboarding.' },
+        { title: 'Guarantee', text: 'We keep following up to make sure the integration succeeds, and we back you throughout the process.' },
       ],
-      testimonialsTitle: 'Testimonials from partner companies',
+      testimonialsTitle: 'What our partner companies say',
       testimonials: [
         {
           name: 'Cristian Velez',
           role: 'Director @Mantis App',
-          quote: 'Working with a Camper was a key decision for our company’s growth. Their preparation, together with their willingness to learn, adapt and contribute meaningfully, made a big difference in our team. We look forward to keep hiring top-caliber talent, fully trusting Campuslands.',
+          quote: 'Working with a Camper was a key decision for our company’s growth. Their preparation, together with their willingness to learn, adapt and contribute meaningfully, made a big difference in our team. We look forward to hiring more top-caliber talent, with full confidence in Campuslands.',
         },
         {
           name: 'Clément Memain',
           role: 'CEO Consulting @Data/AI',
-          quote: 'We have loved the IT talent coming from Campuslands, with whom we have developed the Coding Queendom project. Today, 17 women are part of this initiative, and we are committed to increasing this number in the coming years.',
+          quote: 'We love the IT talent coming out of Campuslands, with whom we built the Coding Queendom project. Today 17 women are part of this initiative, and we are committed to growing that number in the coming years.',
         },
       ],
     },
@@ -346,7 +353,7 @@ const en = {
         { key: 'java', name: 'Java', area: 'Enterprise backend', text: 'A stable language widely used in large companies. Object-oriented programming and long-lived applications.' },
         { key: 'php', name: 'PHP', area: 'Web development', text: 'It powers a large part of the web. They build custom sites and systems connected to databases.' },
         { key: 'dotnet', name: 'C# (.NET)', area: 'Enterprise backend', text: 'Microsoft’s ecosystem for business applications, APIs and cloud services.' },
-        { key: 'git', name: 'Git / Version control', area: 'Teamwork', text: 'They keep the history of every change and collaborate on the same code without stepping on each other, like professional teams do.' },
+        { key: 'git', name: 'Git / Version control', area: 'Teamwork', text: 'They track every change and work on the same code without getting in each other’s way, just like professional teams.' },
       ],
     },
     why: {
@@ -357,14 +364,14 @@ const en = {
       goTo: 'Go to',
       pending: 'pending',
       slides: [
-        { title: 'SENA quota', tag: 'Practice with us', text: 'Talent in training who works at your company. We train your future collaborator for 10 months in IT skills. In the following 6 months they join your company in their productive stage, already trained and ready to add value.' },
+        { title: 'SENA quota', tag: 'Apprenticeship', text: 'Trainees who work at your company. We train your future team member in IT skills for 10 months; over the following 6 months they join your company for their hands-on stage, already trained and ready to add value.' },
         { title: 'Talent Pool', tag: 'Hire now', text: 'We provide junior and semi-senior candidates who are already trained and experienced. We make the match, you hire directly.' },
-        { title: 'Staffing', tag: 'Grow your team', text: 'We assign developers who work as part of your team, but under our administration. You lead, we manage.' },
-        { title: 'Zero selection risk', tag: 'Guarantee', text: 'We follow up constantly: if the talent does not meet your expectations, we replace them at no additional cost.' },
+        { title: 'Staffing', tag: 'Grow your team', text: 'We assign developers who work as part of your team while we handle the administration. You lead, we manage.' },
+        { title: 'Zero selection risk', tag: 'Guarantee', text: 'We follow up constantly: if a hire doesn’t meet your expectations, we replace them at no extra cost.' },
       ],
     },
     companies: {
-      eyebrow: 'Talent recruiters',
+      eyebrow: 'Hiring partners',
       title: 'Companies that hire *Campuslands talent*',
       text: 'These companies already hire and sponsor Campuslands talent.',
     },
@@ -378,7 +385,7 @@ const en = {
       phoneLabel: 'Phone',
       emailLabel: 'Email',
       locationLabel: 'Location',
-      cta: 'Contact us now',
+      cta: 'Contact us',
       follow: 'Follow us',
     },
   },
@@ -388,24 +395,24 @@ const en = {
     hero: {
       eyebrow: 'FullService',
       title: 'High-performance *engineering*',
-      text: 'We translate business visions into scalable software architectures.',
-      cta: 'Quote my project',
+      text: 'We turn business visions into scalable software architectures.',
+      cta: 'Get a quote',
       tags: ['Tech staffing', 'Custom AI software', 'Custom software'],
     },
     phases: {
       eyebrow: 'How we work',
-      title: 'Process *phases*',
+      title: 'Our *process*',
       items: [
-        { code: 'Phase_01', title: 'Discovery', text: 'Project discovery, a conversation about the business and getting to know the systems.' },
-        { code: 'Phase_02', title: 'Recognition', text: 'Assignment of requirements and goals.' },
-        { code: 'Phase_03', title: 'Development', text: 'Iterative project development.' },
-        { code: 'Phase_04', title: 'Testing', text: 'Quality testing.' },
+        { code: 'Phase_01', title: 'Discovery', text: 'We learn about the project, talk through your business and get to know your systems.' },
+        { code: 'Phase_02', title: 'Scoping', text: 'We define the requirements and goals.' },
+        { code: 'Phase_03', title: 'Development', text: 'We build the project in iterations.' },
+        { code: 'Phase_04', title: 'Testing', text: 'Thorough quality testing.' },
       ],
     },
     services: {
       eyebrow: 'Our services',
-      title: 'See what we *offer* you',
-      cta: 'Contact us now',
+      title: 'What we *offer*',
+      cta: 'Contact us',
       groups: [
         {
           label: 'Artificial intelligence',
@@ -416,10 +423,10 @@ const en = {
         {
           label: 'Software development',
           items: [
-            { title: 'Custom software', text: 'Personalized systems aligned with your business processes, from web applications to robust, scalable enterprise systems.' },
+            { title: 'Custom software', text: 'Tailor-made systems built around your business processes, from web apps to robust, scalable enterprise platforms.' },
             { title: 'Software consulting', text: 'We design and modernize software architectures to make your systems more secure and scalable.' },
             { title: 'Tech staffing', text: 'We add high-level developers and technical profiles to your team to fill critical roles and speed up development.' },
-            { title: 'Tech BPO', text: 'We take care of the complete technical operation: teams, processes and infrastructure so you can scale your development.' },
+            { title: 'Tech BPO', text: 'We run your entire tech operation — teams, processes and infrastructure — so you can scale your development.' },
           ],
         },
       ],
@@ -427,7 +434,7 @@ const en = {
     stack: {
       eyebrow: 'FullService Core',
       title: 'Tech_Stack',
-      text: 'We use modern technologies to keep up with the tech market.',
+      text: 'We work with modern technologies to stay current with the market.',
       items: ['Next.js', 'AWS Cloud', 'Rust'],
     },
     clients: {
@@ -437,15 +444,15 @@ const en = {
     },
     contact: {
       title: 'Got a *challenge*?',
-      text: 'We are ready to start.',
-      cta: 'Quote my project',
+      text: 'We’re ready to get started.',
+      cta: 'Get a quote',
       follow: 'Follow us',
       company: 'Company_name',
       email: 'Email',
       needs: 'Describe your needs',
       words: 'words',
-      submit: 'Send information',
-      consentBefore: 'By sending, you accept the ',
+      submit: 'Send',
+      consentBefore: 'By submitting, you accept our ',
       consentLink: 'data processing policy',
       required: 'Please fill in this field.',
       invalidEmail: 'Please enter a valid email.',
@@ -461,7 +468,7 @@ const en = {
       word: 'Global',
       eyebrow: 'Campuslands International · #BuildingTeams',
       title: 'Hire pre-vetted bilingual developers who blend into your *team.*',
-      text: 'We present candidates assessed on technical, communication and remote-adaptation skills to speed up your hiring without sacrificing quality.',
+      text: 'We introduce candidates vetted for technical, communication and remote-work skills, so you can hire faster without compromising on quality.',
       cta: 'Request pre-vetted candidates',
     },
     process: {
@@ -469,7 +476,7 @@ const en = {
       text: 'Transparency and speed at every stage to bring the best talent into your team.',
       steps: [
         { title: 'We define the profile', text: 'We analyze your technical requirements, culture and project goals to find the ideal profile.' },
-        { title: 'You get a shortlist', text: 'We present a list of validated, technically pre-vetted candidates.' },
+        { title: 'You get a shortlist', text: 'We send you a list of validated, technically pre-vetted candidates.' },
         { title: 'Interviews and selection', text: 'You run the final interviews, choose the right developer and coordinate a frictionless onboarding.' },
       ],
     },
@@ -481,12 +488,12 @@ const en = {
     },
     model: {
       eyebrow: 'Service model',
-      title: 'Profiles by seniority and *operational need*',
+      title: 'Profiles by seniority and *business need*',
       text: 'Find the right level of experience to join your engineering team remotely.',
       label: 'Remote hiring',
       name: 'Global Staffing',
       badge: 'World class',
-      features: ['Bilingual developers', 'Thorough technical assessment', 'Onboarding and support', 'Adaptation guarantee'],
+      features: ['Bilingual developers', 'Thorough technical assessment', 'Onboarding and support', 'Fit guarantee'],
       levels: [
         { name: 'Junior', title: 'Solid technical foundation', text: 'Campuslands experience.' },
         { name: 'Semi-senior', title: 'Experienced autonomous developer', text: 'Previous work experience.' },
@@ -495,7 +502,7 @@ const en = {
       cta: 'Request talent',
     },
     companies: {
-      eyebrow: 'Talent recruiters',
+      eyebrow: 'Hiring partners',
       title: 'Companies hiring *Campuslands* talent',
       text: 'These companies already hire and sponsor Campuslands talent.',
     },
@@ -507,7 +514,7 @@ const en = {
     hero: {
       eyebrow: 'Campuslands AI Academy',
       title: 'Turn AI into your company\'s *Operating System*',
-      text: 'If you made it here, you know AI is key for your business in 2026... but you are still not sure how to bring it into daily operations.',
+      text: 'If you made it here, you know AI is key for your business in 2026... but you still aren’t sure how to make it part of daily operations.',
       punch: 'You don\'t lack vision. You lack a clear implementation system.',
       ctaPrograms: 'See programs',
       ctaContact: 'Contact us',
@@ -526,7 +533,7 @@ const en = {
     },
     pain: {
       eyebrow: 'Diagnosis',
-      title: 'We understand the frustration of watching the industry move *while you think it over*',
+      title: 'We get it: it’s frustrating to watch the industry move ahead *while you’re still deciding*',
       items: [
         'Your team experiments with AI, but without strategic direction',
         'Your competitors move faster because they execute better',
@@ -536,40 +543,40 @@ const en = {
       cta: 'I want to implement AI',
     },
     missions: {
-      eyebrow: 'Space training plans',
+      eyebrow: 'Training plans',
       title: 'Our *missions*',
-      text: 'Choose the plan that best powers your mission toward Artificial Intelligence.',
+      text: 'Pick the plan that best fuels your mission into Artificial Intelligence.',
       includes: 'Includes',
       items: [
         { code: 'Mission 01', name: 'Ignition', duration: '4 hours', cta: 'Enroll now', features: ['The real impact of AI on your industry', 'Generative AI as a daily assistant', 'Top 10 AI tools', 'Building basic agents live'] },
-        { code: 'Mission 02', name: 'Booster', duration: '8 hours', cta: 'Enroll now', features: ['All of Ignition with a professional focus', 'Advanced prompting techniques', 'Master 2 AI tools of your choice', 'Custom agents for your role'] },
-        { code: 'Mission 03', name: 'Liftoff', duration: '12 hours', cta: 'Enroll now', features: ['All of Booster to scale your operation', 'Process automation with n8n', 'Designing automated business flows', 'Mastery of an additional tool of your choice'] },
-        { code: 'Mission 04', name: 'Odyssey', duration: 'Custom', cta: 'Enroll now', features: ['100% custom program for companies', 'Choice of tools and duration', 'Real use cases by industry', 'Support and tactical sessions'] },
-        { code: 'Mission 05', name: 'Nébula', duration: 'Pre-recorded', cta: 'Get access', features: ['Content by learning level', 'Assessments to track progress', '24/7 access to materials and resources', 'Active support community'] },
+        { code: 'Mission 02', name: 'Booster', duration: '8 hours', cta: 'Enroll now', features: ['Everything in Ignition, with a professional focus', 'Advanced prompting techniques', 'Master 2 AI tools of your choice', 'Custom agents for your role'] },
+        { code: 'Mission 03', name: 'Liftoff', duration: '12 hours', cta: 'Enroll now', features: ['Everything in Booster, built to scale your operation', 'Process automation with n8n', 'Designing automated business flows', 'Master one more tool of your choice'] },
+        { code: 'Mission 04', name: 'Odyssey', duration: 'Custom', cta: 'Enroll now', features: ['100% custom program for companies', 'You choose the tools and duration', 'Real use cases by industry', 'Support and tactical sessions'] },
+        { code: 'Mission 05', name: 'Nébula', duration: 'Pre-recorded', cta: 'Get access', features: ['Content organized by level', 'Assessments to track progress', '24/7 access to materials and resources', 'Active support community'] },
       ],
     },
     method: {
       eyebrow: 'AI Academy Method',
       title: 'An *executive* implementation system',
-      text: 'To maximize resources, speed up execution and scale your operation.',
+      text: 'Built to make the most of your resources, speed up execution and scale your operation.',
       pillars: ['Value', 'Velocity', 'Vision'],
       gainsTitle: 'With the AI Academy method you get',
       gains: [
         'Reusable systems that scale with your company',
         'Automated processes that fit your operation',
         'A clear AI implementation architecture',
-        'In-house capacity to lead with AI (without full dependency)',
+        'In-house ability to lead with AI (without depending on outsiders)',
       ],
       ctaStart: 'I want to start',
-      ctaMasterclass: 'Go to AI masterclass',
+      ctaMasterclass: 'Go to the AI masterclass',
     },
     modules: {
       eyebrow: 'Training modules',
       title: 'Specialists in the technologies that *move your business*',
       text: 'We train talent in the most in-demand tools to ensure immediate integration into your projects.',
       items: [
-        { title: 'Hands-on training', text: 'Learn with real cases. No empty theory, only execution applied to today\'s market.' },
-        { title: 'Ready deliverables', text: 'Leave every session with tools and digital assets ready to use in your work.' },
+        { title: 'Hands-on training', text: 'Learn from real cases. No filler theory — just hands-on work for today’s market.' },
+        { title: 'Ready-to-use deliverables', text: 'Leave every session with tools and digital assets ready to use in your work.' },
         { title: 'Ongoing support', text: 'Our community and mentors are available 24/7 to solve your technical questions.' },
         { title: 'Flexible paths', text: 'Tailor your learning to your level, from beginner to Nébula expert.' },
       ],
@@ -596,7 +603,7 @@ const en = {
       ],
     },
     stories: {
-      eyebrow: 'Teams that evolved',
+      eyebrow: 'Teams that leveled up',
       title: 'Real stories of teams that already *lifted off*',
       items: [
         { name: 'Carlos Herrera', role: 'Talent Director at Grupo Andino', quote: 'The 8-hour training was ideal for our team. The industry cases made the difference and answered specific questions.', when: '2 weeks ago' },
@@ -617,7 +624,7 @@ const en = {
     hero: {
       eyebrow: 'Tech staffing',
       title: 'Power your growth with *high-performance* teams.',
-      text: 'We connect Campuslands innovation with your company\'s technical challenges. High-performance teams ready to integrate and scale your technology projects.',
+      text: 'We bring Campuslands innovation to your company’s technical challenges: high-performance teams ready to join you and scale your tech projects.',
       cta: 'Our staffing options',
       preview: 'Three ways to add talent',
     },
@@ -630,7 +637,7 @@ const en = {
           name: 'Global Staffing',
           badge: 'World class',
           category: 'Corporate level',
-          text: 'Speed up software teams with selected tech talent, ready to quickly join projects with global reach.',
+          text: 'Accelerate your software teams with hand-picked tech talent, ready to join global projects fast.',
           features: ['Centralized management', 'Global standards', 'Elite remote teams', 'High-performance tracking'],
           levels: [
             { name: 'Junior', title: 'Solid technical foundation', text: 'Campuslands experience.' },
@@ -644,7 +651,7 @@ const en = {
           name: 'National Staffing',
           badge: 'LATAM core',
           category: 'Corporate level',
-          text: 'Agile solutions designed specifically for local mid-sized companies looking to strengthen their technical departments.',
+          text: 'Agile solutions designed for local mid-sized companies looking to strengthen their tech departments.',
           features: ['Flexible hiring', 'Replacement guarantee', 'Curated talent', 'Levels of your choice'],
           levels: [
             { name: 'Junior basic', text: 'Campuslands experience.' },
@@ -658,8 +665,8 @@ const en = {
           name: 'Full Service Staffing',
           badge: 'BPO projects',
           category: 'Strategic outsourcing',
-          text: 'Hand over full technical execution to work cells managed under our academy\'s standards of excellence.',
-          features: ['Dedicated cells', 'End-to-end execution', 'Campuslands monitoring', 'Guaranteed agility'],
+          text: 'Hand off all technical execution to dedicated teams managed to our academy’s standards of excellence.',
+          features: ['Dedicated teams', 'End-to-end execution', 'Campuslands monitoring', 'Guaranteed agility'],
           levels: [
             { name: 'Dev junior', text: 'Structured support.' },
             { name: 'Dev mid level', text: 'Autonomous development.' },
@@ -676,7 +683,7 @@ const en = {
   billing: {
     eyebrow: 'Billing',
     title: 'Manage your payments *quickly and easily*',
-    text: 'Enter your invoice number to find all the information.',
+    text: 'Enter your invoice number to see all the details.',
     label: 'ID or document number',
     placeholder: 'E.g. 123456789',
     submit: 'Search',
@@ -711,9 +718,6 @@ const en = {
     back: 'Back to home',
   },
 
-  mascot: {
-    label: 'Campuslands mascot: tap it!',
-  },
 
   placeholder: {
     image: 'Image',
@@ -723,8 +727,8 @@ const en = {
 
   home: {
     hero: {
-      title: 'We are revolutionizing *tech* talent',
-      text: 'We are an IT talent factory training the young people who will build tomorrow’s technology. The future won’t wait — at Campuslands, it’s being built.',
+      title: 'Revolutionizing *tech* talent',
+      text: 'We are an IT talent factory training the young people who will build tomorrow’s technology. The future won’t wait — at Campuslands, we’re building it.',
       tag: '#GoForIt',
       ctaJoin: 'Join Campuslands',
       ctaTalent: 'Meet our IT talent',
@@ -736,7 +740,7 @@ const en = {
       stats: [
         { value: '+1,500', label: 'Graduated campers' },
         { value: '200+', label: 'Tech companies' },
-        { value: '90.4%', label: 'Job match' },
+        { value: '90.4%', label: 'Job placement' },
       ],
     },
 
@@ -822,7 +826,7 @@ const en = {
     locations: {
       eyebrow: 'Base location | Coordinates',
       title: 'Visit our *campuses*',
-      text: 'Visit our campuses and see how Campuslands is transforming tech talent across the continent.',
+      text: 'Come see how Campuslands is transforming tech talent across the continent.',
       cta: 'Schedule a visit',
       selectLabel: 'Find a campus',
       addressPending: 'Address to be confirmed',
@@ -830,7 +834,7 @@ const en = {
 
     social: {
       eyebrow: 'Follow us',
-      title: 'More about our *mission* on social media',
+      title: 'Follow our *mission* on social media',
       videoLabel: 'Juliana’s video',
     },
   },

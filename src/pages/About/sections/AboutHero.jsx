@@ -3,7 +3,7 @@ import SocialIcon from '@/components/ui/SocialIcon'
 import Starfield from '@/components/ui/Starfield'
 import { LINKS } from '@/constants/links'
 import { useLanguage } from '@/context/LanguageContext'
-import helmetImage from '@/assets/images/logo-mark.png'
+import helmetImage from '@/assets/images/logo-mark.webp'
 import './AboutHero.css'
 
 const NETWORKS = [

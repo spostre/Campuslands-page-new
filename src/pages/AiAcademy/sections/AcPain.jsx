@@ -29,7 +29,7 @@ export default function AcPain() {
 
           <ol ref={logRef} className="ac-log__list reveal-stagger">
             {pain.items.map((item, i) => (
-              <li key={item} className="ac-log__row" style={{ '--i': i }}>
+              <li key={i} className="ac-log__row" style={{ '--i': i }}>
                 <span className="ac-log__code">WARN_0{i + 1}</span>
                 <svg className="ac-log__icon" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M12 3 2 20h20L12 3Z" />

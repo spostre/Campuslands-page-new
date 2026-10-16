@@ -44,7 +44,7 @@ export default function FsServices() {
           </article>
 
           {devGroup.items.map((item, i) => (
-            <article key={item.title} className="fs-sheet__cell">
+            <article key={i} className="fs-sheet__cell">
               <span className="fs-sheet__num">{pad(i + 2)}</span>
               <h3 className="fs-sheet__title">{item.title}</h3>
               <p className="fs-sheet__text">{item.text}</p>

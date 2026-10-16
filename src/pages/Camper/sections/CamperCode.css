@@ -1,0 +1,41 @@
+/* Sección del programa que se traduce (monocromo): texto a la izquierda, ventana a la derecha */
+.camper-code {
+  position: relative;
+  padding: var(--section-space) 0;
+}
+
+.camper-code__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(40px, 6vw, 110px);
+  align-items: center;
+}
+
+.camper-code__eyebrow {
+  display: block;
+  margin-bottom: 18px;
+  color: var(--blue-400);
+}
+
+.camper-code__copy .h2 {
+  max-width: 14ch;
+}
+
+.camper-code__text {
+  max-width: 440px;
+  margin-top: 18px;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+/* La ventana con borde algo más marcado, como los paneles de esta página */
+.camper-code__window .ct {
+  border-color: rgb(255 255 255 / 0.18);
+  box-shadow: 0 40px 90px -40px rgb(0 0 0 / 0.9);
+}
+
+@media (max-width: 960px) {
+  .camper-code__grid {
+    grid-template-columns: 1fr;
+  }
+}

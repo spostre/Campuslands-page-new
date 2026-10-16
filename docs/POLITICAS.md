@@ -1,162 +1,227 @@
-# Políticas, licencias y riesgos – Campuslands (nueva web)
+# Políticas, licencias y riesgos — Campuslands (sitio web)
 
-Qué recursos de terceros usa el sitio, qué obligaciones legales tiene cada uno, qué puede fallar y qué pasa si falla. Revisar antes de publicar y cada vez que se agregue un recurso externo.
+Qué recursos de terceros usa el sitio, qué obligaciones legales tiene cada uno, qué datos maneja, qué puede fallar y qué pasa si falla. Revisar antes de publicar, antes de vender o transferir el proyecto y cada vez que se agregue un recurso externo.
 
-> Este documento resume obligaciones de licencias y políticas de uso públicas a la fecha (octubre 2026). No es asesoría legal: los puntos marcados **⚖️** conviene validarlos con el área legal de Campuslands.
+> Resume licencias y políticas públicas vigentes a octubre de 2026. **No es asesoría legal**: los puntos marcados **⚖️** deben validarse con el área legal de Campuslands.
+
+Documentos relacionados: [README](../README.md) · [ESTRUCTURA.md](ESTRUCTURA.md).
 
 ---
 
-## 1. Resumen de riesgo por sección
+## Índice
 
-"Riesgo" = probabilidad de que la sección deje de funcionar o se vea mal por algo ajeno al proyecto.
+1. [Resumen ejecutivo](#1-resumen-ejecutivo)
+2. [Riesgo por sección](#2-riesgo-por-sección)
+3. [Software de código abierto](#3-software-de-código-abierto)
+4. [Tipografías](#4-tipografías)
+5. [Mapa de sedes y su plan B](#5-mapa-de-sedes-y-su-plan-b)
+6. [Imágenes, videos y marcas](#6-imágenes-videos-y-marcas)
+7. [Privacidad y datos personales](#7-privacidad-y-datos-personales)
+8. [Contenido y textos](#8-contenido-y-textos)
+9. [Lista de verificación antes de publicar](#9-lista-de-verificación-antes-de-publicar)
+10. [Qué hacer si algo falla](#10-qué-hacer-si-algo-falla)
+11. [Regla para recursos nuevos](#11-regla-para-recursos-nuevos)
 
-| Sección / pieza | Depende de | Riesgo | Si falla… | Plan B |
+---
+
+## 1. Resumen ejecutivo
+
+| Tema | Estado |
+|---|---|
+| **Licencias de software** | Todo libre y compatible con uso comercial (MIT, BSD-2). Avisos incluidos en `public/licenses/` y en `/creditos`. ✅ |
+| **Tipografías** | SIL OFL 1.1, alojadas en el proyecto con su licencia. ✅ |
+| **Servicios externos en tiempo real** | Solo uno: teselas de OpenStreetMap (mapa), con respaldo automático. ✅ |
+| **Imágenes de terceros** | NASA (dominio público) y Simple Icons (CC0), acreditadas. ✅ |
+| **Cookies, analítica, rastreo** | Ninguno. ✅ |
+| **Pendiente ⚖️** | Autorizaciones de **logos de empresas**, **imagen de personas** en videos y fotos, licencia del **casco 3D** de Emplea, términos de uso de las **imágenes generadas con IA**, y **política de privacidad** completa. |
+
+---
+
+## 2. Riesgo por sección
+
+"Riesgo" = probabilidad de que algo deje de funcionar o se vea mal por una causa ajena al proyecto.
+
+| Pieza | Depende de | Riesgo | Si falla | Plan B |
 |---|---|---|---|---|
-| Encabezado, pie, hero, pilares, servicios, redes | Nada externo (todo está en el proyecto) | **Nulo** | — | — |
-| Tipografías | Archivos propios en `src/assets/fonts/` | **Nulo** | — | Si un archivo faltara, el navegador usa la fuente de respaldo del sistema. |
-| Logos de aliados, mascota, logo, captura del chat | Archivos propios en `src/assets/` | **Nulo** | — | — |
-| Estrellas (fijas y cayendo), luna de fondo, nieve, persiana (animación por scroll), desvanecidos, luz naranja de Historias, animaciones de tarjetas e íconos, sonido de la mascota | Funciones del navegador (canvas, Web Audio, scroll) — **ningún servicio externo** | **Nulo** | En navegadores muy antiguos simplemente no se ven / no suenan. | La página funciona igual. Con "reducir movimiento" quedan quietas. |
-| **Mapa de sedes** | Servidores de mapas de OpenStreetMap | **Medio** | Sin plan B, el recuadro quedaría vacío. | **Automático:** se muestra una captura del mismo mapa para la sede elegida (sección 4). |
-| Botones a WhatsApp y redes | WhatsApp, Instagram, TikTok, LinkedIn, Facebook | **Bajo** | El botón abre una página caída o con error. | Depende del tercero; actualizar la URL en `links.js` si cambia. |
-| Enlaces internos (servicios, políticas, contacto de Emplea) | Rutas de este sitio | **Nulo** | — | Ya no quedan enlaces a la web anterior `campuslands.com`. Los servicios sin diseño muestran "en construcción" en su ruta. |
-| **Logos de tecnologías** (Emplea) | Trazos copiados en `src/data/techLogos.js` desde Simple Icons (CC0) | **Nulo** | — | Sin dependencia externa. Si se quisiera cambiar alguno, usar Simple Icons u otra fuente CC0 y registrarlo aquí. |
-| **Fotos de Emplea** (retratos de testimonios, casco) | Archivos propios en `src/assets/images/emplea/` | **Nulo** | — | Recursos de la web anterior de Campuslands. Los fondos de "Por qué nos eligen" son imágenes generadas con Gemini, alojadas en el proyecto. |
-| **Tierra de noche** (portada de Global) | Render propio en `src/assets/images/global/earth-globe*.webp` hecho con el mapa Black Marble 2016 de NASA (dominio público); script de render guardado fuera del repo | **Nulo** | — | Crédito en /creditos. **No** usar la referencia `Content MD/ideas/png/earth.png` (es de un banco de imágenes, con marca de agua). Plan B: otro mapa de dominio público de NASA. |
-| **Luna del contacto** (FullService) | Archivo propio en `src/assets/images/fullservice/moon*.webp` (NASA Goddard, GSFC_20171208_Archive_e001860, dominio público) | **Nulo** | — | Crédito en /creditos. Plan B: cualquier otra foto lunar de images.nasa.gov; nunca imágenes de bancos sin licencia. |
-| **Imagen satelital** (sedes de Nosotros) | Archivo propio en `src/assets/images/maps/latam-satellite*.webp` (recorte de NASA Blue Marble, dominio público) | **Nulo** | — | Si se quisiera otra imagen: usar solo fuentes de dominio público o con licencia comercial (NASA, USGS/Landsat). **No** usar capturas de Google Maps/Earth ni de Esri/Mapbox sin licencia. Si se cambia el recorte, actualizar los límites en `sedesGeo.js`. |
-| **Videos** (Inicio, Sé un camper) | Archivos propios en `public/videos/` (material de Campuslands) | **Bajo** | Si un archivo falta o no carga, el recuadro queda vacío. | **Automático:** `VideoPlayer` muestra el recuadro reservado con el nombre del video. A futuro, si pesan demasiado para el servidor, alojarlos en YouTube/Vimeo o un CDN y cambiar la ruta en `src/constants/videos.js`. |
-| Preferencia de idioma | `localStorage` del navegador | **Nulo** | Si está bloqueado, el sitio abre en español. | — |
+| Estructura, textos, estilos, animaciones | Nada externo | **Nulo** | — | — |
+| Tipografías | Archivos propios (`src/assets/fonts/`) | **Nulo** | — | El navegador usa la fuente del sistema |
+| Logos, imágenes, íconos | Archivos propios (`src/assets/`) | **Nulo** | — | — |
+| Estrellas, nieve, luna, Tierra, escenas animadas | Canvas y CSS del navegador | **Nulo** | En navegadores muy antiguos no se ven | La página funciona igual; con "reducir movimiento" quedan quietas |
+| **Mapa de sedes** | Teselas de OpenStreetMap | **Medio** | El mapa no cargaría | **Automático:** captura de la sede (sección 5) |
+| **Videos** | Archivos propios (`public/videos/`, ~120 MB) | **Bajo** | Si un archivo falta, no se reproduce | `VideoPlayer` muestra un recuadro con el nombre. Alojar fuera si el servidor lo exige |
+| Botones a WhatsApp y redes | WhatsApp, Instagram, TikTok, LinkedIn, Facebook | **Bajo** | El destino falla o cambia | Corregir en `src/constants/links.js` |
+| Formulario de cotización (FullService) | Cliente de correo del visitante (`mailto:`) | **Bajo** | Si el visitante no tiene correo configurado, no se abre nada | Botón "Cotizar mi proyecto" (WhatsApp) en la misma sección. A futuro, servicio de formularios |
+| Consulta de facturas | API de facturación (**no conectada**) | **N/A** | Muestra "consulta en línea no disponible" | Botón de contacto. Conectar con `VITE_BILLING_ENDPOINT` |
+| Preferencia de idioma | `localStorage` | **Nulo** | Si está bloqueado, abre en español | — |
+| Enlaces internos | Rutas del sitio | **Nulo** | — | No quedan enlaces a la web anterior, salvo el acceso de campers (`camper.campuslands.com/login`, plataforma vigente) |
 
 ---
 
-> **Regla:** todo recurso o servicio externo nuevo (tipografía, imagen, datos, mapa, API, analítica, etc.) se registra en este archivo con su licencia, su riesgo y un **plan B** de funcionamiento, y se acredita en la página **/creditos**.
+## 3. Software de código abierto
+
+| Librería | Licencia | Se publica en el sitio | Cumplimiento |
+|---|---|---|---|
+| React, React DOM, Scheduler | MIT | Sí | Aviso en el código empaquetado + `public/licenses/` + `/creditos` |
+| React Router | MIT | Sí | Igual que arriba |
+| Leaflet | BSD-2-Clause | Sí | `public/licenses/LICENSE-leaflet.txt` + `/creditos` (el empaquetado no conserva su comentario) |
+| Vite, @vitejs/plugin-react | MIT | No (solo desarrollo) | No requiere aviso en el sitio |
+
+Ninguna licencia es "copyleft" (GPL/AGPL): el código propio puede venderse o cerrarse sin obligación de publicarlo.
+
+**Si se agrega una librería:** revisar su licencia (`node_modules/<paquete>/package.json` → `license`); si se publica en el sitio, añadir su texto a `public/licenses/` y su crédito a `/creditos` (`credits` en `src/i18n`).
 
 ---
 
-## 2. Tipografías — SIL Open Font License 1.1
+## 4. Tipografías
 
-**Familias:** Hanken Grotesk, Newsreader (cursiva) y Poppins.
+**Familias:** Hanken Grotesk (texto y títulos), Newsreader cursiva (palabras destacadas) y Poppins (menú y rótulos).
 
-- **Dónde están:** alojadas en el propio proyecto (`src/assets/fonts/`), copiadas sin modificar de Google Fonts. **El sitio ya no se conecta a Google** para cargarlas.
-- **Licencia:** SIL Open Font License 1.1 (OFL). Permite usarlas gratis, también en sitios comerciales, e incluirlas en el sitio.
-- **Obligaciones al redistribuirlas** (alojarlas cuenta como redistribución):
-  - Acompañarlas del aviso de copyright y del texto de la licencia → ✅ `public/licenses/OFL-*.txt` y página **/creditos**.
-  - No venderlas por separado → ✅ no aplica.
-  - Si se modificaran, no usar el nombre original de la fuente → ✅ no se modificaron.
-- **Si se agrega otra fuente:** verificar que sea OFL (u otra licencia libre), descargar sus archivos, añadir su `@font-face` en `fonts.css`, su licencia en `public/licenses/` y su crédito en `src/i18n` (`credits`).
+- Alojadas en `src/assets/fonts/`, copiadas sin modificar de Google Fonts. **El sitio no se conecta a Google.**
+- **Licencia SIL Open Font License 1.1:** uso gratuito, también comercial.
+- Obligaciones al alojarlas: incluir aviso y licencia (✅ `public/licenses/OFL-*.txt` y `/creditos`); no venderlas por separado (✅); si se modifican, no usar el nombre original (✅ no se modificaron).
 
 ---
 
-## 3. Mapa de sedes — OpenStreetMap y Leaflet
+## 5. Mapa de sedes y su plan B
 
-### Datos y servicio de mapas (OpenStreetMap)
+### OpenStreetMap (datos y teselas)
 
-- **Datos:** © colaboradores de OpenStreetMap, bajo la **Open Database License (ODbL)**.
-- **Servicio de imágenes del mapa** (`tile.openstreetmap.org`): lo ofrece la OpenStreetMap Foundation de forma **gratuita, sin garantía ni SLA**. Según su [política de uso](https://operations.osmfoundation.org/policies/tiles/):
-  - Pueden **bloquear el acceso sin aviso** si el uso es alto o degrada el servicio. Los servicios comerciales tienen más riesgo de que les retiren el acceso.
-  - **Atribución obligatoria** y visible: "© OpenStreetMap contributors" con enlace a la página de copyright → ✅ en el mapa interactivo, en cada captura de respaldo y en **/creditos**.
-  - Prohibido descargar mapas en masa o para uso sin conexión → ✅ solo se generaron 5 capturas puntuales (una por sede), no se precargan zonas.
-  - El navegador debe enviar la cabecera `Referer` → ✅ no se usa una `Referrer-Policy` restrictiva. **No añadir** una que la bloquee.
-- **Privacidad:** al ver el mapa interactivo, el navegador del visitante se conecta a los servidores de OpenStreetMap (que reciben su IP). Está indicado en **/creditos**. **⚖️** Recomendable mencionarlo también en la Política de tratamiento de datos personales de Campuslands.
+- **Datos:** © colaboradores de OpenStreetMap, licencia **ODbL**.
+- **Teselas** (`tile.openstreetmap.org`): servicio **gratuito, sin garantía ni SLA**, según su [política de uso](https://operations.osmfoundation.org/policies/tiles/):
+  - Puede **bloquear el acceso sin aviso** si el uso es alto; el uso comercial tiene más riesgo.
+  - **Atribución obligatoria** "© OpenStreetMap contributors" con enlace → ✅ en el mapa, en cada captura y en `/creditos`.
+  - Prohibido descargar teselas en masa → ✅ solo 5 capturas puntuales.
+  - El navegador debe enviar `Referer` → ✅ no añadir una `Referrer-Policy` que lo bloquee.
+- **Privacidad:** al ver el mapa, el navegador se conecta a OpenStreetMap (recibe la IP del visitante). Indicado en `/creditos`. **⚖️** Mencionarlo en la política de privacidad.
 
-### Librería del mapa (Leaflet)
+### Leaflet
 
-- Licencia **BSD-2-Clause**: exige reproducir su aviso de copyright → ✅ `public/licenses/LICENSE-leaflet.txt` y **/creditos** (el código empaquetado no conserva el comentario de licencia, por eso se publica aparte).
+Licencia BSD-2-Clause → aviso en `public/licenses/` y `/creditos` ✅.
 
----
+### Plan B automático
 
-## 4. Plan B del mapa (captura de respaldo)
+`src/components/ui/SedeMap.jsx` y `SedeMapStatic.jsx`:
 
-**Objetivo:** que el recuadro del mapa nunca quede vacío aunque OpenStreetMap corte el servicio, temporal o permanentemente.
+1. Se intenta el mapa interactivo.
+2. Se cambia a la **captura de la sede** (`src/assets/images/maps/<sede>.jpg`) si no carga ninguna tesela en **10 s**, si hay **6 errores seguidos**, o si no se pudo descargar Leaflet.
+3. Mientras el servicio funcione, la captura nunca se muestra.
 
-**Cómo funciona** (`src/components/ui/SedeMap.jsx` y `SedeMapStatic.jsx`):
-1. Se intenta mostrar el mapa interactivo normal.
-2. Se activa el plan B si:
-   - no carga **ninguna** imagen del mapa en **10 segundos**, o
-   - hay **6 errores seguidos** al cargar imágenes (p. ej. bloqueo o caída a mitad de la visita), o
-   - no se pudo descargar el propio código del mapa.
-3. En ese caso se libera el mapa (deja de pedir imágenes) y se muestra la **captura de la sede seleccionada** (`src/assets/images/maps/<sede>.jpg`). Al cambiar de sede en el selector, cambia la captura.
-4. Mientras el servicio funcione, la captura **nunca** se muestra.
+Las capturas reproducen el mismo mapa (zoom 13, filtro azul, marcador) con la atribución incluida. **Regenerarlas** si cambian las coordenadas o se agrega una sede (`src/data/sedes.js`): página local con Leaflet a 700 × 525 px, zoom 13, mismo filtro, captura a doble densidad, guardar como JPG.
 
-**Las capturas** reproducen el mismo mapa (zoom 13, centrado en las coordenadas de la sede, mismo filtro azul noche, mismo marcador) con la atribución de OpenStreetMap incluida en la imagen. Se probó bloqueando el servidor de mapas: aparece la captura y el resto de la página sigue normal.
-
-**Cuándo regenerarlas:** si cambian las coordenadas de una sede o se agrega una sede nueva (`src/data/sedes.js`, campo `snapshot`). Procedimiento: abrir una página HTML local con Leaflet a 700 × 525 px, zoom 13, mismo filtro y marcador, capturarla con Edge sin ventana a doble densidad (`--force-device-scale-factor=2`) y guardarla como JPG en `src/assets/images/maps/`. Generar solo las capturas necesarias (nada de descargas masivas).
-
-**Si el bloqueo fuera permanente:** el sitio seguirá mostrando las capturas, pero lo recomendable es cambiar a un proveedor de mapas con plan (p. ej. MapTiler o Stadia Maps) y actualizar `TILES` y la atribución en `SedeMap.jsx`.
+**Si el bloqueo fuera permanente:** cambiar a un proveedor con plan (MapTiler, Stadia Maps) y actualizar `TILES` y la atribución en `SedeMap.jsx`.
 
 ---
 
-## 5. Software de código abierto
+## 6. Imágenes, videos y marcas
 
-| Librería | Licencia | Cumplimiento |
+### 6.1 Recursos libres o propios (sin pendientes)
+
+| Recurso | Origen | Licencia / situación | Crédito |
+|---|---|---|---|
+| Logo de Campuslands | Propio | — | — |
+| Imagen satelital (Nosotros) | NASA Earth Observatory, Blue Marble: Next Generation | Dominio público | `/creditos` |
+| Tierra de noche (Global) | Render propio a partir de NASA Black Marble 2016 | Dominio público (el render es propio) | `/creditos` |
+| Luna (contacto de FullService) | NASA Goddard, GSFC_20171208_Archive_e001860 | Dominio público | `/creditos` |
+| Logos de tecnologías (Emplea, FullService) y de 9 herramientas de IA (AI Academy) | Simple Icons | CC0. Las marcas son de sus dueños; **uso nominativo** (solo para nombrarlas) | `/creditos` |
+| Íconos de redes, servicios y tecnologías de Nosotros | Dibujados en el proyecto | Propios | — |
+| Captura de WhatsApp (Órbit) | Chat oficial de Campuslands | Uso ilustrativo del canal oficial; no alterar la marca de Meta | Marcas indicadas en `/creditos` |
+
+**Nota NASA:** acreditar la fuente y no sugerir que NASA respalda a Campuslands.
+
+**Herramientas sin logo libre:** ChatGPT, Microsoft Copilot, Midjourney, Read AI y HeyGen se muestran con su inicial. OpenAI y Microsoft pidieron retirar sus logos de Simple Icons; **no copiarlos de otras fuentes sin permiso**.
+
+### 6.2 Recursos que requieren autorización ⚖️
+
+| Recurso | Dónde | Qué confirmar |
 |---|---|---|
-| React, React DOM, Scheduler | MIT | Aviso conservado en el código empaquetado + `public/licenses/` + /creditos |
-| React Router | MIT | Igual que arriba |
-| Leaflet | BSD-2-Clause | `public/licenses/` + /creditos |
-| Vite y plugins | MIT | Solo herramientas de desarrollo; no se publican en el sitio |
+| **12 logos de aliados** | Inicio (`src/data/partners.js`) | Autorización de cada empresa; retirarlo si la alianza termina |
+| **20 logos de empresas que contratan** | Emplea y Global (`src/data/hiringCompanies.js`) | Igual |
+| **10 logos de clientes** | FullService (`src/data/fullServiceClients.js`) | Igual |
+| **Videos de personas** | Nosotros (CEO + 8 campers: Amed Felipe, David Gomez, Dylan Rodriguez, Jesús Bustamante, Andres Daza, David Vargas, Ivana Paternina, Jhon Hernandez), Sé un camper (Santiago Laguado, Juan Rubio, Edinson Aparicio), Inicio (Juliana) | Autorización de uso de imagen de cada persona. El video de Jhon Hernandez muestra la marca **SURA**: confirmar que puede aparecer |
+| **Retratos** de Cristian Velez y Clément Memain | Emplea (testimonios) | Autorización de uso de imagen |
+| **Testimonios de AI Academy** (4 personas) | AI Academy | Que sean reales y haya permiso para publicarlos |
+| **Casco 3D** (`src/assets/images/emplea/helmet.webp`) | Contacto de Emplea | La copia de referencia parece de un banco de imágenes. Confirmar licencia; plan B: usar el casco del logo (`logo-mark.webp`) |
+| **4 imágenes generadas con Gemini** (`src/assets/images/emplea/why-*.webp`) | Emplea, "Por qué nos eligen" | Que los términos de la cuenta permitan uso comercial. Muestran trajes con la bandera de Colombia: evitar que se interpreten como fotos reales de una agencia espacial |
 
-Si se agrega una librería, revisar su licencia (`node_modules/<paquete>/package.json` → `license`) y, si se incluye en el sitio, añadirla a `public/licenses/` y a /creditos.
+### 6.3 Reglas para agregar imágenes o videos
 
----
-
-## 6. Marcas e imágenes
-
-| Recurso | Situación | Recomendación |
-|---|---|---|
-| Logo y mascota de Campuslands | Propios | — |
-| **Logos de los 24 aliados** | Marcas de cada empresa, entregadas por Campuslands | **⚖️** Confirmar que existe autorización de cada aliado para mostrar su logo; retirarlo si la alianza termina. Están listados en `src/data/partners.js`. |
-| Captura de WhatsApp (Órbit) | Muestra la interfaz de WhatsApp (marca de Meta) con el chat oficial de Campuslands | Uso ilustrativo del canal oficial; no alterar la marca. |
-| Íconos de redes sociales | Dibujados en el proyecto, inspirados en cada marca | Riesgo bajo; si se prefiere, reemplazar por los íconos oficiales que cada red ofrece en su guía de marca. |
-| Nombres de redes y de WhatsApp | Marcas de sus titulares | Indicado en /creditos. |
-| Videos de testimonios y de Campuslands | Propios (entregados por Campuslands) | **⚖️** Confirmar que las personas que aparecen autorizaron el uso de su imagen en la web. |
-| Imagen satelital | NASA Blue Marble: Next Generation — dominio público | Mantener el crédito en /creditos ("NASA Earth Observatory"); no sugerir respaldo de NASA. |
-| Logos de las 20 empresas que contratan (Emplea) | Marcas de cada empresa; 9 no están entre los aliados del Inicio (Vensure, WMWISE, wiedii, CONEXALAB, SYSCOM, IRIDIAN, QUIBOR, SmartData, macondotek) | **⚖️** Confirmar autorización de cada empresa para mostrar su logo. Listado en `src/data/hiringCompanies.js`. |
-| Logos de tecnologías (Python, Java, PHP, etc.) | Marcas de sus titulares; dibujos de Simple Icons (CC0) | Uso nominativo: solo para nombrar lo que se enseña. Acreditado en /creditos. Java usa el logo de OpenJDK (Simple Icons no incluye el de Oracle). |
-| **Casco 3D** (contacto de Emplea) | Venía en los recursos de la web anterior (`casco.webp`); la copia `Content MD/ideas/png/helmet.png` parece una vista previa de un banco de imágenes (fondo de cuadros pegado) | **⚖️** Confirmar que Campuslands tiene la licencia de esta imagen. Plan B: reemplazarla por el casco del logo (`logo-mark.png`). |
-| Retratos de Cristian Velez y Clément Memain | Recursos de la web anterior | **⚖️** Confirmar autorización de las personas para usar su foto. |
-| Fondos de "Por qué nos eligen" (Emplea) | 4 imágenes **generadas con Gemini** (IA de Google), entregadas por el responsable; originales en `Content MD/ideas/ai images/` | **⚖️** Confirmar que el uso comercial está permitido por los términos de la cuenta con que se generaron. Muestran trajes con la bandera de Colombia: evitar que se interpreten como fotos reales de una agencia espacial. |
-| Fotos o videos de terceros | **No se usan** | Si se agregan, usar solo material propio o con licencia que permita uso comercial, y registrar la fuente. |
+- Solo material propio, de dominio público o con licencia que permita **uso comercial**.
+- **No** usar capturas de Google Maps/Earth, Esri o Mapbox sin licencia, ni imágenes de bancos sin pagar (ej. la referencia `Content MD/ideas/png/earth.png` tiene marca de agua).
+- Registrar la fuente en este documento y acreditarla en `/creditos`.
 
 ---
 
-## 7. Privacidad
+## 7. Privacidad y datos personales
 
-- **Sin cookies** y sin herramientas de analítica o seguimiento.
-- `localStorage` guarda solo el idioma elegido (preferencia funcional).
-- **Conexiones a terceros desde el navegador:** solo los servidores de mapas de OpenStreetMap (al ver el mapa). Google Fonts ya no se usa.
-- Los enlaces externos (WhatsApp, redes) solo se abren si el visitante hace clic.
-- **⚖️** Al publicar, revisar que la Política de tratamiento de datos personales mencione el servicio de mapas de terceros y cualquier herramienta que se agregue después (formularios, analítica, chat, etc.).
+| Tema | Situación |
+|---|---|
+| Cookies | **Ninguna** |
+| Analítica / rastreo / píxeles | **Ninguno** |
+| `localStorage` | Solo el idioma elegido (preferencia funcional) |
+| Conexiones a terceros al navegar | Solo OpenStreetMap, al ver el mapa del Inicio |
+| Formulario de FullService | **No envía datos a ningún servidor:** abre el correo del visitante con el mensaje; el visitante decide si lo envía |
+| Consulta de facturas | Hoy no envía nada (API no conectada). **Cuando se conecte** enviará el número de documento: usar HTTPS, no guardar el número en el navegador y mencionarlo en la política de privacidad ⚖️ |
+| Enlaces externos (WhatsApp, redes) | Solo se abren si el visitante hace clic |
+
+**⚖️ Política de tratamiento de datos:** el texto publicado (`src/content/legal/privacidad.md`, copiado del original) **está incompleto**: su índice lista 7 secciones y el texto llega solo a la 3. Completarlo y añadir el servicio de mapas y, cuando existan, la consulta de facturas, formularios y cualquier analítica.
 
 ---
 
-## 8. Lista de verificación antes de publicar
+## 8. Contenido y textos
 
-- [ ] La atribución "© OpenStreetMap contributors" se ve en el mapa.
-- [ ] La página **/creditos** está enlazada en el pie y sus enlaces a licencias abren (`/licenses/...`).
-- [ ] Las capturas de respaldo del mapa corresponden a las coordenadas actuales de cada sede.
-- [ ] No hay una `Referrer-Policy` que bloquee el `Referer` en el servidor.
-- [ ] **Texto de la política de privacidad completo**: el entregado (`Content MD/Politicas`) solo llega a la sección 3; faltan las secciones 4 a 7 que lista su propio índice.
-- [ ] Teléfono del equipo comercial de Emplea: el contenido dice "+57 318 945 690132"; se usó **+57 318 945 6901** (el mismo número del enlace de WhatsApp). Confirmar.
-- [ ] **⚖️** Licencia del casco 3D y autorización de logos y retratos de Emplea.
-- [ ] FullService: el formulario de contacto abre el correo del usuario (mailto a info@campuslands.com); no hay servidor que lo reciba. Si se quiere envío directo hace falta un servicio de formularios (registrar aquí).
-- [ ] **⚖️** Autorización de los 10 logos de clientes de FullService (`src/data/fullServiceClients.js`).
-- [ ] AI Academy: la "próxima masterclass" tiene fecha 14 oct 2026, que ya pasó. Se actualiza a mano en **src/data/masterclass.js** (archivo comentado paso a paso).
-- [ ] Facturación: no hay API de facturas. La página muestra "consulta en línea no disponible" + contacto. Para activarla, definir VITE_BILLING_ENDPOINT (ver src/services/billing.js y .env.example). Revisar tratamiento de datos (número de documento) cuando se conecte.
-- [ ] **⚖️** Videos de los 8 campers en Nosotros (Amed Felipe, David Gomez, Dylan Rodriguez, Jesús Bustamante, Andres Daza, David Vargas, Ivana Paternina, Jhon Hernandez; archivos en public/videos/): confirmar autorización de imagen de cada persona. El de Jhon Hernandez muestra la marca SURA.
-- [ ] AI Academy: "Ir a masterclass" y "Generar diagnóstico" iban a páginas de la web anterior; hoy abren WhatsApp con un mensaje prellenado. Confirmar destino.
-- [ ] AI Academy: confirmar que los 4 testimonios son reales y que hay permiso para publicarlos; las descripciones de las 14 herramientas son textos nuestros [PROVISIONAL]. Los nombres de herramientas se muestran sin logos (solo la inicial) para no depender de licencias de marca.
-- [ ] **⚖️** Autorización de uso de logos de aliados.
-- [ ] **⚖️** Política de tratamiento de datos actualizada (servicio de mapas).
-- [ ] **⚖️** Autorización de imagen de las personas en los videos.
-- [ ] Videos pesados: `public/videos/` suma ~31 MB; antes de subir al repositorio/servidor decidir si se alojan fuera (YouTube/Vimeo/CDN).
+- Los textos salen del material original de Campuslands (`Content MD/Whole page/`).
+- Los **escritos por el equipo** están marcados `[PROVISIONAL]` en `src/i18n/es.js` y `en.js`. Entre ellos: descripciones de las áreas del Inicio, descripciones de las tecnologías de Nosotros y de las herramientas de AI Academy, presentación del bloque de código de Sé un camper, texto de "Clase en vivo" y mensajes de la consulta de facturas.
+- La traducción al **inglés** es propia; conviene una revisión nativa, sobre todo en los testimonios.
+- **Diferencias conocidas con la web original** (decididas dejar así): match laboral 90.4% (el original muestra 85.4% en el bloque final), sin la tarjeta "Sé un Camper" en servicios del Inicio, sin la franja "Reclutando nodo Bogotá…", misión y visión con redacción ajustada, y teléfono de Emplea `+57 318 945 6901` (el original dice `…690132`).
+- **Masterclass:** se actualiza a mano en `src/data/masterclass.js`. El original ya muestra el **21 oct de 2026**; el sitio aún dice 14 oct.
+
+---
+
+## 9. Lista de verificación antes de publicar
+
+**Técnico**
 - [ ] `npm run build` sin errores.
+- [ ] El hosting sirve `index.html` en cualquier ruta (`_redirects` o equivalente).
+- [ ] Reglas de caché aplicadas (`_headers` o equivalente).
+- [ ] No hay una `Referrer-Policy` que bloquee el `Referer` (mapa).
+- [ ] Decidir dónde viven los videos (~120 MB): hosting, Git LFS o CDN.
+- [ ] Medir con Lighthouse en el dominio real.
+- [ ] Probar en Safari (iPhone/Mac) y Firefox.
+
+**Atribuciones**
+- [ ] "© OpenStreetMap contributors" visible en el mapa.
+- [ ] `/creditos` enlazada en el pie y sus enlaces a licencias abren.
+- [ ] Capturas de respaldo del mapa al día con las coordenadas de cada sede.
+
+**Contenido**
+- [ ] Fecha y datos de la masterclass actualizados.
+- [ ] Teléfono del equipo comercial de Emplea confirmado.
+- [ ] Destino de "Ir a masterclass" y "Generar diagnóstico" (hoy WhatsApp con mensaje prellenado).
+- [ ] Textos `[PROVISIONAL]` revisados o aprobados.
+
+**Legal ⚖️**
+- [ ] Autorización de los logos de empresas (aliados, empresas que contratan, clientes).
+- [ ] Autorización de imagen de todas las personas en videos y fotos.
+- [ ] Licencia del casco 3D de Emplea.
+- [ ] Uso comercial permitido para las imágenes generadas con Gemini.
+- [ ] Política de privacidad completa y con el servicio de mapas.
 
 ---
 
-## 9. Qué hacer si algo falla
+## 10. Qué hacer si algo falla
 
 | Síntoma | Causa probable | Acción |
 |---|---|---|
-| El mapa muestra una imagen fija en vez del mapa interactivo | OpenStreetMap no responde o bloqueó el acceso | Nada urgente: el plan B está funcionando. Si persiste días, cambiar de proveedor (sección 4). |
-| Un botón lleva a una página de error | Cambió o se retiró la URL de destino | Corregir la URL en `src/constants/links.js`. |
-| Las letras se ven con otra tipografía | Falta un archivo en `src/assets/fonts/` | Restaurarlo desde el repositorio o volver a descargarlo (ver `fonts.css`). |
+| El mapa muestra una imagen fija | OpenStreetMap no responde o bloqueó el acceso | Nada urgente: el plan B funciona. Si dura días, cambiar de proveedor (sección 5) |
+| Recargar una página da error 404 | El hosting no redirige a `index.html` | Configurar la regla de `_redirects` en el hosting |
+| Un botón lleva a una página de error | Cambió la URL de destino | Corregir en `src/constants/links.js` |
+| Un video no se reproduce | Falta el archivo o la ruta cambió | Revisar `public/videos/` y `src/constants/videos.js` |
+| Las letras se ven con otra tipografía | Falta un archivo en `src/assets/fonts/` | Restaurarlo desde el repositorio |
+| El formulario de FullService "no hace nada" | El visitante no tiene cliente de correo | Usar el botón de WhatsApp de la misma sección; a futuro, servicio de formularios |
+| Facturación dice "no disponible" | API no conectada (comportamiento esperado) | Definir `VITE_BILLING_ENDPOINT` cuando exista la API |
+
+---
+
+## 11. Regla para recursos nuevos
+
+Todo recurso o servicio externo nuevo (tipografía, imagen, video, datos, mapa, API, analítica, formulario, chat) se registra aquí con **su licencia, su riesgo y un plan B de funcionamiento**, se acredita en **`/creditos`** y, si trata datos de visitantes, se añade a la **política de privacidad**.

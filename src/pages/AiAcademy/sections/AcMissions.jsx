@@ -40,8 +40,8 @@ export default function AcMissions() {
 
                 <span className="ac-mission__label">{missions.includes}</span>
                 <ul className="ac-mission__list">
-                  {m.features.map((f) => (
-                    <li key={f}>{f}</li>
+                  {m.features.map((f, fi) => (
+                    <li key={fi}>{f}</li>
                   ))}
                 </ul>
 
