@@ -196,6 +196,18 @@ const ICONS = {
       <circle {...L} cx="10" cy="38" r="3" />
     </>
   ),
+  // Equipo: tres personas (staffing)
+  team: (
+    <>
+      <circle {...F} cx="24" cy="16" r="6" />
+      <circle {...L} cx="24" cy="16" r="6" />
+      <path {...L} d="M13 38c0-7 5-12 11-12s11 5 11 12" />
+      <circle {...L} cx="10" cy="20" r="4" />
+      <path {...L} d="M3 36c0-5 3-8 7-8 2 0 3.5.6 5 1.8" />
+      <circle {...L} cx="38" cy="20" r="4" />
+      <path {...L} d="M45 36c0-5-3-8-7-8-2 0-3.5.6-5 1.8" />
+    </>
+  ),
   // Energía de fusión: plasma confinado en un anillo
   fusion: (
     <>

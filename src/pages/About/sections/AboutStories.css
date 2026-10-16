@@ -319,3 +319,154 @@
     --visible: 1.3;
   }
 }
+
+/* ---- Tarjeta con portada del video (toda la tarjeta es un botón) ---- */
+.reel-card__btn {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* Portada recortada al centro; los videos horizontales también llenan la tarjeta vertical */
+.reel-card__poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.85;
+  transition: opacity 0.3s var(--ease), transform 0.6s var(--ease);
+}
+
+.reel-card__btn:hover .reel-card__poster {
+  opacity: 1;
+  transform: scale(1.03);
+}
+
+/* Degradado inferior para que el nombre se lea sobre la imagen */
+.reel-card__btn::after {
+  content: '';
+  position: absolute;
+  inset: 45% 0 0;
+  background: linear-gradient(transparent, rgb(6 6 7 / 0.9));
+  pointer-events: none;
+}
+
+.reel-card__play,
+.reel-card__caption {
+  position: relative;
+  z-index: 1;
+}
+
+.reel-card__caption {
+  position: absolute;
+}
+
+.reel-card__play {
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.reel-card__label {
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.reel-card__btn:focus-visible {
+  outline: 2px solid var(--blue-400);
+  outline-offset: -2px;
+}
+
+/* ---- Ventana con el video en su formato real ---- */
+.reel-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgb(6 6 7 / 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: reel-modal-in 0.3s var(--ease) both;
+}
+
+.reel-modal__box {
+  display: grid;
+  width: min(1100px, 100%);
+  border: 1px solid rgb(255 255 255 / 0.14);
+  border-radius: 6px;
+  overflow: hidden;
+  background: #000;
+}
+
+/* Verticales: alto limitado por la pantalla, ancho según 9:16 */
+.reel-modal__box.is-vertical {
+  width: min(calc((100svh - 120px) * 9 / 16), 100%);
+}
+
+.reel-modal__video {
+  display: block;
+  width: 100%;
+  max-height: calc(100svh - 120px);
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+.reel-modal__box.is-vertical .reel-modal__video {
+  aspect-ratio: 9 / 16;
+}
+
+.reel-modal__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px 10px 18px;
+  background: var(--ink-900);
+  font-weight: 500;
+  color: #eef0f4;
+}
+
+.reel-modal__close {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgb(255 255 255 / 0.2);
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+}
+
+.reel-modal__close svg {
+  width: 16px;
+  stroke: #ffffff;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.reel-modal__close:hover {
+  border-color: #ffffff;
+}
+
+@keyframes reel-modal-in {
+  from { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reel-modal {
+    animation: none;
+  }
+}

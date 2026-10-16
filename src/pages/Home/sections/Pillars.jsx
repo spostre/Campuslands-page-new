@@ -5,7 +5,7 @@ import { useLanguage } from '@/context/LanguageContext'
 import './Pillars.css'
 
 // Estrella fugaz
-const SPEED = 0.47 // px por milisegundo (un cruce de escritorio dura ~3,4 s)
+const SPEED = 1 // px por milisegundo (un cruce de escritorio dura ~1,7 s)
 const LEAD_IN = 260 // aparece este tanto antes de la primera letra de la fila
 const LEAD_OUT = 240 // y se apaga este tanto después de la última
 const ARC_DROP = 56 // cuánto baja de punta a punta (px)

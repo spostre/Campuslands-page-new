@@ -1,0 +1,145 @@
+.ac-stories {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Casco del logo en la esquina superior derecha, inclinado */
+.ac-stories__logo {
+  position: absolute;
+  top: clamp(40px, 5vw, 80px);
+  right: var(--gutter);
+  width: clamp(90px, 10vw, 150px);
+  height: auto;
+  transform: rotate(14deg);
+  pointer-events: none;
+}
+
+.ac-stories__head {
+  max-width: 720px;
+  padding-right: clamp(0px, 12vw, 180px);
+  margin-bottom: clamp(36px, 4vw, 56px);
+}
+
+/* Testimonios: 2 × 2 con líneas finas */
+.ac-quotes {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid rgb(15 18 24 / 0.12);
+}
+
+.ac-quote {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(24px, 3vw, 44px) clamp(20px, 3vw, 44px) clamp(24px, 3vw, 36px) 0;
+  border-bottom: 1px solid rgb(15 18 24 / 0.12);
+}
+
+.ac-quote:nth-child(even) {
+  padding-left: clamp(20px, 3vw, 44px);
+  padding-right: 0;
+  border-left: 1px solid rgb(15 18 24 / 0.12);
+}
+
+.ac-quote__mark {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-size: 4rem;
+  line-height: 0.6;
+  color: var(--blue-600);
+}
+
+.ac-quote blockquote {
+  margin-top: 10px;
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 1.4vw, 1.3rem);
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+}
+
+.ac-quote__who {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 24px;
+}
+
+.ac-quote__avatar {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 3px;
+  background: var(--ink-950);
+  font-family: var(--font-nav);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.ac-quote__who strong {
+  display: block;
+  font-weight: 600;
+}
+
+.ac-quote__who span span {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.ac-quote__who time {
+  font-size: 0.8125rem;
+  color: var(--gray-500);
+}
+
+/* Banda de cierre */
+.ac-final {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px 56px;
+  flex-wrap: wrap;
+  margin-top: clamp(56px, 6vw, 96px);
+  padding: clamp(32px, 4.5vw, 64px);
+  border-radius: 2px;
+  background: var(--ink-950);
+  color: #eef0f4;
+}
+
+.ac-final .h2 {
+  max-width: 18ch;
+}
+
+.ac-final p {
+  max-width: 56ch;
+  margin-top: 12px;
+  line-height: 1.6;
+  color: #b9bfca;
+}
+
+@media (max-width: 800px) {
+  .ac-quotes {
+    grid-template-columns: 1fr;
+  }
+
+  .ac-quote,
+  .ac-quote:nth-child(even) {
+    padding-left: 0;
+    padding-right: 0;
+    border-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .ac-quote__who {
+    grid-template-columns: 40px minmax(0, 1fr);
+  }
+
+  .ac-quote__who time {
+    grid-column: 2;
+  }
+}

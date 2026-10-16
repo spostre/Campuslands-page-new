@@ -5,11 +5,9 @@ dist
 *.log
 .DS_Store
 
-# Material de referencia (solo local)
+# Material de referencia (solo local): textos, logos e imágenes de ideas, todo en Content MD
 /Content MD/
-/Idea/
-/Whatsapp/
-/logos/
 
-# Guía de diseño interna (solo local)
+# Documentos internos (solo local)
 /docs/DISENO.md
+/docs/POR_HACER.md

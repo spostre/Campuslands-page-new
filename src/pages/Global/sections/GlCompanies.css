@@ -1,0 +1,124 @@
+.gl-companies {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Overlay: arcos de latitud muy finos que salen de la esquina superior derecha */
+.gl-companies::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -20%;
+  z-index: -1;
+  width: 90%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: repeating-radial-gradient(circle, transparent 0 46px, rgb(31 85 214 / 0.09) 47px 48px);
+  -webkit-mask-image: radial-gradient(circle, #000 20%, transparent 70%);
+  mask-image: radial-gradient(circle, #000 20%, transparent 70%);
+}
+
+/* Y una luz azul muy suave abajo a la izquierda */
+.gl-companies::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -15%;
+  z-index: -1;
+  width: 55%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(111 157 255 / 0.12), transparent 65%);
+}
+
+.gl-companies__head {
+  max-width: 720px;
+  margin: 0 auto clamp(40px, 5vw, 64px);
+  text-align: center;
+}
+
+.gl-companies__head .eyebrow {
+  justify-content: center;
+}
+
+.gl-companies__head .lead {
+  margin-top: 16px;
+  color: var(--muted);
+}
+
+/* Ventana de la máquina: recorta los rodillos mientras llegan */
+.gl-reels {
+  display: grid;
+  gap: clamp(10px, 1.2vw, 16px);
+  overflow: hidden;
+  padding: 0 clamp(20px, 3vw, 44px);
+}
+
+.gl-reel {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(10px, 1.2vw, 16px);
+  opacity: 0;
+  transition:
+    transform 1.1s cubic-bezier(0.3, 1.3, 0.5, 1) calc(var(--r) * 0.12s),
+    opacity 0.4s linear calc(var(--r) * 0.12s);
+}
+
+.gl-reel--right { transform: translateX(-60%); }
+.gl-reel--left { transform: translateX(60%); }
+
+/* Filas desfasadas, como rodillos detenidos a destiempo */
+.gl-reel--left { margin-left: clamp(20px, 3vw, 44px); margin-right: calc(clamp(20px, 3vw, 44px) * -1); }
+.gl-reel--right { margin-left: calc(clamp(20px, 3vw, 44px) * -1); margin-right: clamp(20px, 3vw, 44px); }
+
+.gl-reels.is-revealed .gl-reel {
+  opacity: 1;
+  transform: none;
+}
+
+.gl-company {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 5 / 2;
+  padding: 10% 14%;
+  border-radius: 6px;
+  background: var(--ink-950);
+  transition: background-color 0.3s;
+}
+
+.gl-company:hover {
+  background: var(--ink-800);
+}
+
+.gl-company img {
+  width: 100%;
+  max-height: 46px;
+  object-fit: contain;
+  opacity: 0.9;
+}
+
+@media (max-width: 760px) {
+  .gl-reel {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gl-reel--left,
+  .gl-reel--right {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .gl-reels {
+    padding: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gl-reel {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

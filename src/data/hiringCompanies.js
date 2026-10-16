@@ -1,7 +1,7 @@
-// Empresas que contratan talento Campuslands (Content MD/Servicios/Servicios Emplea.md).
+// Empresas que contratan talento Campuslands (Content MD/Whole page/Servicios/Servicios Emplea.md).
 // No es la misma lista que la de aliados del Inicio (src/data/partners.js): coinciden 11 y
 // hay 9 que solo aparecen aquí. Logos en src/assets/logos/ (SVG en blanco, copiados desde
-// logos/Empresas/).
+// Content MD/logos/Empresas/).
 import aliaddo from '@/assets/logos/aliaddo.svg'
 import sio from '@/assets/logos/sio.svg'
 import mantis from '@/assets/logos/mantis.svg'

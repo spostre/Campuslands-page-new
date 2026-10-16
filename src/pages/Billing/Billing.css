@@ -1,0 +1,200 @@
+.billing {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  min-height: 100vh; /* respaldo para navegadores sin svh */
+  min-height: 100svh;
+  padding: calc(var(--header-height) + 48px) 0 80px;
+  background: var(--ink-950);
+}
+
+.billing__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(40px, 7vw, 130px);
+  align-items: center;
+}
+
+/* Lugar de la mascota + nombre */
+.billing__brand {
+  display: grid;
+  justify-items: center;
+  gap: clamp(18px, 2vw, 28px);
+}
+
+/* Misma proporción que la imagen de la mascota (315 × 379) */
+.billing__dock {
+  width: min(240px, 60%);
+  aspect-ratio: 315 / 379;
+}
+
+.billing__word {
+  width: min(280px, 70%);
+  height: auto;
+  filter: brightness(0) invert(1);
+}
+
+.billing__title {
+  max-width: 14ch;
+}
+
+.billing__text {
+  max-width: 480px;
+  margin: 20px 0 32px;
+  color: #b9bfca;
+}
+
+/* Formulario */
+.billing__form {
+  display: grid;
+  gap: 10px;
+  max-width: 560px;
+}
+
+.billing__form label {
+  font-family: var(--font-nav);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #cfd3da;
+}
+
+.billing__row {
+  display: flex;
+  gap: 10px;
+}
+
+.billing__row input {
+  flex: 1;
+  min-width: 0;
+  padding: 15px 16px;
+  border: 1px solid rgb(255 255 255 / 0.18);
+  border-radius: var(--radius-btn);
+  background: rgb(255 255 255 / 0.06);
+  font: inherit;
+  font-size: 1.0625rem;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  outline: none;
+  transition: border-color 0.25s, background-color 0.25s;
+}
+
+.billing__row input::placeholder {
+  color: var(--gray-500);
+}
+
+.billing__row input:focus {
+  border-color: var(--blue-400);
+  background: rgb(255 255 255 / 0.09);
+}
+
+.billing__row input[aria-invalid='true'] {
+  border-color: #ff8a8a;
+}
+
+.billing__row .btn {
+  border: 0;
+  cursor: pointer;
+}
+
+.billing__row .btn:disabled {
+  opacity: 0.7;
+  cursor: progress;
+}
+
+.billing__error {
+  font-size: 0.875rem;
+  color: #ff9d9d;
+}
+
+/* Resultado */
+.billing__result {
+  max-width: 560px;
+  margin-top: 22px;
+  padding: 20px 22px;
+  border: 1px solid rgb(255 255 255 / 0.12);
+  border-left: 3px solid var(--blue-400);
+  border-radius: 3px;
+  background: rgb(19 21 26 / 0.85);
+}
+
+.billing__result--empty,
+.billing__result--unavailable {
+  border-left-color: #f2bc93;
+}
+
+.billing__result strong {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.billing__result p {
+  margin-top: 8px;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: #b9bfca;
+}
+
+.billing__result ul {
+  list-style: none;
+  margin-top: 12px;
+}
+
+.billing__result li {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  padding: 10px 0;
+  border-top: 1px solid rgb(255 255 255 / 0.08);
+  font-size: 0.9375rem;
+}
+
+.billing__help {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  margin-top: 16px;
+  font-weight: 500;
+}
+
+.billing__support {
+  display: inline-flex;
+  gap: 8px;
+  margin-top: 28px;
+  font-family: var(--font-nav);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--blue-300);
+}
+
+.billing__support:hover {
+  color: #ffffff;
+}
+
+@media (max-width: 900px) {
+  .billing {
+    min-height: 0;
+  }
+
+  .billing__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .billing__brand {
+    padding: 24px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .billing__row {
+    flex-direction: column;
+  }
+}
+

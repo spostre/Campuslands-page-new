@@ -21,6 +21,11 @@ npm run preview  # sirve la versión final para revisarla
 | `/se-un-camper` | Sé un camper | Hecha |
 | `/nosotros` | Nosotros | Hecha |
 | `/servicios/emplea` | Campuslands Emplea | Hecha |
+| `/servicios/fullservice` | FullService | Hecha |
+| `/servicios/internacional` | Campuslands Global | Hecha |
+| `/servicios/ia-academy` | Campuslands AI Academy | Hecha |
+| `/servicios/staffing` | Staffing tecnológico | Hecha |
+| `/servicios/facturacion` | Facturación | Hecha (consulta sin API conectada) |
 | `/politicas-de-privacidad`, `/terminos-y-condiciones` | Políticas | Hechas |
 | `/creditos` | Créditos y licencias de terceros | Hecha |
 | `/servicios/*` (otros 5) | Servicios | "En construcción" |

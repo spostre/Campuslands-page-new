@@ -6,6 +6,7 @@
   display: flex;
   align-items: center;
   min-height: 100vh;
+  min-height: 100vh; /* respaldo para navegadores sin svh */
   min-height: 100svh;
   padding: calc(var(--header-height) + 48px) 0 64px;
 }

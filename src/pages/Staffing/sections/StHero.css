@@ -1,0 +1,244 @@
+.st-hero {
+  /* Diagonal: de 64 % arriba a 34 % abajo (mismos valores que la línea del SVG) */
+  --top-x: 64%;
+  --bottom-x: 34%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  min-height: 100vh; /* respaldo para navegadores sin svh */
+  min-height: 100svh;
+  padding: calc(var(--header-height) + 40px) 0 72px;
+  background: var(--ink-950);
+}
+
+/* Lado derecho de la diagonal, con estrellas */
+.st-hero__side {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  clip-path: polygon(var(--top-x) 0, 100% 0, 100% 100%, var(--bottom-x) 100%);
+  background: linear-gradient(160deg, var(--blue-600), var(--blue-700) 60%, #12398f);
+  animation: st-fade 0.9s var(--ease) 1s both;
+}
+
+/* Diagonal de luz que se dibuja de arriba abajo */
+.st-hero__line {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  filter: drop-shadow(0 0 8px rgb(255 255 255 / 0.6));
+  animation: st-line 1s cubic-bezier(0.65, 0, 0.35, 1) 0.9s both;
+}
+
+.st-hero__line line {
+  stroke: #ffffff;
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+
+@keyframes st-line {
+  from { clip-path: inset(0 0 100% 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+/* ---- Logo: primero solo en el centro, luego se ubica en el lado azul ----
+   Línea de tiempo: 0–0,8 s aparece en el centro · 0,9–1,9 s diagonal + azul + traslado
+   · 1,9 s en adelante texto y opciones */
+.st-hero__logo {
+  position: absolute;
+  z-index: 0;
+  left: 85%;
+  top: 82%;
+  width: clamp(260px, 30vw, 460px);
+  height: auto;
+  translate: -50% -50%;
+  filter: brightness(0) invert(1);
+  opacity: 0.18;
+  pointer-events: none;
+  animation: st-logo 1.9s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+
+@keyframes st-logo {
+  0% { left: 50%; top: 50%; width: 120px; opacity: 0; }
+  30% { left: 50%; top: 50%; width: 150px; opacity: 1; }
+  47% { left: 50%; top: 50%; width: 150px; opacity: 1; }
+  100% { left: 85%; top: 82%; width: clamp(260px, 30vw, 460px); opacity: 0.18; }
+}
+
+/* ---- Contenido ---- */
+.st-hero__grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(32px, 6vw, 120px);
+  align-items: center;
+}
+
+/* El texto queda del lado izquierdo de la diagonal */
+.st-hero__copy {
+  max-width: 34vw;
+}
+
+.st-hero__title {
+  max-width: 13ch;
+}
+
+.st-hero__text {
+  max-width: 480px;
+  margin: 24px 0 36px;
+  color: #b9bfca;
+}
+
+.st-hero__copy > * {
+  animation: st-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.st-hero__copy > :nth-child(1) { animation-delay: 1.85s; }
+.st-hero__copy > :nth-child(2) { animation-delay: 1.93s; }
+.st-hero__copy > :nth-child(3) { animation-delay: 2.01s; }
+.st-hero__copy > :nth-child(4) { animation-delay: 2.09s; }
+
+/* Vista previa de las opciones: escalones paralelos a la diagonal */
+.st-preview {
+  justify-self: end;
+  width: min(420px, 100%);
+}
+
+.st-preview__label {
+  animation: st-fade-up 0.6s var(--ease) 2.15s both;
+  display: block;
+  margin-bottom: 14px;
+  font-family: var(--font-nav);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 0.8);
+}
+
+.st-preview ul {
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.st-preview li {
+  /* Cada opción se corre un poco a la izquierda, siguiendo la diagonal */
+  margin-left: calc(var(--i) * -38px);
+  margin-right: calc(var(--i) * 38px);
+  animation: st-slide 0.9s cubic-bezier(0.22, 1, 0.36, 1) calc(2.3s + var(--i) * 0.16s) both;
+}
+
+.st-preview__item {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  padding: 16px 18px;
+  border: 1px solid rgb(255 255 255 / 0.12);
+  border-radius: 3px;
+  background: var(--ink-950);
+  box-shadow: 0 20px 40px -24px rgb(0 0 0 / 0.7);
+  color: #eef0f4;
+  transition: border-color 0.25s, background-color 0.25s;
+}
+
+.st-preview__item:hover {
+  border-color: #ffffff;
+  background: var(--ink-900);
+}
+
+.st-preview__item svg {
+  width: 44px;
+  fill: none;
+  stroke: var(--blue-300);
+  stroke-width: 6;
+}
+
+.st-preview__item strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 500;
+}
+
+.st-preview__item small {
+  font-family: var(--font-nav);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+}
+
+.st-preview__arrow {
+  color: var(--blue-300);
+  transition: transform 0.25s var(--ease);
+}
+
+.st-preview__item:hover .st-preview__arrow {
+  transform: translateY(3px);
+}
+
+/* Entrada de la vista previa: el rótulo aparece y las tarjetas llegan desde la derecha */
+@keyframes st-slide {
+  from { opacity: 0; transform: translateX(70px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes st-fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes st-rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes st-fade {
+  from { opacity: 0; }
+}
+
+/* Pantallas angostas: sin diagonal; texto y opciones apilados */
+@media (max-width: 960px) {
+  .st-hero {
+    min-height: 0;
+  }
+
+  .st-hero__line,
+  .st-hero__side,
+  .st-hero__logo {
+    display: none;
+  }
+
+  .st-hero__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .st-hero__copy {
+    max-width: none;
+  }
+
+  .st-preview {
+    justify-self: start;
+  }
+
+  .st-preview li {
+    margin: 0;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .st-hero *,
+  .st-hero__line,
+  .st-hero__side,
+  .st-hero__logo {
+    animation: none !important;
+  }
+}

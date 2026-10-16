@@ -4,6 +4,23 @@
   right: clamp(14px, 2vw, 28px);
   bottom: clamp(14px, 2vw, 28px);
   z-index: 40;
+  /* Muelle (Mascot.jsx): traslado + escala hasta el lugar de la página que la recibe */
+  transform: var(--mascot-tf, none);
+  transform-origin: 0 0;
+}
+
+/* Vuelo entre la esquina y el muelle (solo mientras dura el cambio, no al hacer scroll) */
+.mascot-root.is-flying .mascot {
+  transition: transform 0.9s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* En el muelle queda debajo del menú fijo */
+.mascot-root.is-docked .mascot {
+  z-index: 5;
+}
+
+.mascot-root.is-docked .mascot--outline {
+  z-index: 4;
 }
 
 /*
@@ -17,13 +34,22 @@
   pointer-events: none;
 }
 
+/*
+ * Contorno parejo y curvo: los drop-shadow encadenados se suman (cada uno copia todo lo anterior),
+ * así que cuatro pares opuestos (horizontal, vertical y las dos diagonales) forman un octógono
+ * casi redondo de ~2,6 px alrededor de la silueta, en lugar del borde cuadrado de antes.
+ */
 .mascot__img--outline {
   filter:
     brightness(0) invert(1)
-    drop-shadow(2.5px 0 0 #fff)
-    drop-shadow(-2.5px 0 0 #fff)
-    drop-shadow(0 2.5px 0 #fff)
-    drop-shadow(0 -2.5px 0 #fff);
+    drop-shadow(1.08px 0 0 #fff)
+    drop-shadow(-1.08px 0 0 #fff)
+    drop-shadow(0 1.08px 0 #fff)
+    drop-shadow(0 -1.08px 0 #fff)
+    drop-shadow(0.76px 0.76px 0 #fff)
+    drop-shadow(-0.76px -0.76px 0 #fff)
+    drop-shadow(0.76px -0.76px 0 #fff)
+    drop-shadow(-0.76px 0.76px 0 #fff);
 }
 
 /* La capa del borde imita la inclinación de la mascota al pasar el cursor */

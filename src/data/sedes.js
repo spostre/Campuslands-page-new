@@ -1,4 +1,4 @@
-// Sedes del selector "Localizar sede" (Content MD/home.md).
+// Sedes del selector "Localizar sede" (Content MD/Whole page/home.md).
 // Las coordenadas son aproximadas a nivel de ciudad/zona: reemplazar por la
 // ubicación exacta de cada sede cuando se tenga. Igual con `address`.
 //

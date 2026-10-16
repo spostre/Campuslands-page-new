@@ -40,7 +40,7 @@ Campuslands-new-page/
 └── src/                    Todo el código de la página (ver sección 3)
 ```
 
-**Carpetas locales que no van al repositorio** (están en `.gitignore`): `Content MD/` (textos originales de cada página), `Idea/` (imágenes de referencia de diseño), `logos/` (logos originales de Campuslands y de empresas), `Whatsapp/` (capturas originales), `node_modules/` y `dist/`. La página **no depende de ellas**: usa copias procesadas dentro de `src/assets/`.
+**Carpetas locales que no van al repositorio** (están en `.gitignore`): `Content MD/` — material de referencia, todo en un solo lugar: textos originales de cada página (`Whole page/` con los `.md` de cada página y `Whole page/Servicios/`, `Link/Links.md`, `Politicas/`), `vids/`, `logos/` (logos originales de Campuslands y `Empresas/`) e `ideas/` (`ai images/` imágenes generadas con IA, `web pages idea/` capturas de páginas de referencia, `png/` otras imágenes y capturas de WhatsApp) —; además `docs/DISENO.md`, `docs/POR_HACER.md`, `node_modules/` y `dist/`. La página **no depende de ellas**: usa copias procesadas dentro de `src/assets/`.
 
 ---
 
@@ -60,6 +60,11 @@ src/
 │   ├── Camper/             Página /se-un-camper, monocromo (.page-mono) (CamperHero, Programs, Stories)
 │   ├── About/              Página /nosotros en bandas (AboutHero, Impact + sedesGeo.js, Purpose, Knowledge, AboutStories)
 │   ├── Emplea/             Página /servicios/emplea (EmpleaHero + CodeTranslator, TechLeap, Stack, WhyUs + whyImages.js, Companies, EmpleaContact)
+│   ├── FullService/        Página /servicios/fullservice (FsHero, FsPhases, FsServices, FsStack, FsClients, FsContact)
+│   ├── Global/             Página /servicios/internacional (GlHero con el proceso, GlOrbit, GlModel, GlCompanies)
+│   ├── AiAcademy/          Página /servicios/ia-academy (AcHero, AcPain, AcMissions, AcMethod, AcTools, AcStories)
+│   ├── Staffing/           Página /servicios/staffing (StHero, StOptions, staffingSymbols.jsx; reutiliza los estilos del panel de GlModel)
+│   ├── Billing/            Página /servicios/facturacion (una sola sección; consulta en src/services/billing.js)
 │   ├── Legal/              Páginas /politicas-de-privacidad y /terminos-y-condiciones (lector de markdown mínimo)
 │   ├── Credits/            Página /creditos: créditos y licencias de terceros
 │   ├── ComingSoon/         Página "en construcción" (rutas aún sin diseñar)
@@ -83,6 +88,8 @@ src/
 │   └── navigation.js       Rutas internas del menú y del desplegable de Servicios
 ├── data/
 │   ├── hiringCompanies.js  Empresas que contratan (Emplea): 20 logos, 9 de ellos solo aquí
+│   ├── fullServiceClients.js  Clientes de FullService: 10 logos
+│   ├── masterclass.js      Próxima masterclass de AI Academy (se edita a mano; instrucciones dentro)
 │   ├── techLogos.js        Trazos de logos de tecnologías (Simple Icons, CC0)
 │   ├── partners.js         Lista de aliados con su logo
 │   └── sedes.js            Sedes del mapa: nombre, ubicación, coordenadas y captura de respaldo

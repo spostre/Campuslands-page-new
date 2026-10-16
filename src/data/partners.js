@@ -1,6 +1,6 @@
-// Aliados estratégicos (Content MD/home.md).
+// Aliados estratégicos (Content MD/Whole page/home.md).
 // Logos en src/assets/logos/ (SVG en blanco, pensados para fondo oscuro), copiados desde
-// logos/Empresas/. Si un aliado no tiene logo (`logo: null`) se muestra su nombre.
+// Content MD/logos/Empresas/. Si un aliado no tiene logo (`logo: null`) se muestra su nombre.
 import aliaddo from '@/assets/logos/aliaddo.svg'
 import kontrolCrm from '@/assets/logos/kontrol-crm.svg'
 import sio from '@/assets/logos/sio.svg'

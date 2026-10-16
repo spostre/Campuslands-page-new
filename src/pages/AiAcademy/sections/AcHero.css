@@ -1,0 +1,323 @@
+.ac-hero {
+  display: flex;
+  align-items: center;
+  min-height: 100vh; /* respaldo para navegadores sin svh */
+  min-height: 100svh;
+  padding: calc(var(--header-height) + 40px) 0 72px;
+}
+
+/* Luz desenfocada a la izquierda: naranja suave arriba que se funde con azul abajo */
+.ac-hero > .ac-hero__glow {
+  position: absolute;
+  inset: 0 45% 0 0;
+  pointer-events: none;
+}
+
+.ac-hero__glow span {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(110px);
+}
+
+.ac-hero__glow span:nth-child(1) {
+  top: 18%;
+  left: -12%;
+  width: 70%;
+  height: 60%;
+  background: rgb(214 146 104 / 0.42);
+}
+
+.ac-hero__glow span:nth-child(2) {
+  bottom: 6%;
+  left: 10%;
+  width: 55%;
+  height: 45%;
+  background: rgb(70 104 200 / 0.4);
+}
+
+.ac-hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(40px, 6vw, 110px);
+  align-items: center;
+}
+
+.ac-hero__title {
+  max-width: 14ch;
+}
+
+.ac-hero__text {
+  max-width: 520px;
+  margin-top: 24px;
+  color: #b9bfca;
+}
+
+.ac-hero__punch {
+  max-width: 520px;
+  margin: 24px 0 36px;
+  padding-left: 18px;
+  border-left: 3px solid var(--blue-400);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: #ffffff;
+}
+
+/* Entrada al cargar: texto primero, el pase después */
+.ac-hero__copy > * {
+  animation: ac-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.ac-hero__copy > :nth-child(2) { animation-delay: 0.08s; }
+.ac-hero__copy > :nth-child(3) { animation-delay: 0.16s; }
+.ac-hero__copy > :nth-child(4) { animation-delay: 0.24s; }
+.ac-hero__copy > :nth-child(5) { animation-delay: 0.32s; }
+
+.ac-pass-wrap {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  padding: 24px 0;
+  animation: ac-rise 1s cubic-bezier(0.22, 1, 0.36, 1) 0.45s both;
+}
+
+/* Órbita fina detrás del pase, con un punto de luz que gira muy despacio */
+.ac-orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(560px, 120%);
+  aspect-ratio: 1;
+  border: 1px solid rgb(147 182 255 / 0.16);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) rotate(-12deg) scaleY(0.62);
+  pointer-events: none;
+}
+
+.ac-orbit span {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  animation: ac-spin 40s linear infinite;
+}
+
+.ac-orbit span::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  margin-left: -4px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 12px 3px rgb(147 182 255 / 0.7);
+}
+
+@keyframes ac-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   PRÓXIMA MASTERCLASS — estilos del pase de abordaje (los datos están en
+   src/data/masterclass.js)
+   ========================================================================== */
+.ac-pass {
+  --notch: 14px;
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 150px;
+  width: min(540px, 100%);
+  border-radius: 6px;
+  background: #f4f6fa;
+  color: var(--ink-950);
+  box-shadow: 0 40px 80px -30px rgb(0 0 0 / 0.9);
+  /* Muescas del perforado entre el cuerpo y el talón */
+  -webkit-mask:
+    radial-gradient(circle var(--notch) at calc(100% - 150px) 0, transparent 98%, #000) top / 100% 51% no-repeat,
+    radial-gradient(circle var(--notch) at calc(100% - 150px) 100%, transparent 98%, #000) bottom / 100% 51% no-repeat;
+  mask:
+    radial-gradient(circle var(--notch) at calc(100% - 150px) 0, transparent 98%, #000) top / 100% 51% no-repeat,
+    radial-gradient(circle var(--notch) at calc(100% - 150px) 100%, transparent 98%, #000) bottom / 100% 51% no-repeat;
+}
+
+.ac-pass__main {
+  padding: 32px 28px 30px 32px;
+}
+
+.ac-pass__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-nav);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--blue-700);
+}
+
+.ac-pass__dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--blue-600);
+}
+
+.ac-pass__dot::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid var(--blue-600);
+  animation: ac-ping 2.4s ease-out infinite;
+}
+
+@keyframes ac-ping {
+  from { opacity: 0.9; transform: scale(0.6); }
+  to { opacity: 0; transform: scale(1.8); }
+}
+
+.ac-pass__topic {
+  margin-top: 14px;
+  font-family: var(--font-display);
+  font-size: 1.625rem;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.ac-pass__fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px dashed rgb(15 18 24 / 0.2);
+}
+
+.ac-pass__wide {
+  grid-column: span 2;
+}
+
+.ac-pass__fields dt {
+  font-family: var(--font-nav);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+}
+
+.ac-pass__fields dd {
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+.ac-pass__fields dd span {
+  display: block;
+  font-weight: 400;
+  font-size: 0.875rem;
+  color: var(--gray-600);
+}
+
+/* Talón: código, código de barras y enlace */
+.ac-pass__stub {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+  padding: 26px 18px;
+  border-left: 2px dashed rgb(255 255 255 / 0.35);
+  background: var(--blue-700);
+  color: #ffffff;
+}
+
+.ac-pass__code {
+  font-family: var(--font-nav);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+}
+
+/* Código de barras negro sobre recuadro blanco, bien contrastado */
+.ac-pass__barcode {
+  height: 96px;
+  border: 8px solid #ffffff;
+  border-width: 10px 8px;
+  border-radius: 2px;
+  background:
+    repeating-linear-gradient(90deg, var(--ink-950) 0 2px, #fff 2px 4px, var(--ink-950) 4px 5px, #fff 5px 8px, var(--ink-950) 8px 11px, #fff 11px 13px);
+}
+
+/* Presentación y botón fuera del pase */
+.ac-pass-intro {
+  position: relative;
+  z-index: 1;
+  width: min(540px, 100%);
+  margin-bottom: 20px;
+}
+
+.ac-pass-intro__kicker {
+  font-family: var(--font-nav);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--blue-300);
+}
+
+.ac-pass-intro p {
+  margin-top: 8px;
+  line-height: 1.6;
+  color: #c3c8d1;
+}
+
+.ac-pass-cta {
+  position: relative;
+  z-index: 1;
+  width: min(540px, 100%);
+  margin-top: 22px;
+}
+
+@keyframes ac-rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 960px) {
+  .ac-hero {
+    min-height: 0;
+  }
+
+  .ac-hero__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .ac-pass {
+    grid-template-columns: 1fr;
+    -webkit-mask: none;
+    mask: none;
+  }
+
+  .ac-pass__stub {
+    border-left: 0;
+    border-top: 2px dashed rgb(255 255 255 / 0.2);
+  }
+
+  .ac-pass__barcode {
+    height: 40px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ac-hero *,
+  .ac-pass-wrap {
+    animation: none !important;
+  }
+}

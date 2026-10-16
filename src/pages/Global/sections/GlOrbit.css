@@ -1,0 +1,71 @@
+.gl-orbit {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--ink-950);
+}
+
+.gl-orbit .orbit__text {
+  color: #b9bfca;
+}
+
+/* Luz morada desenfocada: tres manchas de tonos distintos que se desplazan muy despacio.
+   Quedan lejos de los bordes de arriba y abajo para no marcar cortes con las otras secciones. */
+.gl-orbit__glow {
+  position: absolute;
+  inset: 12% 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.gl-orbit__glow span {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.55;
+  animation: gl-drift 18s ease-in-out infinite alternate;
+}
+
+.gl-orbit__glow span:nth-child(1) {
+  top: 10%;
+  right: 8%;
+  width: 42%;
+  height: 70%;
+  background: #6b3fd6;
+}
+
+.gl-orbit__glow span:nth-child(2) {
+  top: 35%;
+  right: 30%;
+  width: 26%;
+  height: 50%;
+  background: #a259e8;
+  opacity: 0.35;
+  animation-duration: 23s;
+  animation-delay: -6s;
+}
+
+.gl-orbit__glow span:nth-child(3) {
+  top: 20%;
+  left: 4%;
+  width: 24%;
+  height: 50%;
+  background: #3b2a8f;
+  opacity: 0.4;
+  animation-duration: 27s;
+  animation-delay: -12s;
+}
+
+@keyframes gl-drift {
+  to { transform: translate(-6%, 8%) scale(1.08); }
+}
+
+.gl-orbit .orbit__window {
+  box-shadow: 0 40px 90px -30px rgb(40 10 90 / 0.8);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gl-orbit__glow span {
+    animation: none;
+  }
+}

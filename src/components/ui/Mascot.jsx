@@ -1,10 +1,16 @@
 import { useEffect, useRef, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import { useLanguage } from '@/context/LanguageContext'
 import mascotImage from '@/assets/images/mascot.png'
 import './Mascot.css'
 
 // Mascota oficial como sticker flotante. Detalle opcional:
 // para quitarla basta con borrar <Mascot /> de MainLayout.
+//
+// "Muelle": si la página tiene un elemento con el atributo data-mascot-dock (hoy solo
+// Facturación), la mascota vuela desde la esquina hasta ese lugar y toma su tamaño; lo sigue al
+// hacer scroll o cambiar el tamaño de la ventana. Al ir a otra página vuelve a la esquina.
+const FLIGHT_MS = 900
 
 const EMOTES = [
   'OK!', "Let's go!", '¡Vamos!', '#GoForIt', 'Hi!', 'Yay!', 'Wow!', 'Go!', '¡Uy!',
@@ -36,6 +42,8 @@ export default function Mascot() {
   const audioRef = useRef(null)
   const streak = useRef({ count: 0, last: 0 })
   const lastInteraction = useRef(Date.now())
+  const rootRef = useRef(null)
+  const { pathname } = useLocation()
 
   const emit = (texts) => {
     setBursts((list) => [
@@ -66,7 +74,7 @@ export default function Mascot() {
       s.count = 0
       react('flip')
       emit(['🎉', lang === 'es' ? '¡Combo!' : 'Combo!', '🚀'])
-      playMelody(audioRef, COMBO_SOUND, 0.06)
+      playMelody(audioRef, COMBO_SOUND, 0.1)
       return
     }
 
@@ -96,10 +104,71 @@ export default function Mascot() {
     return () => clearInterval(timer)
   }, [])
 
+  // Muelle: mueve la mascota (ambas capas) hasta el elemento [data-mascot-dock] de la página
+  useEffect(() => {
+    const root = rootRef.current
+    if (!root) return
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    let frame = 0
+    let flightTimer = 0
+
+    const fly = () => {
+      if (reduce) return
+      root.classList.add('is-flying')
+      clearTimeout(flightTimer)
+      flightTimer = setTimeout(() => root.classList.remove('is-flying'), FLIGHT_MS + 50)
+    }
+
+    const btn = root.querySelector('.mascot:not(.mascot--outline) .mascot__btn')
+    let dock = null
+
+    // Posición natural (esquina inferior derecha) calculada igual que en Mascot.css
+    const place = () => {
+      if (!dock || !btn) return
+      const vw = document.documentElement.clientWidth
+      const vh = window.innerHeight
+      const gap = Math.min(28, Math.max(14, window.innerWidth * 0.02))
+      const w = btn.offsetWidth
+      const h = btn.offsetHeight
+      const r = dock.getBoundingClientRect()
+      const s = r.width / w
+      const tx = r.left - (vw - gap - w)
+      const ty = r.top + (r.height - h * s) / 2 - (vh - gap - h)
+      root.style.setProperty('--mascot-tf', `translate(${tx}px, ${ty}px) scale(${s})`)
+    }
+    const onChange = () => {
+      cancelAnimationFrame(frame)
+      frame = requestAnimationFrame(place)
+    }
+
+    // Espera a que la página nueva esté pintada antes de medir
+    const start = requestAnimationFrame(() => {
+      dock = document.querySelector('[data-mascot-dock]')
+      if (dock) {
+        root.classList.add('is-docked')
+        fly()
+        place()
+        window.addEventListener('scroll', onChange, { passive: true })
+        window.addEventListener('resize', onChange)
+      } else if (root.classList.contains('is-docked')) {
+        root.classList.remove('is-docked')
+        fly()
+        root.style.removeProperty('--mascot-tf')
+      }
+    })
+
+    return () => {
+      cancelAnimationFrame(start)
+      cancelAnimationFrame(frame)
+      window.removeEventListener('scroll', onChange)
+      window.removeEventListener('resize', onChange)
+    }
+  }, [pathname])
+
   const removeBurst = (id) => setBursts((list) => list.filter((b) => b.id !== id))
 
   return (
-    <div className="mascot-root">
+    <div ref={rootRef} className="mascot-root">
       {/* Borde reflectivo: silueta algo más grande en modo "diferencia", invierte el color de lo que
           tenga detrás. Va en su propia capa (hermana de la mascota) para poder mezclarse con la
           página, y repite la misma flotación, inclinación y reacción para ir siempre alineada. */}
@@ -150,7 +219,7 @@ function MascotFigure({ reaction, className }) {
 
 // Melodía corta tipo "blip" generada con Web Audio (sin archivos).
 // La nota base varía en cada toque para que no suene repetitivo.
-function playMelody(audioRef, steps, volume = 0.07) {
+function playMelody(audioRef, steps, volume = 0.11) {
   try {
     const Ctx = window.AudioContext || window.webkitAudioContext
     if (!Ctx) return

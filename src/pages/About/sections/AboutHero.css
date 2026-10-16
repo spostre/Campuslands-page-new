@@ -2,6 +2,7 @@
 .about-hero {
   display: flex;
   align-items: center;
+  min-height: 100vh; /* respaldo para navegadores sin svh */
   min-height: 100svh;
   padding: calc(var(--header-height) + 32px) 0 48px;
   overflow: hidden;
@@ -87,6 +88,7 @@
   position: relative;
   display: grid;
   place-items: center;
+  height: min(calc(100vh - var(--header-height) - 96px), 760px);
   height: min(calc(100svh - var(--header-height) - 96px), 760px);
   min-height: 460px;
   aspect-ratio: 9 / 16;

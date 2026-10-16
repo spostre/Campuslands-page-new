@@ -1,0 +1,156 @@
+/* Mitad negra (título) y mitad clara (fases), con las burbujas sobre el borde que las divide */
+.fs-phases {
+  --bubble: clamp(112px, 11vw, 150px);
+  position: relative;
+}
+
+.fs-phases__top {
+  padding: calc(var(--section-space) * 0.7) 0 calc(var(--bubble) / 2 + 56px);
+  background: var(--ink-950);
+  color: #eef0f4;
+}
+
+.fs-phases__head {
+  max-width: 620px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.fs-phases__head .eyebrow {
+  justify-content: center;
+}
+
+.fs-phases__bottom {
+  padding-bottom: calc(var(--section-space) * 0.8);
+}
+
+.fs-phases__row {
+  position: relative;
+}
+
+/* Línea de luz sobre el borde negro/blanco (se dibuja al entrar en pantalla) */
+.fs-phases__line {
+  position: absolute;
+  top: 0;
+  left: var(--gutter);
+  right: var(--gutter);
+  height: 2px;
+  margin-top: -1px;
+  background: linear-gradient(90deg, transparent, var(--blue-400) 12%, #8be0fb 50%, var(--blue-400) 88%, transparent);
+  box-shadow: 0 0 14px rgb(111 157 255 / 0.6);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.6s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.fs-phases__row.is-revealed .fs-phases__line {
+  transform: scaleX(1);
+}
+
+.fs-phases__list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.fs-phase {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Burbuja: medio en el negro, medio en el blanco */
+.fs-phase__bubble {
+  position: relative;
+  display: grid;
+  place-content: center;
+  gap: 4px;
+  width: var(--bubble);
+  aspect-ratio: 1;
+  margin-top: calc(var(--bubble) / -2);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #22304d, #0d1220 70%);
+  border: 1px solid rgb(147 182 255 / 0.45);
+  box-shadow:
+    0 0 0 8px var(--paper),
+    0 18px 40px -16px rgb(15 18 24 / 0.6),
+    inset 0 0 24px rgb(111 157 255 / 0.18);
+  color: #ffffff;
+  opacity: 0;
+  transform: scale(0.6);
+  transition:
+    opacity 0.5s var(--ease) calc(0.25s + var(--i) * 0.35s),
+    transform 0.7s cubic-bezier(0.22, 1.4, 0.36, 1) calc(0.25s + var(--i) * 0.35s);
+}
+
+.fs-phase__num {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 2.6vw, 2.4rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.fs-phase__code {
+  font-family: var(--font-nav);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8be0fb;
+}
+
+.fs-phase__title {
+  margin-top: 26px;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+}
+
+.fs-phase__text {
+  max-width: 26ch;
+  margin-top: 8px;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.fs-phase__title,
+.fs-phase__text {
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.6s var(--ease) calc(0.45s + var(--i) * 0.35s),
+    transform 0.6s var(--ease) calc(0.45s + var(--i) * 0.35s);
+}
+
+.fs-phases__row.is-revealed .fs-phase__bubble,
+.fs-phases__row.is-revealed .fs-phase__title,
+.fs-phases__row.is-revealed .fs-phase__text {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 860px) {
+  .fs-phases__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 56px;
+  }
+
+  /* Solo la primera fila de burbujas queda sobre el borde; la segunda va dentro del blanco */
+  .fs-phase:nth-child(n + 3) .fs-phase__bubble {
+    margin-top: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fs-phases__line,
+  .fs-phase__bubble,
+  .fs-phase__title,
+  .fs-phase__text {
+    transition: none;
+  }
+}

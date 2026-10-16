@@ -10,6 +10,7 @@
 /* ---- Mapa: caja con la proporción de la imagen (las marcas usan la misma caja) ---- */
 .geo {
   position: relative;
+  width: min(100%, calc(100vh * var(--geo-ratio)));
   width: min(100%, calc(100svh * var(--geo-ratio)));
   margin: 0 auto;
   aspect-ratio: var(--geo-ratio);
@@ -79,6 +80,7 @@
   border: 1px solid rgb(255 255 255 / 0.14);
   border-radius: 6px;
   background: rgb(5 9 18 / 0.55);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
 

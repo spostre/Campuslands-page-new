@@ -1,4 +1,4 @@
-// Textos en español. Fuente: Content MD/home.md
+// Textos en español. Fuente: Content MD/Whole page/home.md
 
 const es = {
   nav: {
@@ -11,11 +11,11 @@ const es = {
     closeMenu: 'Cerrar menú',
     language: 'Idioma',
     servicesMenu: {
-      aiAcademy: 'Campuslands AI Academy',
+      emplea: 'Emplea',
+      fullService: 'Full Service',
+      international: 'Campuslands Global',
+      aiAcademy: 'Campuslands IA Academy',
       staffing: 'Staffing tecnológico',
-      emplea: 'Campuslands Emplea',
-      fullService: 'FullService Software',
-      international: 'Campuslands Internacional',
       billing: 'Facturación',
     },
   },
@@ -30,7 +30,7 @@ const es = {
     rights: '© 2026 Campuslands. Todos los derechos reservados.',
   },
 
-  // Sé un camper. Fuente: Content MD/Sé un camper.md
+  // Sé un camper. Fuente: Content MD/Whole page/Sé un camper.md
   // Los nombres de las dos líneas de programas son nuestros (el contenido numera Mission 01/02 dos veces).
   camper: {
     hero: {
@@ -122,7 +122,7 @@ const es = {
     },
   },
 
-  // Nosotros. Fuente: Content MD/About us.md
+  // Nosotros. Fuente: Content MD/Whole page/About us.md
   // Las definiciones de las tecnologías son nuestras (el contenido trae placeholders).
   about: {
     hero: {
@@ -201,7 +201,8 @@ const es = {
       cta: 'Quiero iniciar',
       secondary: 'Solicitar asesoría',
       video: 'Testimonio camper',
-      featured: 'Programando el Futuro – Desde Tibú, Norte de Santander, hasta Campuslands',
+      watch: 'Ver el testimonio de',
+      close: 'Cerrar video',
       prev: 'Video anterior',
       next: 'Video siguiente',
     },
@@ -239,6 +240,20 @@ const es = {
         ],
       },
       {
+        title: 'La Tierra de noche (Campuslands Global)',
+        text: 'El fondo de la portada de Campuslands Global es un render propio hecho a partir del mapa "Black Marble 2016" (luces nocturnas de la Tierra) de NASA Earth Observatory, de dominio público: proyectado sobre una esfera (Europa y África) con un borde de atmósfera añadido. Alojado en este mismo sitio.',
+        items: [
+          { name: 'Mapa: NASA Earth Observatory — Black Marble 2016', href: 'https://earthobservatory.nasa.gov/features/NightLights' },
+        ],
+      },
+      {
+        title: 'Imagen de la Luna (FullService)',
+        text: 'La Luna de fondo del contacto de FullService es una imagen del archivo de NASA Goddard (Lunar Reconnaissance Orbiter), de dominio público. Se cita la fuente como pide NASA. La imagen está alojada en este mismo sitio.',
+        items: [
+          { name: 'Imagen: NASA Goddard Space Flight Center — GSFC_20171208_Archive_e001860', href: 'https://images.nasa.gov/details/GSFC_20171208_Archive_e001860' },
+        ],
+      },
+      {
         title: 'Logos de tecnologías (Emplea)',
         text: 'Los logos de Python, HTML5, CSS3, JavaScript, MySQL, PostgreSQL, Node.js, Java (OpenJDK), PHP, .NET y Git provienen de Simple Icons, publicados bajo CC0 1.0 (dominio público). Son marcas de sus respectivos titulares y se muestran solo para nombrar las tecnologías que se enseñan.',
         items: [
@@ -262,7 +277,7 @@ const es = {
     ],
   },
 
-  // Campuslands Emplea. Fuente: Content MD/Servicios/Servicios Emplea.md
+  // Campuslands Emplea. Fuente: Content MD/Whole page/Servicios/Servicios Emplea.md
   // PROVISIONAL (textos nuestros): el programa de ejemplo del hero y su traducción, y las
   // descripciones de cada tecnología en "Especialistas".
   emplea: {
@@ -370,6 +385,319 @@ const es = {
       cta: 'Contactar ahora',
       follow: 'Síguenos',
     },
+  },
+
+  // FullService. Fuente: Content MD/Whole page/Servicios/Servicios Full service.md
+  // Corrección de redacción: "Automatizamos procesos, analizar datos y crear…" → "analizamos datos y creamos…".
+  fullService: {
+    hero: {
+      eyebrow: 'FullService',
+      title: 'Ingeniería de *alto rendimiento*',
+      text: 'Traducimos visiones empresariales en arquitecturas de software escalables.',
+      cta: 'Cotizar mi proyecto',
+      tags: ['Staffing tecnológico', 'Software a la medida con IA', 'Software a la medida'],
+    },
+    phases: {
+      eyebrow: 'Cómo trabajamos',
+      title: 'Fases del *proceso*',
+      items: [
+        { code: 'Phase_01', title: 'Descubrimiento', text: 'Descubrimiento del proyecto, charla sobre el negocio y conocimiento de sistemas.' },
+        { code: 'Phase_02', title: 'Reconocimiento', text: 'Asignación de requerimientos y metas.' },
+        { code: 'Phase_03', title: 'Desarrollo', text: 'Desarrollo iterativo del proyecto.' },
+        { code: 'Phase_04', title: 'Pruebas', text: 'Pruebas de calidad.' },
+      ],
+    },
+    services: {
+      eyebrow: 'Nuestros servicios',
+      title: 'Conoce lo que *ofrecemos* para ti',
+      cta: 'Contactar ahora',
+      groups: [
+        {
+          label: 'Inteligencia artificial',
+          items: [
+            { title: 'Software a la medida con IA', text: 'Automatizamos procesos, analizamos datos y creamos soluciones inteligentes que generan ventaja competitiva real.' },
+          ],
+        },
+        {
+          label: 'Desarrollo de software',
+          items: [
+            { title: 'Software a la medida', text: 'Sistemas personalizados alineados a tus procesos de negocio, desde aplicaciones web hasta sistemas empresariales robustos y escalables.' },
+            { title: 'Consultoría software', text: 'Diseñamos y modernizamos arquitecturas de software para hacer tus sistemas más seguros y escalables.' },
+            { title: 'Staffing tecnológico', text: 'Integramos desarrolladores y perfiles técnicos de alto nivel a tu equipo para cubrir vacantes críticas y acelerar el desarrollo.' },
+            { title: 'BPO tecnológico', text: 'Nos encargamos de la operación técnica completa: equipos, procesos e infraestructura para que escales tu desarrollo.' },
+          ],
+        },
+      ],
+    },
+    stack: {
+      eyebrow: 'FullService Core',
+      title: 'Tech_Stack',
+      text: 'Usamos tecnologías modernas para estar al corriente del mercado tecnológico.',
+      items: ['Next.js', 'AWS Cloud', 'Rust'],
+    },
+    clients: {
+      eyebrow: 'Clientes',
+      title: 'Empresas de todos los tamaños *confían* en nuestro trabajo',
+      text: 'Creamos proyectos con ingeniería de alto rendimiento.',
+    },
+    contact: {
+      title: '¿Tienes un *desafío*?',
+      text: 'Estamos listos para iniciar.',
+      cta: 'Cotizar mi proyecto',
+      follow: 'Síguenos',
+      company: 'Nombre_empresa',
+      email: 'Email',
+      needs: 'Describe tus necesidades',
+      words: 'palabras',
+      submit: 'Enviar información',
+      consentBefore: 'Al enviar, aceptas el ',
+      consentLink: 'protocolo de tratamiento de datos',
+      required: 'Completa este campo.',
+      invalidEmail: 'Escribe un correo válido.',
+      tooManyWords: 'Máximo 250 palabras.',
+      sent: 'Se abrió tu correo con el mensaje listo para enviar.',
+      mailSubject: 'Cotización FullService',
+    },
+  },
+
+  // Campuslands Global. Fuente: Content MD/Whole page/Servicios/Servicios Campuslands Global.md
+  global: {
+    hero: {
+      word: 'Global',
+      eyebrow: 'Campuslands Internacional · #BuildingTeams',
+      title: 'Contrata desarrolladores bilingües pre-evaluados que se integran a tu *equipo.*',
+      text: 'Presentamos candidatos evaluados en habilidades técnicas, comunicativas y de adaptación remota para acelerar tu contratación sin sacrificar calidad.',
+      cta: 'Solicitar candidatos pre-evaluados',
+    },
+    process: {
+      title: '¿Cómo funciona el proceso de contratación?',
+      text: 'Transparencia y velocidad en cada fase para integrar el mejor talento en tu equipo.',
+      steps: [
+        { title: 'Definimos el perfil', text: 'Analizamos tus requerimientos técnicos, cultura y objetivos del proyecto para encontrar el perfil ideal.' },
+        { title: 'Recibes pre-seleccionados', text: 'Te presentamos una lista de candidatos validados y pre-evaluados técnicamente.' },
+        { title: 'Entrevistas y selección', text: 'Realizas entrevistas finales, eliges al desarrollador idóneo y coordinas una integración sin fricciones.' },
+      ],
+    },
+    orbit: {
+      eyebrow: 'Consola de agente | Alcance global',
+      title: 'Pregúntale a *Órbit* en WhatsApp',
+      text: 'Habla con nuestro asistente para resolver cualquier duda sobre perfiles disponibles, tiempos de entrega, stacks de desarrollo y nuestro proceso de selección.',
+      cta: 'Escríbenos por WhatsApp',
+    },
+    model: {
+      eyebrow: 'Modelo de servicio',
+      title: 'Perfiles según seniority y *necesidad operativa*',
+      text: 'Encuentra el nivel de experiencia adecuado para integrarse de forma remota a tu equipo de ingeniería.',
+      label: 'Contratación remota',
+      name: 'Staffing Global',
+      badge: 'World class',
+      features: ['Desarrolladores bilingües', 'Evaluación técnica exhaustiva', 'Integración y acompañamiento', 'Garantía de adaptación'],
+      levels: [
+        { name: 'Junior', title: 'Base técnica sólida', text: 'Experiencia Campuslands.' },
+        { name: 'Semi-senior', title: 'Desarrollador autónomo experimentado', text: 'Experiencia laboral previa.' },
+        { name: 'Senior', title: 'Liderazgo y experiencia', text: 'Amplia experiencia laboral.' },
+      ],
+      cta: 'Solicitar talento',
+    },
+    companies: {
+      eyebrow: 'Reclutadores de talento',
+      title: 'Empresas que contratan talento *Campuslands*',
+      text: 'Estas empresas ya contratan y patrocinan talento Campuslands.',
+    },
+  },
+
+  // Campuslands AI Academy. Fuente: Content MD/Whole page/Servicios/Servicios Campuslands AI Academy.md
+  // [PROVISIONAL] Las descripciones de cada herramienta (tools.items[].text) las escribimos
+  // nosotros porque el contenido solo dice "información básica sobre la herramienta".
+  aiAcademy: {
+    hero: {
+      eyebrow: 'Campuslands AI Academy',
+      title: 'Convierte la IA en el *Sistema Operativo* de tu empresa',
+      text: 'Si llegaste aquí, sabes que la IA es clave para tu negocio en 2026... pero aún no tienes claro cómo integrarla en la operación diaria.',
+      punch: 'No te falta visión. Te falta un sistema de implementación claro.',
+      ctaPrograms: 'Ver programas',
+      ctaContact: 'Contactar ahora',
+    },
+    // Rótulos fijos del pase de la próxima masterclass. Los DATOS que cambian (tema, fecha,
+    // horario, instructor) están en src/data/masterclass.js.
+    masterclass: {
+      status: 'Próxima Masterclass',
+      dateLabel: 'Fecha',
+      timeLabel: 'Horario',
+      instructorLabel: 'Instructor',
+      cta: 'Quiero asistir',
+      // [PROVISIONAL] texto nuestro para acompañar el pase
+      kicker: 'Clase en vivo',
+      lead: 'Una sesión práctica con un especialista para empezar a aplicar la IA en tu trabajo desde el primer día. Reserva tu lugar.',
+    },
+    pain: {
+      eyebrow: 'Diagnóstico',
+      title: 'Entendemos la frustración de ver que la industria avanza *mientras tú lo piensas*',
+      items: [
+        'Tu equipo experimenta con IA, pero sin dirección estratégica',
+        'Tu competencia avanza más rápido porque ejecuta mejor',
+        'Sigues operando con tareas manuales que consumen tiempo crítico',
+      ],
+      close: 'En un entorno donde la velocidad define el mercado, la improvisación es cara. Sin sistema, la IA se vuelve ruido.',
+      cta: 'Quiero implementar IA',
+    },
+    missions: {
+      eyebrow: 'Planes de formación espacial',
+      title: 'Nuestras *misiones*',
+      text: 'Elige el plan que mejor impulse tu misión hacia la Inteligencia Artificial.',
+      includes: 'Incluye',
+      items: [
+        { code: 'Mission 01', name: 'Ignition', duration: '4 horas', cta: 'Inscribirme ahora', features: ['Impacto real de la IA en tu industria', 'IA generativa como asistente diario', 'Top 10 herramientas de IA', 'Creación de agentes básicos en vivo'] },
+        { code: 'Mission 02', name: 'Booster', duration: '8 horas', cta: 'Inscribirme ahora', features: ['Todo Ignition con enfoque profesional', 'Técnicas de prompting avanzadas', 'Domina 2 herramientas de IA a elección', 'Agentes personalizados para tu rol'] },
+        { code: 'Mission 03', name: 'Liftoff', duration: '12 horas', cta: 'Inscribirme ahora', features: ['Todo Booster para escalar tu operación', 'Automatización de procesos con n8n', 'Diseño de flujos automáticos de negocio', 'Dominio de herramienta adicional elegida'] },
+        { code: 'Mission 04', name: 'Odyssey', duration: 'Personalizado', cta: 'Inscribirme ahora', features: ['Programa 100% personalizado para empresas', 'Elección de herramientas y duración', 'Casos de uso reales por industria', 'Acompañamiento y sesiones tácticas'] },
+        { code: 'Mission 05', name: 'Nébula', duration: 'Pregrabado', cta: 'Acceder ahora', features: ['Contenido por niveles de aprendizaje', 'Evaluaciones para medir el progreso', 'Acceso 24/7 a materiales y recursos', 'Comunidad activa de soporte'] },
+      ],
+    },
+    method: {
+      eyebrow: 'Método AI Academy',
+      title: 'Sistema de implementación *ejecutivo*',
+      text: 'Para maximizar recursos, acelerar ejecución y escalar tu operación.',
+      pillars: ['Valor', 'Velocidad', 'Visión'],
+      gainsTitle: 'Con el método AI Academy obtienes',
+      gains: [
+        'Sistemas reutilizables que escalan con tu empresa',
+        'Procesos automatizados aplicables a tu operación',
+        'Una arquitectura clara de implementación de IA',
+        'Capacidad interna para liderar con IA (sin dependencia total)',
+      ],
+      ctaStart: 'Quiero iniciar',
+      ctaMasterclass: 'Ir a masterclass AI',
+    },
+    modules: {
+      eyebrow: 'Módulos formativos',
+      title: 'Especialistas en las tecnologías que *mueven tu negocio*',
+      text: 'Entrenamos talento en las herramientas más demandadas para asegurar una integración inmediata a tus proyectos.',
+      items: [
+        { title: 'Formación práctica', text: 'Aprende con casos reales. Sin teoría vacía, solo ejecución aplicada al mercado actual.' },
+        { title: 'Entregables listos', text: 'Sal de cada sesión con herramientas y activos digitales listos para implementar en tu trabajo.' },
+        { title: 'Soporte continuo', text: 'Nuestra comunidad y mentores están dispuestos 24/7 para resolver tus dudas técnicas.' },
+        { title: 'Rutas flexibles', text: 'Personaliza tu aprendizaje según tu nivel, desde principiante hasta experto en Nébula.' },
+      ],
+      ctaPlan: 'Adquirir plan',
+      ctaDiagnosis: 'Generar diagnóstico',
+    },
+    tools: {
+      title: 'Tecnologías de IA que *potencian tu trabajo*',
+      items: [
+        { name: 'ChatGPT', text: 'Asistente conversacional de OpenAI para redactar, analizar información y resolver tareas en lenguaje natural.' },
+        { name: 'Make', text: 'Plataforma visual para automatizar flujos de trabajo entre aplicaciones sin programar.' },
+        { name: 'Gemini', text: 'IA de Google integrada a Workspace para escribir, resumir y analizar documentos, correos y datos.' },
+        { name: 'Claude', text: 'Asistente de IA de Anthropic para analizar documentos largos, redactar y apoyar tareas de programación.' },
+        { name: 'Microsoft Copilot', text: 'IA dentro de Microsoft 365 para trabajar más rápido en Word, Excel, PowerPoint, Outlook y Teams.' },
+        { name: 'GitHub Copilot', text: 'Asistente de programación que sugiere y explica código directamente en el editor.' },
+        { name: 'Midjourney', text: 'Generación de imágenes de alta calidad a partir de descripciones en texto.' },
+        { name: 'Notion AI', text: 'IA dentro de Notion para resumir, redactar y organizar la documentación del equipo.' },
+        { name: 'Zapier', text: 'Conecta miles de aplicaciones para automatizar tareas repetitivas con disparadores y acciones.' },
+        { name: 'Perplexity', text: 'Buscador con IA que responde preguntas citando sus fuentes.' },
+        { name: 'NotebookLM', text: 'Cuaderno de investigación de Google que responde y resume a partir de tus propios documentos.' },
+        { name: 'Read AI', text: 'Transcribe, resume y extrae acuerdos de tus reuniones automáticamente.' },
+        { name: 'ElevenLabs', text: 'Voces sintéticas realistas, narración y doblaje con IA.' },
+        { name: 'HeyGen', text: 'Videos con avatares, traducción y doblaje generados con IA.' },
+      ],
+    },
+    stories: {
+      eyebrow: 'Equipos que evolucionaron',
+      title: 'Historias reales de equipos que ya *despegaron*',
+      items: [
+        { name: 'Carlos Herrera', role: 'Director de Talento en Grupo Andino', quote: 'La formación de 8 horas fue ideal para nuestro equipo. Los casos por industria marcaron la diferencia y resolvieron dudas específicas.', when: 'Hace 2 semanas' },
+        { name: 'Miguel Ángel López', role: 'Docente Universitario', quote: 'Excelente acompañamiento. Adaptaron el contenido a educación superior y nos dejaron material listo para incorporar en clase.', when: 'Hace 2 semanas' },
+        { name: 'Juliana Restrepo', role: 'Fundadora en CrecePyme', quote: 'Más que un curso, fue una experiencia de estrategia digital. Las automatizaciones de seguimiento nos ahorran horas cada semana.', when: 'Hace 3 semanas' },
+        { name: 'Laura Gómez', role: 'Tech Lead en InnovApp', quote: 'AI Academy nos dio herramientas concretas para acelerar nuestros procesos. El enfoque práctico nos permitió aplicar lo aprendido desde el primer día.', when: 'Hace 2 semanas' },
+      ],
+    },
+    final: {
+      title: 'Implementa IA con *acompañamiento experto*',
+      text: 'Diagnóstico, diseño e implementación de sistemas de IA adaptados a tu contexto: procesos, equipos y objetivos.',
+      cta: 'Implementa IA ahora',
+    },
+  },
+
+  // Staffing tecnológico. Fuente: Content MD/Whole page/Servicios/Staffing.md
+  staffing: {
+    hero: {
+      eyebrow: 'Staffing tecnológico',
+      title: 'Impulsa tu crecimiento con equipos de *alto rendimiento.*',
+      text: 'Conectamos la innovación de Campuslands con los desafíos técnicos de tu empresa. Equipos de alto rendimiento listos para integrarse y escalar tus proyectos tecnológicos.',
+      cta: 'Nuestras opciones de staffing',
+      preview: 'Tres formas de sumar talento',
+    },
+    options: {
+      eyebrow: 'Opciones de staffing',
+      title: 'Elige cómo *crecer* tu equipo',
+      items: [
+        {
+          key: 'global',
+          name: 'Staffing Global',
+          badge: 'World class',
+          category: 'Nivel corporativo',
+          text: 'Aceleración de equipos de software con talento tecnológico seleccionado y preparado para integrarse rápidamente a proyectos de alcance global.',
+          features: ['Gestión centralizada', 'Estándares globales', 'Equipos remotos de élite', 'Tracking de alto rendimiento'],
+          levels: [
+            { name: 'Junior', title: 'Base técnica sólida', text: 'Experiencia Campuslands.' },
+            { name: 'Semi-senior', title: 'Desarrollador autónomo experimentado', text: 'Experiencia laboral previa.' },
+            { name: 'Senior', title: 'Liderazgo y experiencia', text: 'Amplia experiencia laboral.' },
+          ],
+          cta: 'Solicitar talento',
+        },
+        {
+          key: 'national',
+          name: 'Staffing Nacional',
+          badge: 'LATAM core',
+          category: 'Nivel corporativo',
+          text: 'Soluciones ágiles diseñadas específicamente para medianas empresas locales que buscan robustecer sus departamentos técnicos.',
+          features: ['Contratación flexible', 'Garantía de reposición', 'Talento curado', 'Niveles a elección'],
+          levels: [
+            { name: 'Junior básico', text: 'Experiencia Campuslands.' },
+            { name: 'Junior plus', text: 'Experiencia laboral previa.' },
+            { name: 'Dev mid', text: 'Amplia experiencia laboral.' },
+          ],
+          cta: 'Solicitar talento',
+        },
+        {
+          key: 'fullService',
+          name: 'Staffing Full Service',
+          badge: 'BPO projects',
+          category: 'Outsourcing estratégico',
+          text: 'Delegue la ejecución técnica completa a células de trabajo gestionadas bajo los estándares de excelencia de nuestra academia.',
+          features: ['Células dedicadas', 'Ejecución end-to-end', 'Monitoreo Campuslands', 'Agilidad garantizada'],
+          levels: [
+            { name: 'Dev junior', text: 'Soporte estructurado.' },
+            { name: 'Dev mid level', text: 'Desarrollo autónomo.' },
+            { name: 'Dev senior', text: 'Arquitectura y liderazgo.' },
+          ],
+          cta: 'Solicitar servicio',
+        },
+      ],
+    },
+  },
+
+  // Facturación. Fuente: Content MD/Whole page/Servicios/Servicios Facturación.md
+  // [PROVISIONAL] unavailable* y found* son textos nuestros (no hay API de facturas conectada).
+  billing: {
+    eyebrow: 'Facturación',
+    title: 'Gestiona tus pagos *fácil y rápido*',
+    text: 'Ingresa el número de tu factura para encontrar toda la información.',
+    label: 'Número de cédula o documento',
+    placeholder: 'Ej: 123456789',
+    submit: 'Buscar',
+    searching: 'Buscando…',
+    required: 'Escribe tu número de documento.',
+    invalid: 'Usa solo números (entre 5 y 15 dígitos).',
+    emptyTitle: 'Sin facturas encontradas',
+    emptyText: 'No encontramos facturas asociadas al número que ingresaste.',
+    emptyHint: 'Verifica que el número sea correcto o intenta nuevamente en unos minutos si la factura fue generada recientemente.',
+    unavailableTitle: 'Consulta en línea no disponible',
+    unavailableText: 'Por ahora no podemos consultar tus facturas desde aquí. Escríbenos y te ayudamos con tu pago.',
+    foundTitle: 'Facturas encontradas',
+    help: '¿Necesitas ayuda?',
+    contact: 'Contactar ahora',
+    support: 'Contactar soporte',
   },
 
   legal: {

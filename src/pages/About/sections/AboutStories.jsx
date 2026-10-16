@@ -5,6 +5,7 @@ import SocialIcon from '@/components/ui/SocialIcon'
 import { NETWORKS } from '@/pages/Home/sections/Social'
 import { LINKS } from '@/constants/links'
 import { useLanguage } from '@/context/LanguageContext'
+import { VIDEOS } from '@/constants/videos'
 import './AboutStories.css'
 
 // Historias de éxito (banda negra): cinta de 8 videos verticales que se recorre con las
@@ -16,9 +17,8 @@ export default function AboutStories() {
   const { t } = useLanguage()
   const { stories } = t.about
   const { social } = t.home
-  const videos = Array.from({ length: 8 }, (_, i) =>
-    i === 3 ? stories.featured : `${stories.video} ${i + 1}`,
-  )
+  const videos = VIDEOS.aboutStories
+  const [playing, setPlaying] = useState(null) // video abierto en la ventana (o null)
 
   const trackRef = useRef(null)
   const [edges, setEdges] = useState({ start: true, end: false })
@@ -67,15 +67,23 @@ export default function AboutStories() {
         </div>
 
         <ul ref={trackRef} className="reel-track" onScroll={updateEdges}>
-          {videos.map((label, i) => (
-            <li key={label} className="reel-card" role="img" aria-label={label}>
-              <span className="reel-card__play" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5-11-6.5Z" /></svg>
-              </span>
-              <span className="reel-card__caption">
-                <span className="reel-card__num">{String(i + 1).padStart(2, '0')}</span>
-                <span className="reel-card__label">{label}</span>
-              </span>
+          {videos.map((v, i) => (
+            <li key={v.name} className="reel-card">
+              <button
+                type="button"
+                className="reel-card__btn"
+                onClick={() => setPlaying(v)}
+                aria-label={`${stories.watch} ${v.name}`}
+              >
+                <img className="reel-card__poster" src={v.poster} alt="" loading="lazy" />
+                <span className="reel-card__play" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5-11-6.5Z" /></svg>
+                </span>
+                <span className="reel-card__caption">
+                  <span className="reel-card__num">{String(i + 1).padStart(2, '0')} · {stories.video}</span>
+                  <span className="reel-card__label">{v.name}</span>
+                </span>
+              </button>
             </li>
           ))}
         </ul>
@@ -118,6 +126,39 @@ export default function AboutStories() {
           </div>
         </div>
       </div>
+      {playing && <VideoModal video={playing} closeLabel={stories.close} onClose={() => setPlaying(null)} />}
     </section>
+  )
+}
+
+// Ventana con el video en su formato real (vertical u horizontal). Se cierra con el botón, con
+// Esc o tocando fuera del video; mientras está abierta, la página de fondo no se desplaza.
+function VideoModal({ video, closeLabel, onClose }) {
+  const closeRef = useRef(null)
+
+  useEffect(() => {
+    const onKey = (e) => e.key === 'Escape' && onClose()
+    const prevOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    document.addEventListener('keydown', onKey)
+    closeRef.current?.focus()
+    return () => {
+      document.body.style.overflow = prevOverflow
+      document.removeEventListener('keydown', onKey)
+    }
+  }, [onClose])
+
+  return (
+    <div className="reel-modal" role="dialog" aria-modal="true" aria-label={video.name} onClick={onClose}>
+      <div className={`reel-modal__box${video.vertical ? ' is-vertical' : ''}`} onClick={(e) => e.stopPropagation()}>
+        <video className="reel-modal__video" src={video.src} poster={video.poster} controls autoPlay playsInline />
+        <div className="reel-modal__bar">
+          <span>{video.name}</span>
+          <button ref={closeRef} type="button" className="reel-modal__close" onClick={onClose} aria-label={closeLabel}>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+          </button>
+        </div>
+      </div>
+    </div>
   )
 }

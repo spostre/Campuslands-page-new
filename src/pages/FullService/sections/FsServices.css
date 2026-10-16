@@ -1,0 +1,178 @@
+/* Overlay: retícula de plano técnico que se desvanece hacia los bordes */
+.fs-services {
+  --line: rgb(15 18 24 / 0.12);
+  position: relative;
+  isolation: isolate;
+}
+
+.fs-services::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(rgb(15 18 24 / 0.05) 1px, transparent 1px) 0 0 / 32px 32px,
+    linear-gradient(90deg, rgb(15 18 24 / 0.05) 1px, transparent 1px) 0 0 / 32px 32px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 45%, #000 30%, transparent 85%);
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 45%, #000 30%, transparent 85%);
+}
+
+.fs-services__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px 48px;
+  flex-wrap: wrap;
+  margin-bottom: clamp(36px, 4vw, 56px);
+}
+
+.fs-services__head .h2 {
+  margin-top: 4px;
+  max-width: 16ch;
+}
+
+/* Ficha técnica: 4 columnas; IA = 2 columnas × 2 filas */
+.fs-sheet {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.fs-sheet > article,
+.fs-sheet__band {
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.fs-sheet__band {
+  grid-column: span 2;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 20px;
+  font-family: var(--font-nav);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gray-600);
+}
+
+.fs-sheet__band--ai {
+  background: var(--ink-950);
+  border-color: var(--ink-950);
+  color: #cfd3da;
+}
+
+.fs-sheet__num {
+  font-family: var(--font-nav);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--blue-600);
+}
+
+/* Bloque de IA: negro plano, ícono grande y texto abajo */
+.fs-sheet__feature {
+  grid-column: span 2;
+  grid-row: span 2;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 440px;
+  padding: clamp(24px, 2.6vw, 40px);
+  background: var(--ink-950);
+  border-color: var(--ink-950) !important;
+  color: #eef0f4;
+}
+
+.fs-sheet__feature .fs-sheet__num {
+  color: var(--blue-300);
+}
+
+.fs-sheet__icon {
+  position: absolute;
+  top: clamp(24px, 2.6vw, 40px);
+  right: clamp(24px, 2.6vw, 40px);
+  width: clamp(90px, 9vw, 130px);
+}
+
+.fs-sheet__feature-title {
+  margin-top: auto;
+  max-width: 14ch;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.06;
+}
+
+.fs-sheet__feature-text {
+  margin-top: 16px;
+  max-width: 42ch;
+  line-height: 1.6;
+  color: #b9bfca;
+}
+
+/* Celdas de desarrollo */
+.fs-sheet__cell {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: clamp(20px, 2vw, 30px);
+  background: var(--white);
+}
+
+.fs-sheet__title {
+  padding-top: 28px;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+}
+
+.fs-sheet__text {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* Cruces de registro */
+.fs-sheet__mark {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background:
+    linear-gradient(var(--ink-950), var(--ink-950)) center / 100% 1px no-repeat,
+    linear-gradient(var(--ink-950), var(--ink-950)) center / 1px 100% no-repeat;
+}
+
+.fs-sheet__mark--tl { top: -8px; left: -8px; }
+.fs-sheet__mark--tr { top: -8px; right: -7px; }
+.fs-sheet__mark--bl { bottom: -7px; left: -8px; }
+.fs-sheet__mark--br { bottom: -7px; right: -7px; }
+
+@media (max-width: 1100px) {
+  .fs-sheet {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .fs-sheet__band--ai { order: 0; }
+  .fs-sheet__feature { order: 1; grid-row: auto; min-height: 360px; }
+  .fs-sheet__band--dev { order: 2; }
+  .fs-sheet__cell { order: 3; }
+}
+
+@media (max-width: 640px) {
+  .fs-sheet {
+    grid-template-columns: 1fr;
+  }
+
+  .fs-sheet__band,
+  .fs-sheet__feature {
+    grid-column: auto;
+  }
+}

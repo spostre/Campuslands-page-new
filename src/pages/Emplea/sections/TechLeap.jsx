@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Emph from '@/components/ui/Emph'
+import Starfield from '@/components/ui/Starfield'
 import { useLanguage } from '@/context/LanguageContext'
 import { useReveal } from '@/hooks/useReveal'
 import cristianPhoto from '@/assets/images/emplea/cristian-velez.webp'
@@ -20,6 +21,7 @@ const PHOTOS = [cristianPhoto, clementPhoto]
 // Tech Leap (banda negra): a la izquierda el título; a la derecha un panel mediano con las
 // seis etapas numeradas que se recorren con flechas. Al cambiar de etapa, una luz desenfocada
 // dentro del panel se desplaza y cambia de color. Debajo, los dos testimonios a todo el ancho.
+// Fondo con estrellas lentas (Starfield), como las secciones negras del Inicio.
 export default function TechLeap() {
   const { leap } = useLanguage().t.emplea
   const [step, setStep] = useState(0)
@@ -35,7 +37,9 @@ export default function TechLeap() {
   }
 
   return (
-    <section className="section leap surface-dark">
+    <section className="section leap surface-dark has-stars">
+      {/* Overlay: estrellas lentas como en el Inicio, más concentradas a la derecha (detrás del panel) */}
+      <Starfield origin="right" density={0.7} />
       <div className="container">
         <div className="leap__top">
           <header ref={headRef} className="leap__head reveal">
