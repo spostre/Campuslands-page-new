@@ -1,7 +1,9 @@
 import Emph from '@/components/ui/Emph'
 import SocialIcon from '@/components/ui/SocialIcon'
 import Starfield from '@/components/ui/Starfield'
+import VideoPlayer from '@/components/ui/VideoPlayer'
 import { LINKS } from '@/constants/links'
+import { VIDEOS } from '@/constants/videos'
 import { useLanguage } from '@/context/LanguageContext'
 import helmetImage from '@/assets/images/logo-mark.webp'
 import './AboutHero.css'
@@ -40,15 +42,19 @@ export default function AboutHero() {
           </ul>
         </div>
 
-        {/* Espacio reservado del video vertical (se reemplaza por el reproductor cuando exista) */}
+        {/* Video vertical del CEO; el nombre y el cargo se ven encima hasta que empieza */}
         <div className="reel">
           <img className="reel__logo" src={helmetImage} alt="" aria-hidden="true" />
-          <div className="reel__frame" role="img" aria-label={hero.videoLabel}>
-            <span className="reel__play" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5-11-6.5Z" /></svg>
-            </span>
-            <div className="reel__person">
-              <span className="reel__kind">{t.placeholder.video}</span>
+          <div className="reel__frame">
+            <VideoPlayer
+              src={VIDEOS.diego.src}
+              poster={VIDEOS.diego.poster}
+              label={hero.videoLabel}
+              kind={t.placeholder.video}
+              vertical
+              className="reel__player"
+            />
+            <div className="reel__person" aria-hidden="true">
               <strong>{hero.person}</strong>
               <span>{hero.role}</span>
             </div>

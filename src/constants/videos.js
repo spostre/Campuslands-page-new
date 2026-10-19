@@ -7,6 +7,8 @@ const video = (name, vertical = false) => ({ src: `${base}${name}.mp4`, poster: 
 export const VIDEOS = {
   // Inicio · Redes: video de Juliana (horizontal). Origen: Video_Campuslands_Horizontal.mp4
   juliana: video('campuslands-horizontal'),
+  // Nosotros · Portada: Diego Tarazona, CEO (vertical, 16 s). Origen: Content MD/vids/diego.mp4
+  diego: video('diego-tarazona', true),
   // Sé un camper · Historias de éxito (verticales)
   santiago: video('santiago-laguado'), // Test Santiago IA academy.mp4
   juanRubio: video('juan-rubio'), // Test Juan Rubio.mp4

@@ -171,7 +171,7 @@ La explicación archivo por archivo está en [docs/ESTRUCTURA.md](docs/ESTRUCTUR
 1. `npm run build` → sube la carpeta `dist/` a cualquier hosting de sitios estáticos (Netlify, Cloudflare Pages, Vercel, S3 + CloudFront, Apache/Nginx).
 2. **Rutas:** como es una SPA, el servidor debe devolver `index.html` para cualquier ruta. `public/_redirects` ya lo hace en Netlify y Cloudflare Pages; en otro hosting hay que configurarlo.
 3. **Caché:** `public/_headers` define 1 año para los archivos con huella (`/assets/*`), 1 semana para videos y revalidación para `index.html`. Igual que arriba: aplicar el equivalente si el hosting no lee ese archivo.
-4. **Videos:** `public/videos/` pesa ~120 MB (24 archivos). Funciona en un hosting estático, pero para un repositorio Git conviene Git LFS o alojarlos en un CDN / YouTube / Vimeo y cambiar las rutas en `src/constants/videos.js`.
+4. **Videos:** `public/videos/` pesa ~120 MB (26 archivos). Funciona en un hosting estático, pero para un repositorio Git conviene Git LFS o alojarlos en un CDN / YouTube / Vimeo y cambiar las rutas en `src/constants/videos.js`.
 
 ---
 

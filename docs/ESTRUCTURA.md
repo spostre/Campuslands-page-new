@@ -86,7 +86,7 @@ Campuslands-new-page/
 │   ├── _headers            Reglas de caché (Netlify / Cloudflare Pages)
 │   ├── _redirects          Toda ruta sirve index.html (SPA)
 │   ├── licenses/           Textos de licencia de fuentes y librerías (enlazados desde /creditos)
-│   └── videos/             24 archivos: videos .mp4 + portadas .webp (~120 MB)
+│   └── videos/             26 archivos: videos .mp4 + portadas .webp (~120 MB)
 ├── docs/
 │   ├── ESTRUCTURA.md       Este documento
 │   ├── POLITICAS.md        Licencias, riesgos, privacidad

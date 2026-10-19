@@ -100,39 +100,31 @@
     linear-gradient(180deg, #111215, #060607);
 }
 
-/* Sombra inferior para que el rótulo se lea */
+/* El reproductor ocupa todo el marco (el borde lo pone el marco) */
+.reel__player {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+}
+
+/* Sombra inferior para que el rótulo se lea; desaparece al reproducir */
 .reel__frame::after {
   content: '';
   position: absolute;
   inset: 55% 0 0;
   background: linear-gradient(transparent, rgb(0 0 0 / 0.75));
   pointer-events: none;
+  transition: opacity 0.3s var(--ease);
 }
 
-.reel__play {
-  display: grid;
-  place-items: center;
-  width: 72px;
-  height: 72px;
-  border: 1px solid rgb(255 255 255 / 0.3);
-  border-radius: 50%;
-  background: rgb(255 255 255 / 0.06);
-  transition: transform 0.3s var(--ease), background-color 0.3s var(--ease);
+.reel__frame:has(.is-started)::after,
+.reel__frame:has(.is-started) .reel__person {
+  opacity: 0;
 }
 
-.reel__frame:hover .reel__play {
-  transform: scale(1.06);
-  background: rgb(255 255 255 / 0.12);
-}
-
-.reel__play svg {
-  width: 24px;
-  height: 24px;
-  margin-left: 4px;
-  fill: #ffffff;
-}
-
-/* Quién habla: abajo a la izquierda, como el rótulo de un video */
+/* Quién habla: abajo a la izquierda, como el rótulo de un video (no bloquea el clic) */
 .reel__person {
   position: absolute;
   left: 22px;
@@ -141,19 +133,11 @@
   z-index: 1;
   display: grid;
   gap: 2px;
-}
-
-.reel__kind {
-  font-family: var(--font-nav);
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--accent);
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease);
 }
 
 .reel__person strong {
-  margin-top: 6px;
   font-family: var(--font-display);
   font-size: 1.125rem;
   font-weight: 500;
