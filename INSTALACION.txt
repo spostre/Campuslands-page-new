@@ -1,0 +1,23 @@
+=== WINDOWS (PowerShell) ===
+
+winget install --id Git.Git -e
+winget install --id OpenJS.NodeJS.LTS -e
+# cerrar y volver a abrir PowerShell
+git clone https://github.com/spostre/Campuslands-page-new.git
+cd Campuslands-page-new
+npm ci
+npm run dev
+# abrir http://localhost:5173
+
+
+=== LINUX (Ubuntu / Debian) ===
+
+sudo apt update
+sudo apt install -y git curl
+curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+sudo apt install -y nodejs
+git clone https://github.com/spostre/Campuslands-page-new.git
+cd Campuslands-page-new
+npm ci
+npm run dev
+# abrir http://localhost:5173

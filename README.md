@@ -63,7 +63,7 @@ Solo hay **4 dependencias de ejecución** (React, React DOM, React Router y Leaf
 
 ## Puesta en marcha
 
-Requisitos: **Node.js 20 o superior** (probado con Node 24).
+Requisitos: **Node.js 20 o superior** (probado con Node 24). Guía paso a paso para una PC nueva, con todos los comandos: [INSTALACION.txt](INSTALACION.txt).
 
 ```bash
 npm install      # instala dependencias (una vez)
